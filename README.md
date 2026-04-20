@@ -77,36 +77,15 @@ Use the **state-machine version** when:
 
 # Skill Catalog
 
-## Operational Protocols / State-Machine Skills
-
-### 1) `agentic-design-patterns-orchestrator-state-machine-skill.md`
-**What it is:** A workflow-control skill for tasks that need classification, planning, routing, evidence gathering, execution, reflection, verification, and stopping.
-
-**Use it when:** The agent should behave like an orchestrated system, not a one-shot responder.
-
-**Best for:** Multi-step tasks, sub-agent coordination, tool-using workflows, bounded execution.
+Skills are organized into five topic areas. Each entry shows its file path and whether it is a **[protocol]** (state-machine, enforces a workflow) or a **[framework]** (conceptual lens, improves judgment).
 
 ---
 
-### 2) `cognitive-load-operator-state-machine-skill.md`
-**What it is:** A protocol for making outputs easier to understand, retain, and act on. Forces the agent to inspect complexity before output, identify overload sources, choose a lower-load structure, and verify the result is easier to process.
+## 🔧 Execution — how-to-do-the-work protocols
 
-**Use it when:** An answer is technically correct but mentally expensive.
+Skills for executing technical work in a bounded, disciplined way.
 
-**Best for:** Documentation, workflows, instructions, prompts, onboarding, dense explanations.
-
----
-
-### 3) `explore-vs-exploit-state-machine-skill.md`
-**What it is:** A control system for deciding whether to keep gathering information or commit to action.
-
-**Use it when:** The agent risks either acting too early or searching forever.
-
-**Best for:** Research, debugging, planning, decision support, ambiguous tasks.
-
----
-
-### 4) `how-to-solve-it-state-machine-skill.md`
+### `execution/how-to-solve-it-state-machine-skill.md` · [protocol]
 **What it is:** A disciplined problem-solving protocol that forces problem framing, evidence gathering, planning, execution, and reflection.
 
 **Use it when:** The task is hard, uncertain, or likely to tempt premature coding.
@@ -115,34 +94,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 5) `inversion-mental-model-state-machine-skill.md`
-**What it is:** A protocol for reasoning from failure backward: define the opposite of success, enumerate failure paths, rank them, and turn them into guardrails.
-
-**Use it when:** Risk, blind spots, defensive design, or failure modes matter.
-
-**Best for:** Safety checks, architecture review, incident prevention, rollout planning.
-
----
-
-### 6) `philosophy-of-software-design-state-machine-skill.md`
-**What it is:** A protocol for managing complexity, building deeper modules, and avoiding shallow abstraction sprawl. Adds hard gates for consumer discovery before shared-interface edits, unknowns/blast-radius declaration, and bounded change scope.
-
-**Use it when:** The agent is changing shared interfaces or making design decisions that can spread complexity.
-
-**Best for:** API design, module boundaries, simplification, architecture cleanup.
-
----
-
-### 7) `pragmatic-programmer-state-machine-skill.md`
-**What it is:** A practical engineering protocol focused on bounded changes, reversible decisions, automation, and root-cause fixes. Enforces blast-radius accounting, consumer discovery, and clean stopping.
-
-**Use it when:** The agent needs to work like a senior pragmatist instead of an idealist or cleanup maximalist.
-
-**Best for:** Day-to-day engineering work, tooling, repetitive toil reduction, incremental improvements.
-
----
-
-### 8) `refactoring-state-machine-skill.md`
+### `execution/refactoring-state-machine-skill.md` · [protocol]
 **What it is:** A bounded refactoring protocol that defines a target, accounts for shared surfaces, limits the transformation budget, and stops cleanly with an anti-loop circuit breaker.
 
 **Use it when:** Structure needs improvement but the task could spiral into endless cleanup.
@@ -151,34 +103,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 9) `thinking-in-systems-state-machine-skill.md`
-**What it is:** A protocol for mapping system boundaries, stocks, flows, loops, delays, leverage points, and blast radius before changing anything.
-
-**Use it when:** The problem involves feedback loops, delayed effects, or second-order consequences.
-
-**Best for:** Architecture, workflows, scaling problems, process failures, policy changes.
-
----
-
-### 10) `thoroughness-check-etto-state-machine-skill.md`
-**What it is:** A universal preflight gate based on the efficiency–thoroughness trade-off. Decides how much evidence is required, whether the agent may act yet, what tools are permitted, and when to stop or escalate.
-
-**Use it when:** The agent should decide how much evidence, validation, and caution are required before acting.
-
-**Best for:** Almost any non-trivial task, especially when risk or irreversibility is involved.
-
----
-
-### 11) `toyota-kata-state-machine-skill.md`
-**What it is:** A continuous-improvement protocol that forces the agent to define the current condition, set the next target condition, isolate one obstacle, and run one bounded experiment at a time.
-
-**Use it when:** The path forward is uncertain and progress should be discovered iteratively rather than through one large redesign.
-
-**Best for:** Optimization, process improvement, performance tuning, workflow refinement, developer-experience improvements, and safe iterative experimentation.
-
----
-
-### 12) `working-effectively-with-legacy-code-state-machine-skill.md`
+### `execution/working-effectively-with-legacy-code-state-machine-skill.md` · [protocol]
 **What it is:** A protocol for making brittle code safe to change before trying to improve it. Forces characterization testing, seam creation, and explicit stopping to prevent rewrite gambling and cleanup drift.
 
 **Use it when:** The system has weak tests, unclear behavior, tight coupling, or rewrite temptation.
@@ -187,72 +112,38 @@ Use the **state-machine version** when:
 
 ---
 
-## Conceptual / Framework Skills
+### `execution/toyota-kata-state-machine-skill.md` · [protocol]
+**What it is:** A continuous-improvement protocol that forces the agent to define the current condition, set the next target condition, isolate one obstacle, and run one bounded experiment at a time.
 
-### 13) `accelerate-ai-skill.md`
-**What it is:** A delivery and reliability lens inspired by Accelerate-style thinking. Optimizes flow, stability, and feedback together; measures what matters; prefers capability improvements over vanity activity.
+**Use it when:** The path forward is uncertain and progress should be discovered iteratively rather than through one large redesign.
 
-**Use it when:** The agent must improve engineering throughput, feedback loops, reliability, or team productivity using evidence rather than folklore.
-
-**Best for:** Delivery metrics, operational improvement, recovery time reduction, batch-size reduction.
+**Best for:** Optimization, process improvement, performance tuning, workflow refinement, developer-experience improvements, and safe iterative experimentation.
 
 ---
 
-### 14) `agentic-design-patterns-orchestrator-skill.md`
-**What it is:** A conceptual version of the orchestration skill focused on planning, routing, deliberate tool use, reflection, memory, sub-agents, and human-in-the-loop behavior.
+### `execution/pragmatic-programmer-state-machine-skill.md` · [protocol]
+**What it is:** A practical engineering protocol focused on bounded changes, reversible decisions, automation, and root-cause fixes. Enforces blast-radius accounting, consumer discovery, and clean stopping.
 
-**Use it when:** You want the agent to reason with agentic patterns without necessarily enforcing a strict protocol.
+**Use it when:** The agent needs to work like a senior pragmatist instead of an idealist or cleanup maximalist.
 
-**Best for:** Strategy design, agent architecture thinking, early-stage workflow design.
-
----
-
-### 15) `bounded-self-revision-skill.md`
-**What it is:** A disciplined self-refine skill that generates an initial output, critiques it against explicit dimensions, revises it up to two passes, and stops when gains flatten. Prevents endless polish loops, vague self-criticism, and rewriting without improvement.
-
-**Use it when:** The first draft is decent but should improve through one or two structured refinement passes, and you need the revision to stay finite and purposeful.
-
-**Best for:** Writing, planning, structured outputs, explanations, prompts, design memos, decision docs, summaries, and complex reasoning presentations.
+**Best for:** Day-to-day engineering work, tooling, repetitive toil reduction, incremental improvements.
 
 ---
 
-### 16) `designing-data-intensive-applications-ai-skill.md`
-**What it is:** A data-systems reasoning lens inspired by DDIA. Reasons about consistency, replication, partitioning, failure modes, and data flow choices consciously.
+### `execution/philosophy-of-software-design-state-machine-skill.md` · [protocol]
+**What it is:** A protocol for managing complexity, building deeper modules, and avoiding shallow abstraction sprawl. Adds hard gates for consumer discovery before shared-interface edits, unknowns/blast-radius declaration, and bounded change scope.
 
-**Use it when:** The agent must reason about storage, distributed systems, consistency, replication, partitioning, messaging, or reliability tradeoffs.
+**Use it when:** The agent is changing shared interfaces or making design decisions that can spread complexity.
 
-**Best for:** Backends, data architecture, infra design, state management, event-driven systems.
-
----
-
-### 17) `explore-vs-exploit-skill.md`
-**What it is:** A conceptual version of the exploration-vs-commitment tradeoff.
-
-**Use it when:** You want the agent to think clearly about search breadth versus action, without a rigid execution protocol.
-
-**Best for:** Planning, ideation, research strategy, lightweight debugging decisions.
+**Best for:** API design, module boundaries, simplification, architecture cleanup.
 
 ---
 
-### 18) `inversion-mental-model-skill.md`
-**What it is:** A conceptual version of inversion as a reasoning tool for risks, blind spots, and failure modes.
+## 🧭 Judgment & Routing — deciding what to do and how rigorously
 
-**Use it when:** The agent needs a better strategic lens rather than a formal failure-mapping workflow.
+Skills for routing tasks, calibrating rigor, and reasoning about risks and tradeoffs.
 
-**Best for:** Strategy, critique, planning, pre-mortems, anti-goal analysis.
-
----
-
-### 19) `kahneman-thinking-fast-slow-software-agent-skill.md`
-**What it is:** A judgment skill based on fast versus slow thinking for software engineering work. Uses fast mode for cheap pattern recognition and slow mode for anything expensive, irreversible, ambiguous, or security-sensitive.
-
-**Use it when:** The agent needs to decide when cheap pattern recognition is fine and when slow, careful reasoning is mandatory.
-
-**Best for:** Coding, debugging, estimation, review, ambiguous architecture decisions.
-
----
-
-### 20) `problem-mode-router-cynefin-skill.md`
+### `judgment-and-routing/problem-mode-router-cynefin-skill.md` · [framework]
 **What it is:** A routing skill based on Cynefin-style problem classification that helps the agent decide whether the situation is obvious, complicated, complex, chaotic, or still disordered.
 
 **Use it when:** The first question is not "what do I do?" but "what kind of problem is this, and what response style fits it?"
@@ -261,7 +152,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 21) `recognition-primed-triage-skill.md`
+### `judgment-and-routing/recognition-primed-triage-skill.md` · [framework]
 **What it is:** A fast-judgment skill for urgent situations that tells the agent to recognize the pattern, choose the first plausible strong move, mentally simulate it, and then reassess.
 
 **Use it when:** Delay is costly, information is incomplete, and the agent needs a high-quality first move rather than exhaustive comparison.
@@ -270,43 +161,16 @@ Use the **state-machine version** when:
 
 ---
 
-### 22) `team-topologies-ai-skill.md`
-**What it is:** A coordination and ownership lens for multi-agent or multi-team systems. Enforces bounded ownership, clear interaction modes, cognitive load control, and stream-aligned delivery.
+### `judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md` · [framework]
+**What it is:** A judgment skill based on fast versus slow thinking for software engineering work. Uses fast mode for cheap pattern recognition and slow mode for anything expensive, irreversible, ambiguous, or security-sensitive.
 
-**Use it when:** The problem is less about one task and more about how work should be split, owned, and coordinated.
+**Use it when:** The agent needs to decide when cheap pattern recognition is fine and when slow, careful reasoning is mandatory.
 
-**Best for:** Multi-agent systems, platform teams, ownership design, reducing coordination chaos.
-
----
-
-### 23) `the-goal-theory-of-constraints-ai-skill.md`
-**What it is:** A throughput and bottleneck lens based on Theory of Constraints. Every system has a limiting constraint; identify, exploit, and elevate it before optimizing anything else.
-
-**Use it when:** The agent must improve performance or delivery by finding the real limiting factor rather than optimizing everything.
-
-**Best for:** Performance tuning, workflow optimization, queue reduction, system throughput improvement.
+**Best for:** Coding, debugging, estimation, review, ambiguous architecture decisions.
 
 ---
 
-### 24) `thoroughness-check-etto-skill.md`
-**What it is:** A conceptual version of the ETTO principle for deciding the right rigor level before work begins.
-
-**Use it when:** You want the judgment of ETTO without a formal gate.
-
-**Best for:** Prompting style, advisory workflows, lightweight preflight reasoning.
-
----
-
-### 25) `tool-interactive-critic-skill.md`
-**What it is:** A post-generation verification skill based on the CRITIC pattern. Generates an initial output, selects the right external tools to critique it, revises only where tool-grounded evidence demands it, and stops when the major weaknesses are resolved.
-
-**Use it when:** The first draft is plausible but not yet trustworthy, and external tools can materially improve the answer's accuracy or safety.
-
-**Best for:** Factual answers, technical explanations, code review with tests or search, plans that depend on current facts, operational recommendations, and tool-using agent workflows.
-
----
-
-### 26) `unsafe-control-actions-hazard-analysis-skill.md`
+### `judgment-and-routing/unsafe-control-actions-hazard-analysis-skill.md` · [framework]
 **What it is:** A hazard-analysis skill for checking whether a consequential action becomes unsafe if it is omitted, applied incorrectly, mistimed, misordered, or left in place too long.
 
 **Use it when:** The agent is about to recommend or perform a high-consequence action where timing, sequencing, constraints, and safeguards matter.
@@ -315,33 +179,189 @@ Use the **state-machine version** when:
 
 ---
 
+### `judgment-and-routing/thoroughness-check-etto-skill.md` · [framework]
+**What it is:** A conceptual version of the ETTO principle for deciding the right rigor level before work begins.
+
+**Use it when:** You want the judgment of ETTO without a formal gate.
+
+**Best for:** Prompting style, advisory workflows, lightweight preflight reasoning.
+
+---
+
+### `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md` · [protocol]
+**What it is:** A universal preflight gate based on the efficiency–thoroughness trade-off. Decides how much evidence is required, whether the agent may act yet, what tools are permitted, and when to stop or escalate.
+
+**Use it when:** The agent should decide how much evidence, validation, and caution are required before acting.
+
+**Best for:** Almost any non-trivial task, especially when risk or irreversibility is involved.
+
+---
+
+### `judgment-and-routing/explore-vs-exploit-skill.md` · [framework]
+**What it is:** A conceptual version of the exploration-vs-commitment tradeoff.
+
+**Use it when:** You want the agent to think clearly about search breadth versus action, without a rigid execution protocol.
+
+**Best for:** Planning, ideation, research strategy, lightweight debugging decisions.
+
+---
+
+### `judgment-and-routing/explore-vs-exploit-state-machine-skill.md` · [protocol]
+**What it is:** A control system for deciding whether to keep gathering information or commit to action.
+
+**Use it when:** The agent risks either acting too early or searching forever.
+
+**Best for:** Research, debugging, planning, decision support, ambiguous tasks.
+
+---
+
+### `judgment-and-routing/inversion-mental-model-skill.md` · [framework]
+**What it is:** A conceptual version of inversion as a reasoning tool for risks, blind spots, and failure modes.
+
+**Use it when:** The agent needs a better strategic lens rather than a formal failure-mapping workflow.
+
+**Best for:** Strategy, critique, planning, pre-mortems, anti-goal analysis.
+
+---
+
+### `judgment-and-routing/inversion-mental-model-state-machine-skill.md` · [protocol]
+**What it is:** A protocol for reasoning from failure backward: define the opposite of success, enumerate failure paths, rank them, and turn them into guardrails.
+
+**Use it when:** Risk, blind spots, defensive design, or failure modes matter.
+
+**Best for:** Safety checks, architecture review, incident prevention, rollout planning.
+
+---
+
+## ✨ Output Quality — improving what the agent produces
+
+Skills that refine, critique, and simplify the agent's own outputs.
+
+### `output-quality/bounded-self-revision-skill.md` · [framework]
+**What it is:** A disciplined self-refine skill that generates an initial output, critiques it against explicit dimensions, revises it up to two passes, and stops when gains flatten. Prevents endless polish loops, vague self-criticism, and rewriting without improvement.
+
+**Use it when:** The first draft is decent but should improve through one or two structured refinement passes, and you need the revision to stay finite and purposeful.
+
+**Best for:** Writing, planning, structured outputs, explanations, prompts, design memos, decision docs, summaries, and complex reasoning presentations.
+
+---
+
+### `output-quality/tool-interactive-critic-skill.md` · [framework]
+**What it is:** A post-generation verification skill based on the CRITIC pattern. Generates an initial output, selects the right external tools to critique it, revises only where tool-grounded evidence demands it, and stops when the major weaknesses are resolved.
+
+**Use it when:** The first draft is plausible but not yet trustworthy, and external tools can materially improve the answer's accuracy or safety.
+
+**Best for:** Factual answers, technical explanations, code review with tests or search, plans that depend on current facts, operational recommendations, and tool-using agent workflows.
+
+---
+
+### `output-quality/cognitive-load-operator-state-machine-skill.md` · [protocol]
+**What it is:** A protocol for making outputs easier to understand, retain, and act on. Forces the agent to inspect complexity before output, identify overload sources, choose a lower-load structure, and verify the result is easier to process.
+
+**Use it when:** An answer is technically correct but mentally expensive.
+
+**Best for:** Documentation, workflows, instructions, prompts, onboarding, dense explanations.
+
+---
+
+## 🏗️ Systems & Architecture — thinking about structure and scale
+
+Skills for reasoning about how systems, teams, and data fit together.
+
+### `systems-and-architecture/thinking-in-systems-state-machine-skill.md` · [protocol]
+**What it is:** A protocol for mapping system boundaries, stocks, flows, loops, delays, leverage points, and blast radius before changing anything.
+
+**Use it when:** The problem involves feedback loops, delayed effects, or second-order consequences.
+
+**Best for:** Architecture, workflows, scaling problems, process failures, policy changes.
+
+---
+
+### `systems-and-architecture/the-goal-theory-of-constraints-ai-skill.md` · [framework]
+**What it is:** A throughput and bottleneck lens based on Theory of Constraints. Every system has a limiting constraint; identify, exploit, and elevate it before optimizing anything else.
+
+**Use it when:** The agent must improve performance or delivery by finding the real limiting factor rather than optimizing everything.
+
+**Best for:** Performance tuning, workflow optimization, queue reduction, system throughput improvement.
+
+---
+
+### `systems-and-architecture/team-topologies-ai-skill.md` · [framework]
+**What it is:** A coordination and ownership lens for multi-agent or multi-team systems. Enforces bounded ownership, clear interaction modes, cognitive load control, and stream-aligned delivery.
+
+**Use it when:** The problem is less about one task and more about how work should be split, owned, and coordinated.
+
+**Best for:** Multi-agent systems, platform teams, ownership design, reducing coordination chaos.
+
+---
+
+### `systems-and-architecture/accelerate-ai-skill.md` · [framework]
+**What it is:** A delivery and reliability lens inspired by Accelerate-style thinking. Optimizes flow, stability, and feedback together; measures what matters; prefers capability improvements over vanity activity.
+
+**Use it when:** The agent must improve engineering throughput, feedback loops, reliability, or team productivity using evidence rather than folklore.
+
+**Best for:** Delivery metrics, operational improvement, recovery time reduction, batch-size reduction.
+
+---
+
+### `systems-and-architecture/designing-data-intensive-applications-ai-skill.md` · [framework]
+**What it is:** A data-systems reasoning lens inspired by DDIA. Reasons about consistency, replication, partitioning, failure modes, and data flow choices consciously.
+
+**Use it when:** The agent must reason about storage, distributed systems, consistency, replication, partitioning, messaging, or reliability tradeoffs.
+
+**Best for:** Backends, data architecture, infra design, state management, event-driven systems.
+
+---
+
+## 🤖 Orchestration — agent coordination and workflow control
+
+Skills for structuring how agents plan, route, delegate, and control complex workflows.
+
+### `orchestration/agentic-design-patterns-orchestrator-skill.md` · [framework]
+**What it is:** A conceptual version of the orchestration skill focused on planning, routing, deliberate tool use, reflection, memory, sub-agents, and human-in-the-loop behavior.
+
+**Use it when:** You want the agent to reason with agentic patterns without necessarily enforcing a strict protocol.
+
+**Best for:** Strategy design, agent architecture thinking, early-stage workflow design.
+
+---
+
+### `orchestration/agentic-design-patterns-orchestrator-state-machine-skill.md` · [protocol]
+**What it is:** A workflow-control skill for tasks that need classification, planning, routing, evidence gathering, execution, reflection, verification, and stopping.
+
+**Use it when:** The agent should behave like an orchestrated system, not a one-shot responder.
+
+**Best for:** Multi-step tasks, sub-agent coordination, tool-using workflows, bounded execution.
+
+---
+
 # Recommended Ways to Use This Repo
 
 ## If you want execution discipline
 Start with the protocol skills, especially:
 
-- `thoroughness-check-etto-state-machine-skill.md`
-- `how-to-solve-it-state-machine-skill.md`
-- `refactoring-state-machine-skill.md`
-- `working-effectively-with-legacy-code-state-machine-skill.md`
-- `toyota-kata-state-machine-skill.md`
+- `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md`
+- `execution/how-to-solve-it-state-machine-skill.md`
+- `execution/refactoring-state-machine-skill.md`
+- `execution/working-effectively-with-legacy-code-state-machine-skill.md`
+- `execution/toyota-kata-state-machine-skill.md`
 
 ## If you want better judgment or routing
 Start with the framework skills, especially:
 
-- `problem-mode-router-cynefin-skill.md`
-- `recognition-primed-triage-skill.md`
-- `unsafe-control-actions-hazard-analysis-skill.md`
-- `thinking-in-systems-state-machine-skill.md`
-- `the-goal-theory-of-constraints-ai-skill.md`
-- `kahneman-thinking-fast-slow-software-agent-skill.md`
+- `judgment-and-routing/problem-mode-router-cynefin-skill.md`
+- `judgment-and-routing/recognition-primed-triage-skill.md`
+- `judgment-and-routing/unsafe-control-actions-hazard-analysis-skill.md`
+- `systems-and-architecture/thinking-in-systems-state-machine-skill.md`
+- `systems-and-architecture/the-goal-theory-of-constraints-ai-skill.md`
+- `judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md`
 
 ## If you want better output quality
 These skills refine the agent's own work:
 
-- `bounded-self-revision-skill.md` — structured self-improvement with stop rules
-- `tool-interactive-critic-skill.md` — tool-grounded post-generation verification
-- `cognitive-load-operator-state-machine-skill.md` — reduce mental burden in any output
+- `output-quality/bounded-self-revision-skill.md` — structured self-improvement with stop rules
+- `output-quality/tool-interactive-critic-skill.md` — tool-grounded post-generation verification
+- `output-quality/cognitive-load-operator-state-machine-skill.md` — reduce mental burden in any output
 
 ## If you are building higher-quality agent workflows
 Strong combinations include:
@@ -357,11 +377,11 @@ Strong combinations include:
 ## If you are unsure where to begin
 A practical default sequence is:
 
-1. `problem-mode-router-cynefin-skill.md`
-2. `thoroughness-check-etto-state-machine-skill.md`
-3. one task-specific protocol or framework
-4. `tool-interactive-critic-skill.md` if the output depends on facts or code that can be externally checked
-5. `toyota-kata-state-machine-skill.md` if the goal is iterative improvement rather than one-shot change
+1. `judgment-and-routing/problem-mode-router-cynefin-skill.md`
+2. `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md`
+3. one task-specific protocol or framework from the relevant topic folder
+4. `output-quality/tool-interactive-critic-skill.md` if the output depends on facts or code that can be externally checked
+5. `execution/toyota-kata-state-machine-skill.md` if the goal is iterative improvement rather than one-shot change
 
 ---
 
