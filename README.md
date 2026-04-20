@@ -7,7 +7,7 @@ This repository contains **two kinds of skills**:
 1. **Operational protocols** — skills that act like procedures or control systems.
    These often benefit from a state-machine structure because the value is in gating behavior, forcing evidence collection, and preventing premature action.
 
-2. **Conceptual frameworks** — skills that act more like lenses, heuristics, or architectural principles.
+2. **Conceptual frameworks** — skills that act more like lenses, heuristics, routing models, or architectural principles.
    These do **not** always need to be state machines. In many cases, forcing them into a rigid protocol makes them worse: more ceremonial, less adaptable, and less readable.
 
 ## Not every skill should be a state machine
@@ -27,6 +27,7 @@ A non-state-machine format makes sense when you want the agent to:
 - reason about tradeoffs
 - borrow principles from a book or framework
 - improve judgment rather than enforce a workflow
+- route the task into the correct response mode
 - adapt the ideas fluidly to many contexts
 
 The strongest repositories usually have **both**:
@@ -65,7 +66,16 @@ Use the **state-machine version** when:
 
 ---
 
-### 2) `cognitive-load-operator-state-machine-skill.md`
+### 2) `checklist-manifesto-state-machine-skill.md`
+**What it is:** A protocol for turning omission-sensitive work into short, usable checklists with explicit pause points, verification steps, and abort triggers.
+
+**Use it when:** The main risk is not inventing the answer but forgetting, skipping, or misordering critical steps.
+
+**Best for:** Deploys, migrations, release prep, incident runbooks, handoffs, production changes, and other repeatable high-consequence workflows.
+
+---
+
+### 3) `cognitive-load-operator-state-machine-skill.md`
 **What it is:** A protocol for making outputs easier to understand, retain, and act on.
 
 **Use it when:** An answer is technically correct but mentally expensive.
@@ -74,7 +84,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 3) `explore-vs-exploit-state-machine-skill.md`
+### 4) `explore-vs-exploit-state-machine-skill.md`
 **What it is:** A control system for deciding whether to keep gathering information or commit to action.
 
 **Use it when:** The agent risks either acting too early or searching forever.
@@ -83,7 +93,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 4) `how-to-solve-it-state-machine-skill.md`
+### 5) `how-to-solve-it-state-machine-skill.md`
 **What it is:** A disciplined problem-solving protocol that forces problem framing, evidence gathering, planning, execution, and reflection.
 
 **Use it when:** The task is hard, uncertain, or likely to tempt premature coding.
@@ -92,7 +102,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 5) `inversion-mental-model-state-machine-skill.md`
+### 6) `inversion-mental-model-state-machine-skill.md`
 **What it is:** A protocol for reasoning from failure backward: define the opposite of success, enumerate failure paths, rank them, and turn them into guardrails.
 
 **Use it when:** Risk, blind spots, defensive design, or failure modes matter.
@@ -101,7 +111,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 6) `philosophy-of-software-design-state-machine-skill.md`
+### 7) `philosophy-of-software-design-state-machine-skill.md`
 **What it is:** A protocol for managing complexity, building deeper modules, and avoiding shallow abstraction sprawl.
 
 **Use it when:** The agent is changing shared interfaces or making design decisions that can spread complexity.
@@ -110,7 +120,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 7) `pragmatic-programmer-state-machine-skill.md`
+### 8) `pragmatic-programmer-state-machine-skill.md`
 **What it is:** A practical engineering protocol focused on bounded changes, reversible decisions, automation, and root-cause fixes.
 
 **Use it when:** The agent needs to work like a senior pragmatist instead of an idealist or cleanup maximalist.
@@ -119,7 +129,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 8) `refactoring-state-machine-skill.md`
+### 9) `refactoring-state-machine-skill.md`
 **What it is:** A bounded refactoring protocol that defines a target, accounts for shared surfaces, limits the transformation budget, and stops cleanly.
 
 **Use it when:** Structure needs improvement but the task could spiral into endless cleanup.
@@ -128,7 +138,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 9) `thinking-in-systems-state-machine-skill.md`
+### 10) `thinking-in-systems-state-machine-skill.md`
 **What it is:** A protocol for mapping system boundaries, stocks, flows, loops, delays, leverage points, and blast radius before changing anything.
 
 **Use it when:** The problem involves feedback loops, delayed effects, or second-order consequences.
@@ -137,7 +147,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 10) `thoroughness-check-etto-state-machine-skill.md`
+### 11) `thoroughness-check-etto-state-machine-skill.md`
 **What it is:** A universal preflight gate based on the efficiency–thoroughness trade-off.
 
 **Use it when:** The agent should decide how much evidence, validation, and caution are required before acting.
@@ -146,7 +156,16 @@ Use the **state-machine version** when:
 
 ---
 
-### 11) `working-effectively-with-legacy-code-state-machine-skill.md`
+### 12) `toyota-kata-state-machine-skill.md`
+**What it is:** A continuous-improvement protocol that forces the agent to define the current condition, set the next target condition, isolate one obstacle, and run one bounded experiment at a time.
+
+**Use it when:** The path forward is uncertain and progress should be discovered iteratively rather than through one large redesign.
+
+**Best for:** Optimization, process improvement, performance tuning, workflow refinement, developer-experience improvements, and safe iterative experimentation.
+
+---
+
+### 13) `working-effectively-with-legacy-code-state-machine-skill.md`
 **What it is:** A protocol for making brittle code safe to change before trying to improve it.
 
 **Use it when:** The system has weak tests, unclear behavior, tight coupling, or rewrite temptation.
@@ -157,7 +176,7 @@ Use the **state-machine version** when:
 
 ## Conceptual / Framework Skills
 
-### 12) `accelerate-ai-skill.md`
+### 14) `accelerate-ai-skill.md`
 **What it is:** A delivery and reliability lens inspired by Accelerate-style thinking.
 
 **Use it when:** The agent must improve engineering throughput, feedback loops, reliability, or team productivity using evidence rather than folklore.
@@ -166,7 +185,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 13) `agentic-design-patterns-orchestrator-skill.md`
+### 15) `agentic-design-patterns-orchestrator-skill.md`
 **What it is:** A conceptual version of the orchestration skill focused on planning, routing, deliberate tool use, reflection, memory, sub-agents, and human-in-the-loop behavior.
 
 **Use it when:** You want the agent to reason with agentic patterns without necessarily enforcing a strict protocol.
@@ -175,7 +194,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 14) `designing-data-intensive-applications-ai-skill.md`
+### 16) `designing-data-intensive-applications-ai-skill.md`
 **What it is:** A data-systems reasoning lens inspired by DDIA.
 
 **Use it when:** The agent must reason about storage, distributed systems, consistency, replication, partitioning, messaging, or reliability tradeoffs.
@@ -184,7 +203,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 15) `explore-vs-exploit-skill.md`
+### 17) `explore-vs-exploit-skill.md`
 **What it is:** A conceptual version of the exploration-vs-commitment tradeoff.
 
 **Use it when:** You want the agent to think clearly about search breadth versus action, without a rigid execution protocol.
@@ -193,7 +212,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 16) `inversion-mental-model-skill.md`
+### 18) `inversion-mental-model-skill.md`
 **What it is:** A conceptual version of inversion as a reasoning tool for risks, blind spots, and failure modes.
 
 **Use it when:** The agent needs a better strategic lens rather than a formal failure-mapping workflow.
@@ -202,7 +221,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 17) `kahneman-thinking-fast-slow-software-agent-skill.md`
+### 19) `kahneman-thinking-fast-slow-software-agent-skill.md`
 **What it is:** A judgment skill based on fast versus slow thinking for software engineering work.
 
 **Use it when:** The agent needs to decide when cheap pattern recognition is fine and when slow, careful reasoning is mandatory.
@@ -211,7 +230,25 @@ Use the **state-machine version** when:
 
 ---
 
-### 18) `team-topologies-ai-skill.md`
+### 20) `problem-mode-router-cynefin-skill.md`
+**What it is:** A routing skill based on Cynefin-style problem classification that helps the agent decide whether the situation is obvious, complicated, complex, chaotic, or still disordered.
+
+**Use it when:** The first question is not “what do I do?” but “what kind of problem is this, and what response style fits it?”
+
+**Best for:** Task routing, incident routing, skill-stack selection, project kickoff diagnosis, and preventing the wrong reasoning mode from dominating the task.
+
+---
+
+### 21) `recognition-primed-triage-skill.md`
+**What it is:** A fast-judgment skill for urgent situations that tells the agent to recognize the pattern, choose the first plausible strong move, mentally simulate it, and then reassess.
+
+**Use it when:** Delay is costly, information is incomplete, and the agent needs a high-quality first move rather than exhaustive comparison.
+
+**Best for:** Incident triage, outage response, urgent debugging, ops escalation, and fast prioritization under pressure.
+
+---
+
+### 22) `team-topologies-ai-skill.md`
 **What it is:** A coordination and ownership lens for multi-agent or multi-team systems.
 
 **Use it when:** The problem is less about one task and more about how work should be split, owned, and coordinated.
@@ -220,7 +257,7 @@ Use the **state-machine version** when:
 
 ---
 
-### 19) `the-goal-theory-of-constraints-ai-skill.md`
+### 23) `the-goal-theory-of-constraints-ai-skill.md`
 **What it is:** A throughput and bottleneck lens based on Theory of Constraints.
 
 **Use it when:** The agent must improve performance or delivery by finding the real limiting factor rather than optimizing everything.
@@ -229,12 +266,21 @@ Use the **state-machine version** when:
 
 ---
 
-### 20) `thoroughness-check-etto-skill.md`
+### 24) `thoroughness-check-etto-skill.md`
 **What it is:** A conceptual version of the ETTO principle for deciding the right rigor level before work begins.
 
 **Use it when:** You want the judgment of ETTO without a formal gate.
 
 **Best for:** Prompting style, advisory workflows, lightweight preflight reasoning.
+
+---
+
+### 25) `unsafe-control-actions-hazard-analysis-skill.md`
+**What it is:** A hazard-analysis skill for checking whether a consequential action becomes unsafe if it is omitted, applied incorrectly, mistimed, misordered, or left in place too long.
+
+**Use it when:** The agent is about to recommend or perform a high-consequence action where timing, sequencing, constraints, and safeguards matter.
+
+**Best for:** Risky automations, infra changes, migrations, data mutations, security-sensitive operations, rollout decisions, and any tool action that changes external state.
 
 ---
 
@@ -247,49 +293,53 @@ Start with the protocol skills, especially:
 - `how-to-solve-it-state-machine-skill.md`
 - `refactoring-state-machine-skill.md`
 - `working-effectively-with-legacy-code-state-machine-skill.md`
-- `thinking-in-systems-state-machine-skill.md`
+- `checklist-manifesto-state-machine-skill.md`
+- `toyota-kata-state-machine-skill.md`
 
-## If you want better judgment and taste
+## If you want better judgment or routing
 Start with the framework skills, especially:
 
-- `accelerate-ai-skill.md`
-- `designing-data-intensive-applications-ai-skill.md`
-- `kahneman-thinking-fast-slow-software-agent-skill.md`
-- `team-topologies-ai-skill.md`
+- `problem-mode-router-cynefin-skill.md`
+- `recognition-primed-triage-skill.md`
+- `unsafe-control-actions-hazard-analysis-skill.md`
+- `thinking-in-systems-state-machine-skill.md`
 - `the-goal-theory-of-constraints-ai-skill.md`
+- `kahneman-thinking-fast-slow-software-agent-skill.md`
 
-## If you want both
-A strong pattern is:
+## If you are building higher-quality agent workflows
+Strong combinations include:
 
-1. Use a **framework skill** to decide how to see the problem.
-2. Use a **protocol skill** to control how the agent executes.
+- **ETTO + Problem-Mode Router** → decide rigor level and response mode first
+- **Recognition-Primed Triage + Unsafe Control Actions** → move fast, but with guardrails
+- **How to Solve It + Pragmatic Programmer** → disciplined diagnosis plus grounded execution
+- **Working Effectively with Legacy Code + Refactoring** → make change safe, then improve structure
+- **Thinking in Systems + Theory of Constraints** → understand the system, then find the true bottleneck
+- **Toyota Kata + Checklist Manifesto** → iterative improvement plus omission-resistant execution
 
-Example combinations:
+## If you are unsure where to begin
+A practical default sequence is:
 
-- **Kahneman + ETTO** → pick the right speed and rigor
-- **Thinking in Systems + Refactoring** → understand system effects before changing code
-- **The Goal + Explore vs Exploit** → find the bottleneck, then decide whether to keep searching or act
-- **Team Topologies + Agentic Orchestrator** → design multi-agent boundaries and execution patterns together
-- **DDIA + Legacy Code** → modernize data-heavy systems without rewrite gambling
+1. `problem-mode-router-cynefin-skill.md`
+2. `thoroughness-check-etto-state-machine-skill.md`
+3. one task-specific protocol or framework
+4. `checklist-manifesto-state-machine-skill.md` if the workflow is omission-sensitive
+5. `toyota-kata-state-machine-skill.md` if the goal is iterative improvement rather than one-shot change
 
 ---
 
-# Suggested Next Improvement to the Repo
+# Philosophy of the Repo
 
-The repo already has useful content, but it currently mixes:
+This repo should not force one format onto every idea.
 
-- conceptual skills
-- protocol/state-machine skills
-- duplicate concepts in two different formats
+The goal is not to make everything look uniform.
+The goal is to make each skill **more executable and more useful**.
 
-That is not inherently bad. In fact, it can be a strength.
+Some skills become dramatically better when turned into state machines.
+Others become worse.
 
-The improvement is not “convert everything into a state machine.”
-The improvement is:
+A good agent-skill repository should preserve both:
 
-- make the README explicit about the two formats
-- explain when each format should be used
-- mark pairs that cover the same concept in different ways
-- add new skills only in the format that best matches their job
+- **control** where behavior must be constrained
+- **judgment** where thinking quality matters more than workflow ceremony
 
-In other words: **use state machines where enforcement matters, and use flexible guides where judgment matters.**
+That is the design principle behind this README.
