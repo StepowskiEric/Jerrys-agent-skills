@@ -652,7 +652,7 @@ npx jerry-skills install --all
 Or target a specific agent:
 
 ```bash
-npx jerry-skills install --agent codex       # → ~/.codex/skills/
+npx jerry-skills install --agent codex       # → ~/.agents/skills/
 npx jerry-skills install --agent hermes      # → ~/.hermes/skills/
 npx jerry-skills install --agent claude      # → ~/.claude/skills/
 npx jerry-skills install --agent antigravity # → ~/.antigravity/skills/
@@ -661,7 +661,7 @@ npx jerry-skills install --agent antigravity # → ~/.antigravity/skills/
 To make the skills show up in a Codex repository workspace, install them into the repo-local Team Config path:
 
 ```bash
-npx jerry-skills install --agent codex --dest .codex/skills
+npx jerry-skills install --agent codex --dest .agents/skills
 ```
 
 Use a custom destination:
@@ -676,7 +676,7 @@ List skills without installing:
 npx jerry-skills list
 ```
 
-Each command copies every skill into a folder bundle with a `SKILL.md` file, which is the format these agent skill loaders expect. For example, `execution/how-to-solve-it-state-machine-skill.md` installs to `execution/how-to-solve-it-state-machine-skill/SKILL.md` under the target directory.
+Each command copies every skill into a folder bundle with a `SKILL.md` file, and Codex bundles include `name` and `description` frontmatter so they are discoverable in the skills picker. For example, `execution/how-to-solve-it-state-machine-skill.md` installs to `execution/how-to-solve-it-state-machine-skill/SKILL.md` under the target directory.
 
 ---
 

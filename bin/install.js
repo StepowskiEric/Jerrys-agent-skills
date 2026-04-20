@@ -11,7 +11,7 @@ const os = require('os');
 const SKILLS_DIR = path.resolve(__dirname, '..');
 
 const AGENT_DIRS = {
-  codex: path.join(os.homedir(), '.codex', 'skills'),
+  codex: path.join(os.homedir(), '.agents', 'skills'),
   hermes: path.join(os.homedir(), '.hermes', 'skills'),
   claude: path.join(os.homedir(), '.claude', 'skills'),
   antigravity: path.join(os.homedir(), '.antigravity', 'skills'),
@@ -23,7 +23,14 @@ function getSkillFiles(dir, base) {
   base = base || dir;
   let results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) {
+      continue;
+    }
     if (entry.isDirectory()) {
+      const siblingMarkdown = path.join(dir, `${entry.name}.md`);
+      if (fs.existsSync(siblingMarkdown)) {
+        continue;
+      }
       results = results.concat(getSkillFiles(path.join(dir, entry.name), base));
     } else if (entry.name.endsWith('.md') && entry.name !== 'README.md') {
       results.push(path.relative(base, path.join(dir, entry.name)));
@@ -34,6 +41,48 @@ function getSkillFiles(dir, base) {
 
 function getSkillBundlePath(file) {
   return path.join(path.dirname(file), path.basename(file, '.md'), 'SKILL.md');
+}
+
+function extractSkillName(file) {
+  return path.basename(file, '.md');
+}
+
+function extractSkillDescription(content) {
+  const lines = content.split(/\r?\n/);
+  let inPurpose = false;
+  const paragraphs = [];
+  let current = [];
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (line === '## Purpose') {
+      inPurpose = true;
+      current = [];
+      continue;
+    }
+    if (line.startsWith('## ')) {
+      if (inPurpose) break;
+      continue;
+    }
+    if (!inPurpose) continue;
+    if (line.length === 0) {
+      if (current.length > 0) {
+        paragraphs.push(current.join(' '));
+        break;
+      }
+      continue;
+    }
+    current.push(line);
+  }
+
+  const description = paragraphs[0] || current.join(' ') || 'Skill instructions for Codex to follow.';
+  return description.replace(/\s+/g, ' ').trim();
+}
+
+function buildSkillBundle(content, file) {
+  const name = extractSkillName(file);
+  const description = extractSkillDescription(content);
+  return `---\nname: ${JSON.stringify(name)}\ndescription: ${JSON.stringify(description)}\n---\n\n${content}`;
 }
 
 function installTo(agent, destOverride) {
@@ -52,7 +101,8 @@ function installTo(agent, destOverride) {
     const src = path.join(SKILLS_DIR, file);
     const dst = path.join(dest, getSkillBundlePath(file));
     fs.mkdirSync(path.dirname(dst), { recursive: true });
-    fs.copyFileSync(src, dst);
+    const bundle = buildSkillBundle(fs.readFileSync(src, 'utf8'), file);
+    fs.writeFileSync(dst, bundle);
     console.log(`  ✓ ${getSkillBundlePath(file)}`);
     installed++;
   }
@@ -118,7 +168,7 @@ Commands:
   list      List all available skill files
   help      Show this help message
 
-Options:
+  Options:
   --agent   Target agent: ${SUPPORTED_AGENTS.join(', ')}
   --all     Install to all supported agents
   --dest    Override the destination directory
