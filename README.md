@@ -951,37 +951,37 @@ A practical default sequence is:
 
 ## All Protocol Skills (State Machine)
 
-| Skill | Location | Best For |
-|-------|----------|----------|
-| how-to-solve-it-state-machine | execution/ | Hard problems, debugging |
-| ooda-loop-state-machine | execution/ | Fast-changing situations |
-| refactoring-state-machine | execution/ | Code restructuring |
-| working-effectively-with-legacy-code-state-machine | execution/ | Legacy code changes |
-| checklist-manifesto | execution/ | Procedural safety |
-| pdca-deman-skill | execution/ | Iterative improvement |
-| toyota-kata-state-machine | execution/ | Continuous improvement |
-| philosophy-of-software-design-state-machine | execution/ | Complexity management |
-| pragmatic-programmer-state-machine | execution/ | Grounded execution |
-| cognitive-friction-governor | execution/ | Deliberation budgeting |
-| abductive-first-debugging | execution/ | Novel failure diagnosis |
-| keyword-agnostic-logic-locator | execution/ | Code navigation |
-| thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level |
-| pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight |
-| recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage |
-| problem-mode-router-cynefin-state-machine | judgment-and-routing/ | Problem classification |
-| inversion-mental-model-state-machine | judgment-and-routing/ | Backward reasoning |
-| explore-vs-exploit-state-machine | judgment-and-routing/ | Resource allocation |
-| metacognitive-monitoring | judgment-and-routing/ | Confidence calibration |
-| counterfactual-policy-testing | judgment-and-routing/ | Decision validation |
-| agentic-design-patterns-orchestrator-state-machine | orchestration/ | Workflow control |
-| rashomon-triad-hybrid | orchestration/ | Multi-perspective decisions |
-| socratic-clarification | orchestration/ | Pre-execution clarity |
-| thought-retriever-coppermind | orchestration/ | Memory-augmented reasoning |
-| cognitive-load-operator-state-machine | output-quality/ | Reducing complexity |
-| bounded-self-revision | output-quality/ | Self-improvement |
-| documentation-craft | output-quality/ | Technical writing |
-| compression-as-understanding | output-quality/ | Understanding verification |
-| thinking-in-systems-state-machine | systems-and-architecture/ | System analysis |
+| Skill | Location | Best For | Notes |
+|-------|----------|----------|-------|
+| how-to-solve-it-state-machine | execution/ | Hard problems, debugging | |
+| ooda-loop-state-machine | execution/ | Fast-changing situations | |
+| refactoring-state-machine | execution/ | Code restructuring | |
+| working-effectively-with-legacy-code-state-machine | execution/ | Legacy code changes | |
+| checklist-manifesto | execution/ | Procedural safety | |
+| pdca-deman-skill | execution/ | Iterative improvement | |
+| toyota-kata-state-machine | execution/ | Continuous improvement | |
+| philosophy-of-software-design-state-machine | execution/ | Complexity management | |
+| pragmatic-programmer-state-machine | execution/ | Grounded execution | |
+| cognitive-friction-governor | execution/ | Deliberation budgeting | |
+| abductive-first-debugging | execution/ | Novel failure diagnosis | |
+| **keyword-agnostic-logic-locator** | execution/ | Code navigation | ⚠️ Requires manual script setup |
+| thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level | |
+| pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight | |
+| recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage | |
+| problem-mode-router-cynefin-state-machine | judgment-and-routing/ | Problem classification | |
+| inversion-mental-model-state-machine | judgment-and-routing/ | Backward reasoning | |
+| explore-vs-exploit-state-machine | judgment-and-routing/ | Resource allocation | |
+| metacognitive-monitoring | judgment-and-routing/ | Confidence calibration | |
+| counterfactual-policy-testing | judgment-and-routing/ | Decision validation | |
+| agentic-design-patterns-orchestrator-state-machine | orchestration/ | Workflow control | |
+| rashomon-triad-hybrid | orchestration/ | Multi-perspective decisions | |
+| socratic-clarification | orchestration/ | Pre-execution clarity | |
+| thought-retriever-coppermind | orchestration/ | Memory-augmented reasoning | |
+| cognitive-load-operator-state-machine | output-quality/ | Reducing complexity | |
+| bounded-self-revision | output-quality/ | Self-improvement | |
+| documentation-craft | output-quality/ | Technical writing | |
+| compression-as-understanding | output-quality/ | Understanding verification | |
+| thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
 
 ## All Framework Skills (Conceptual)
 

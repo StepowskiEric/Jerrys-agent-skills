@@ -1,5 +1,31 @@
 # Skill: Keyword-Agnostic Logic Locator
 
+## ⚠️ Manual Setup Required
+
+**This skill requires Python scripts that are NOT automatically installed by `npx jerry-skills install`.**
+
+The skill references two Python scripts (`extract_code_facts.py` and `query_code_facts.py`) that must be manually copied to work. Without them, the skill provides conceptual guidance only — you cannot execute the Datalog queries.
+
+**Quick Setup:**
+```bash
+# 1. Install the skill (gets the .md file)
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+
+# 2. Copy the required scripts (manual step)
+mkdir -p ~/.copilot/skills/scripts
+cp scripts/extract_code_facts.py ~/.copilot/skills/scripts/
+cp scripts/query_code_facts.py ~/.copilot/skills/scripts/
+
+# 3. Install Python dependencies
+pip install tree-sitter tree-sitter-python tree-sitter-javascript tree-sitter-typescrip
+```
+
+**Alternative:** Use the skill as a **conceptual framework** — manually explore code while thinking in "logic query" terms (find X where Y), without executing actual queries.
+
+See [Setup Details](#setup-details) for troubleshooting and full instructions.
+
+---
+
 ## Purpose
 
 Find code by structural relationships and logical queries rather than name matching. Extracts program facts (call graphs, data flows, type hierarchies) into a queryable knowledge graph, then uses Datalog-style logic to locate code without relying on function names, file paths, or keywords.
@@ -463,6 +489,111 @@ See script headers for usage details.
 - Validate results against source
 - Re-extract facts when codebase changes significantly
 - Combine with keyword search for hybrid approach
+
+---
+
+## Setup Details
+
+### Why Manual Setup is Required
+
+The `npx jerry-skills install` command only copies `.md` skill files, not supporting scripts. This skill requires two Python scripts that must be manually copied after installation.
+
+### Step-by-Step Setup
+
+**Step 1: Install the skill**
+```bash
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+```
+
+**Step 2: Get the scripts**
+
+Option A — Clone the repo:
+```bash
+git clone https://github.com/StepowskiEric/Jerrys-agent-skills.git
+cd Jerrys-agent-skills
+```
+
+Option B — Download just the scripts:
+```bash
+curl -O https://raw.githubusercontent.com/StepowskiEric/Jerrys-agent-skills/main/scripts/extract_code_facts.py
+curl -O https://raw.githubusercontent.com/StepowskiEric/Jerrys-agent-skills/main/scripts/query_code_facts.py
+```
+
+**Step 3: Copy scripts to skills directory**
+```bash
+mkdir -p ~/.copilot/skills/scripts
+cp scripts/extract_code_facts.py ~/.copilot/skills/scripts/
+cp scripts/query_code_facts.py ~/.copilot/skills/scripts/
+```
+
+**Step 4: Install Python dependencies**
+```bash
+pip install tree-sitter tree-sitter-python tree-sitter-javascript tree-sitter-typescript
+```
+
+**Step 5: Verify setup**
+```bash
+python ~/.copilot/skills/scripts/extract_code_facts.py --help
+python ~/.copilot/skills/scripts/query_code_facts.py --help
+```
+
+### Troubleshooting
+
+**Error: "ModuleNotFoundError: No module named 'tree_sitter'"**
+→ Install dependencies: `pip install tree-sitter tree-sitter-python ...`
+
+**Error: "FileNotFoundError: scripts/extract_code_facts.py"**
+→ Scripts not copied to correct location. Check `~/.copilot/skills/scripts/`
+
+**Error: "No module named 'tree_sitter_python'"**
+→ Install language-specific parsers: `pip install tree-sitter-python tree-sitter-javascript ...`
+
+### Using Without Scripts (Conceptual Mode)
+
+If you cannot install the scripts, the skill still provides value as a **conceptual framework**:
+
+1. **Manual fact extraction:** Read code and note:
+   - Function calls ("X calls Y")
+   - Data flows ("X reads Z, Y writes Z")
+   - Type hierarchies ("A extends B")
+
+2. **Logic query mindset:** Think in Datalog terms:
+   - "Find functions that call 'validate' AND touch 'session'"
+   - "Find classes that implement 'AuthProvider'"
+
+3. **Structured exploration:** Use the query patterns as guidance for manual code review
+
+This loses the automation but keeps the structured thinking approach.
+
+### Alternative: One-Command Setup Script
+
+Create `setup-logic-locator.sh`:
+```bash
+#!/bin/bash
+set -e
+
+echo "Setting up Keyword-Agnostic Logic Locator..."
+
+# Install skill
+echo "Installing skill..."
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+
+# Download scripts
+echo "Downloading scripts..."
+mkdir -p ~/.copilot/skills/scripts
+cd ~/.copilot/skills/scripts
+curl -sO https://raw.githubusercontent.com/StepowskiEric/Jerrys-agent-skills/main/scripts/extract_code_facts.py
+curl -sO https://raw.githubusercontent.com/StepowskiEric/Jerrys-agent-skills/main/scripts/query_code_facts.py
+
+# Install dependencies
+echo "Installing Python dependencies..."
+pip install -q tree-sitter tree-sitter-python tree-sitter-javascript tree-sitter-typescript
+
+echo "✓ Setup complete!"
+echo "Test: python ~/.copilot/skills/scripts/extract_code_facts.py --help"
+```
+
+Run: `chmod +x setup-logic-locator.sh && ./setup-logic-locator.sh`
 
 ---
 
