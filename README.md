@@ -121,9 +121,11 @@ Use the **state-machine version** when:
 | Stuck in a rut, same failed attempts | [`cross-domain-analogy-generator`](systems-and-architecture/cross-domain-analogy-generator-skill.md) | Forces foreign-domain analogies to break fixation |
 | Prematurely jumping to solutions | [`ooda-loop-state-machine`](execution/ooda-loop-state-machine-skill.md) | Observe → Orient → Decide → Act cycle |
 | Over-thinking trivial bugs | [`cognitive-friction-governor`](execution/cognitive-friction-governor-skill.md) | Budgets deliberation, forces decision |
+| Backtrack when reasoning goes wrong | [`process-reward-model-protocol`](execution/process-reward-model-protocol-skill.md) | Self-correcting reasoning path |
 | Use analogy to solve problems | [`how-to-solve-it-analogy`](execution/how-to-solve-it-analogy-skill.md) | Structured analogy-based problem solving |
 | Continuous improvement cycle | [`pdca-deming`](execution/pdca-deming-skill.md) | Plan-Do-Check-Act iterative improvement |
 | Toyota-style continuous improvement | [`toyota-kata-state-machine`](execution/toyota-kata-state-machine-skill.md) | Scientific thinking pattern |
+| Verify each step before proceeding | [`step-level-verification-protocol`](execution/step-level-verification-protocol-skill.md) | Prevents error propagation |
 
 ### Code Review / Quality
 
@@ -141,6 +143,7 @@ Use the **state-machine version** when:
 | Strict thoroughness protocol | [`thoroughness-check-etto-state-machine`](judgment-and-routing/thoroughness-check-etto-state-machine-skill.md) | Enforced thoroughness state machine |
 | Validate decisions with counterfactuals | [`counterfactual-policy-testing`](judgment-and-routing/counterfactual-policy-testing-skill.md) | Test against alternatives |
 | Improve my own output | [`bounded-self-revision`](output-quality/bounded-self-revision-skill.md) | Structured self-improvement |
+| Generate and verify multiple solutions | [`speculative-drafting-verification`](execution/speculative-drafting-verification-skill.md) | Parallel candidate evaluation |
 | Check for cognitive biases | [`cognitive-bias-checklist`](judgment-and-routing/cognitive-bias-checklist-skill.md) | Bias detection and mitigation |
 | Verify self-consistency | [`self-consistency`](output-quality/self-consistency-skill.md) | Cross-check reasoning |
 | Interactive criticism of work | [`tool-interactive-critic`](output-quality/tool-interactive-critic-skill.md) | Structured critique process |
@@ -200,6 +203,7 @@ Use the **state-machine version** when:
 | Recognition-primed decisions | [`recognition-primed-triage`](judgment-and-routing/recognition-primed-triage-skill.md) | Expert pattern matching |
 | RPD state machine | [`recognition-primed-triage-state-machine`](judgment-and-routing/recognition-primed-triage-state-machine-skill.md) | Structured expert decision |
 | Kahneman fast/slow thinking | [`kahneman-thinking-fast-slow-software-agent`](judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md) | Dual-process thinking |
+| Detect reasoning hallucinations | [`faithfulness-aware-reasoning`](reasoning/faithfulness-aware-reasoning-skill.md) | Ensures reasoning is logically entailed |
 
 ### Multi-Agent / Coordination
 
@@ -210,6 +214,7 @@ Use the **state-machine version** when:
 | Storing reasoning for later | [`thought-retriever-coppermind`](orchestration/thought-retriever-coppermind-skill.md) | Memory-augmented reasoning |
 | Managing agent memory | [`agent-memory-hygiene`](orchestration/agent-memory-hygiene-skill.md) | Memory categorization |
 | Debating which branch to pursue | [`monte-carlo-tree-search`](monte-carlo-tree-search-skill.md) | Branch allocation |
+| Identify weak agent reasoning | [`weak-link-detection-multi-agent`](orchestration/weak-link-detection-multi-agent-skill.md) | Prevents error amplification |
 
 ### Risk / Safety Analysis
 
@@ -317,6 +322,33 @@ Skills for executing technical work in a bounded, disciplined way.
 **Use it when:** Improving a system or process where you must verify what worked before standardizing it — and where "it seemed better" is not a sufficient conclusion.
 
 **Best for:** Process improvement, performance tuning, quality improvement, any work where standardization should follow verified results.
+
+---
+
+### `execution/step-level-verification-protocol-skill.md` · [protocol]
+**What it is:** A verification protocol that validates each reasoning step before proceeding to the next. Prevents error propagation by catching mistakes early in multi-step chains.
+
+**Use it when:** Working on multi-step tasks where early errors compound into larger failures downstream.
+
+**Best for:** Complex debugging, multi-step reasoning, algorithmic work, any task where verification at each step prevents cascading errors.
+
+---
+
+### `execution/speculative-drafting-verification-skill.md` · [protocol]
+**What it is:** A parallel solution generation protocol that creates multiple candidate branches, verifies each against constraints, and selects the best. Prevents local minima traps.
+
+**Use it when:** The problem has multiple plausible approaches and committing to one too early risks suboptimal outcomes.
+
+**Best for:** Design decisions, architecture choices, optimization problems, any task where exploring alternatives before committing improves outcomes.
+
+---
+
+### `execution/process-reward-model-protocol-skill.md` · [protocol]
+**What it is:** A self-correcting reasoning protocol that assigns process rewards to each step and backtracks when cumulative reward drops below threshold.
+
+**Use it when:** Reasoning may go down wrong paths and needs mechanism to detect and recover from poor reasoning chains.
+
+**Best for:** Complex reasoning tasks, multi-step planning, any work where reasoning quality varies and early detection of bad paths matters.
 
 ---
 
@@ -589,6 +621,17 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `reasoning/faithfulness-aware-reasoning-skill.md` · [framework]
+**What it is:** A reasoning-verification skill that detects faithfulness hallucinations — reasoning that sounds plausible but isn't logically entailed by the premises. Based on arXiv:2602.05897 research on measuring faithfulness in chain-of-thought reasoning.
+
+**Use it when:** The agent produces confident-sounding reasoning that may not actually follow from the stated facts or premises.
+
+**Best for:** Multi-step reasoning, explanations, justifications, any output where logical entailment matters more than rhetorical plausibility.
+
+---
+
+---
+
 ## 🏗️ Systems & Architecture — thinking about structure and scale
 
 Skills for reasoning about how systems, teams, and data fit together.
@@ -730,6 +773,15 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 **Best for:** Complex debugging, research tasks, design decisions, and cross-session work where reasoning context matters as much as answers.
 
 **Key technique:** From "Thought-Retriever: Don't Just Retrieve Raw Data, Retrieve Thoughts" (arXiv:2604.12231) — maps thoughts to Coppermind's working/episodic/semantic layers with confidence scoring and access-based liveness.
+
+---
+
+### `orchestration/weak-link-detection-multi-agent-skill.md` · [protocol]
+**What it is:** A multi-agent quality control protocol that identifies and isolates the weakest reasoning chain before aggregation. Prevents error amplification when one agent produces poor output.
+
+**Use it when:** Coordinating multiple agents where one bad output could contaminate the final result.
+
+**Best for:** Multi-agent systems, ensemble reasoning, voting/agreement mechanisms, any setup where agent outputs need quality filtering before combination.
 
 ---
 
