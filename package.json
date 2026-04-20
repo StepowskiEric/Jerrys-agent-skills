@@ -8,7 +8,12 @@
   "files": [
     "bin/",
     "*.md",
-    "!README.md"
+    "!README.md",
+    "execution/*.md",
+    "judgment-and-routing/*.md",
+    "output-quality/*.md",
+    "systems-and-architecture/*.md",
+    "orchestration/*.md"
   ],
   "keywords": [
     "ai",

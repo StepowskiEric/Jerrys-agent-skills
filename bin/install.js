@@ -19,11 +19,17 @@ const AGENT_DIRS = {
 
 const SUPPORTED_AGENTS = Object.keys(AGENT_DIRS);
 
-function getSkillFiles() {
-  return fs
-    .readdirSync(SKILLS_DIR)
-    .filter((f) => f.endsWith('.md') && f !== 'README.md')
-    .sort();
+function getSkillFiles(dir, base) {
+  base = base || dir;
+  let results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      results = results.concat(getSkillFiles(path.join(dir, entry.name), base));
+    } else if (entry.name.endsWith('.md') && entry.name !== 'README.md') {
+      results.push(path.relative(base, path.join(dir, entry.name)));
+    }
+  }
+  return results.sort();
 }
 
 function installTo(agent, destOverride) {
@@ -35,12 +41,13 @@ function installTo(agent, destOverride) {
 
   fs.mkdirSync(dest, { recursive: true });
 
-  const skills = getSkillFiles();
+  const skills = getSkillFiles(SKILLS_DIR);
   let installed = 0;
 
   for (const file of skills) {
     const src = path.join(SKILLS_DIR, file);
     const dst = path.join(dest, file);
+    fs.mkdirSync(path.dirname(dst), { recursive: true });
     fs.copyFileSync(src, dst);
     console.log(`  ✓ ${file}`);
     installed++;
@@ -49,18 +56,47 @@ function installTo(agent, destOverride) {
   console.log(`\nInstalled ${installed} skill(s) to ${dest}`);
 }
 
+const TOPIC_DIRS = [
+  'execution',
+  'judgment-and-routing',
+  'output-quality',
+  'systems-and-architecture',
+  'orchestration',
+];
+
+const TOPIC_LABELS = {
+  'execution': 'Execution — how-to-do-the-work protocols',
+  'judgment-and-routing': 'Judgment & Routing — deciding what to do and how rigorously',
+  'output-quality': 'Output Quality — improving what the agent produces',
+  'systems-and-architecture': 'Systems & Architecture — thinking about structure and scale',
+  'orchestration': 'Orchestration — agent coordination and workflow control',
+};
+
 function listSkills() {
-  const skills = getSkillFiles();
-  console.log(`\nJerry's Agent Skills (${skills.length} total)\n`);
+  const all = getSkillFiles(SKILLS_DIR);
+  console.log(`\nJerry's Agent Skills (${all.length} total)\n`);
 
-  const stateMachine = skills.filter((f) => f.includes('state-machine'));
-  const conceptual = skills.filter((f) => !f.includes('state-machine'));
+  for (const topic of TOPIC_DIRS) {
+    const files = all.filter((f) => f.startsWith(topic + path.sep) || f.startsWith(topic + '/'));
+    if (files.length === 0) continue;
+    console.log(`${TOPIC_LABELS[topic] || topic}:`);
+    for (const f of files) {
+      const tag = f.includes('state-machine') ? ' [protocol]' : ' [framework]';
+      console.log(`  ${f}${tag}`);
+    }
+    console.log('');
+  }
 
-  console.log('Operational Protocols / State-Machine Skills:');
-  stateMachine.forEach((f) => console.log(`  ${f}`));
-
-  console.log('\nConceptual / Framework Skills:');
-  conceptual.forEach((f) => console.log(`  ${f}`));
+  // Catch any files not in a known topic dir (e.g. root-level extras)
+  const categorized = TOPIC_DIRS.flatMap((t) =>
+    all.filter((f) => f.startsWith(t + path.sep) || f.startsWith(t + '/'))
+  );
+  const uncategorized = all.filter((f) => !categorized.includes(f));
+  if (uncategorized.length > 0) {
+    console.log('Other:');
+    uncategorized.forEach((f) => console.log(`  ${f}`));
+    console.log('');
+  }
 }
 
 function printHelp() {
