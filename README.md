@@ -607,7 +607,40 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 - **Everything-as-Code** → codify messy human problems to reveal hidden assumptions and structure
 
+- **Counterfactual Policy Testing** → validate decisions by testing against explicit alternatives (null, opposite, partial) before committing
+
+- **Cognitive Friction Governor** → impose deliberation budgets with friction costs per operation, forcing bounded purposeful thinking
+
+- **Cross-Domain Analogy Generator** → break fixation by forcing structural analogies from unrelated domains (biology, music, traffic)
+
 - **Skill Development with Supporting Files** → workflow for creating skills that need external scripts, templates, or data files
+
+---
+
+### `judgment-and-routing/counterfactual-policy-testing-skill.md` · [protocol]
+**What it is:** A decision-validation protocol that tests proposed changes against three explicit counterfactuals — null (do nothing), opposite (do reverse), partial (do 50%) — and only proceeds if the change beats all alternatives.
+
+**Use it when:** Before significant code changes, when multiple solutions seem plausible, or when you need to prevent "we did X, therefore X caused Y" fallacies.
+
+**Key technique:** From counterfactual reasoning research (arXiv:2604.10511) — forces comparison against explicit alternatives rather than assuming the proposed path is optimal.
+
+---
+
+### `execution/cognitive-friction-governor-skill.md` · [protocol]
+**What it is:** A deliberation budgeting system that assigns "friction costs" to cognitive operations (search=1, read=2, analysis=10, etc.). When budget is exhausted, you must decide or explicitly request more budget with justification.
+
+**Use it when:** You tend to over-think trivial problems or under-think complex ones, or when analysis paralysis is a recurring issue.
+
+**Key technique:** From "Cognitive Friction: A Decision-Theoretic Framework for Bounded Deliberation" (arXiv:2603.30031) — friction forces trade-offs between deep analysis and quick action.
+
+---
+
+### `systems-and-architecture/cross-domain-analogy-generator-skill.md` · [framework]
+**What it is:** A creative problem-solving lens that breaks fixation by forcing structural analogies from unrelated domains (biology, music, traffic engineering, cooking). Maps problem structures to foreign frameworks and transfers insights.
+
+**Use it when:** Stuck on a problem with repeated failed attempts, when local optima seem like global optima, or when you need "fresh eyes" on a familiar problem.
+
+**Key technique:** From "Serendipity by Design" (arXiv:2603.19087) — cross-domain mappings stimulate creativity by importing foreign structural patterns.
 
 ---
 
