@@ -607,6 +607,17 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 - **Everything-as-Code** → codify messy human problems to reveal hidden assumptions and structure
 
+- **Skill Development with Supporting Files** → workflow for creating skills that need external scripts, templates, or data files
+
+---
+
+### `development/skill-development-with-supporting-files.md` · [framework]
+**What it is:** A workflow guide for developing skills that require supporting files beyond the main `.md` file — such as Python scripts, templates, or reference documents. Documents the manual steps required because `npx jerry-skills install` only copies `.md` files.
+
+**Use it when:** Your skill needs external scripts, tools, or data files that must be installed alongside the skill document.
+
+**Key learning:** From developing `keyword-agnostic-logic-locator` — supporting scripts in `scripts/` must be manually copied to `~/.copilot/skills/scripts/` after skill installation.
+
 ---
 
 ### `judgment-and-routing/metacognitive-monitoring-skill.md` · [protocol]
