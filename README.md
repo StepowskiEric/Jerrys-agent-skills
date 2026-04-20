@@ -573,7 +573,33 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
+### `orchestration/thought-retriever-coppermind-skill.md` · [protocol]
+**What it is:** A memory-augmented reasoning skill that stores structured "thoughts" (observations, inferences, hypotheses, uncertainties, conclusions) in the Coppermind three-layer memory system. Enables sub-agents to retrieve not just raw data but the reasoning traces of prior agents.
+
+**Use it when:** You want agents to build collective memory across sessions, learn from each other's problem-solving approaches, or retrieve "how we thought about this" not just "what we concluded."
+
+**Best for:** Complex debugging, research tasks, design decisions, and cross-session work where reasoning context matters as much as answers.
+
+**Key technique:** From "Thought-Retriever: Don't Just Retrieve Raw Data, Retrieve Thoughts" (arXiv:2604.12231) — maps thoughts to Coppermind's working/episodic/semantic layers with confidence scoring and access-based liveness.
+
+---
+
+### `orchestration/rashomon-triad-hybrid-skill.md` · [protocol]
+**What it is:** A multi-perspective structured reasoning system combining Rashomon Memory (parallel goal-conditioned perspectives that maintain conflicting interpretations) with Triad Reasoning (abductive hypothesis generation → deductive verification → inductive pattern extraction). Perspectives argue via structured argumentation; Dung's semantics determines winners.
+
+**Use it when:** Multiple stakeholders have genuinely conflicting goals, the decision has no single "correct" answer, or you need to surface and document why alternatives were rejected rather than hiding conflict behind false consensus.
+
+**Best for:** Architecture reviews with trade-offs, security vs performance decisions, high-stakes choices where "it depends" is the honest answer.
+
+**Key techniques:** From "Rashomon Memory" (arXiv:2604.03588) and "Structured Abductive-Deductive-Inductive Reasoning" (arXiv:2604.15727) — supports three output modes: selection (pick winner), composition (merge non-conflicting), conflict surfacing (return attack graph as explanation).
+
+---
+
 - **Tree of Thoughts + Monte Carlo Tree Search** → generate diverse branches first, then allocate deeper effort to the branches that earn it through evidence rather than equal exploration or first-branch lock-in
+
+- **Thought-Retriever + Coppermind** → store reasoning traces, not just outputs; retrieve "how we solved this" for future similar problems
+
+- **Rashomon-Triad Hybrid** → spawn parallel perspectives with conflicting goals; let them argue; surface the conflict graph as explanation
 
 ---
 
