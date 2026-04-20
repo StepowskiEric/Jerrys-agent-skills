@@ -601,6 +601,59 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 - **Rashomon-Triad Hybrid** → spawn parallel perspectives with conflicting goals; let them argue; surface the conflict graph as explanation
 
+- **Metacognitive Monitoring + Compression** → force explicit confidence calibration, then verify understanding by compressing to essence
+
+- **Abductive Debugging + Logic Locator** → debug by generating competing hypotheses, then locate code structurally without keyword matching
+
+- **Everything-as-Code** → codify messy human problems to reveal hidden assumptions and structure
+
+---
+
+### `judgment-and-routing/metacognitive-monitoring-skill.md` · [protocol]
+**What it is:** A confidence calibration protocol forcing agents to explicitly decide KEEP or WITHDRAW their output, and BET or decline — based on the Nelson-Narens metacognitive monitoring framework. Tracks "withdraw delta" to distinguish blanket confidence from selective sensitivity.
+
+**Use it when:** You need to know when the agent knows it doesn't know — before committing to high-stakes code changes, for selective prediction, or when overconfidence is the primary failure mode.
+
+**Key technique:** From "The Metacognitive Monitoring Battery" (arXiv:2604.15702) — dual-probe methodology adapted for LLM self-evaluation.
+
+---
+
+### `execution/keyword-agnostic-logic-locator-skill.md` · [protocol]
+**What it is:** A neurosymbolic code navigation system that extracts program facts (call graphs, data flows, type hierarchies) into a queryable knowledge graph, then uses Datalog-style logic queries to locate code by structural relationships — not by grepping for names.
+
+**Use it when:** Function names are unclear or misleading, you need to find code by "what it does" not "what it's called," or keyword search returns too much noise.
+
+**Key technique:** From "Neurosymbolic Repo-level Code Localization" (arXiv:2604.16021) — addresses the "Keyword Shortcut" problem with Python scripts for fact extraction and logic query execution.
+
+**Includes:** `scripts/extract_code_facts.py` and `scripts/query_code_facts.py`
+
+---
+
+### `execution/abductive-first-debugging-skill.md` · [protocol]
+**What it is:** A debugging protocol that generates multiple competing hypotheses and selects the one providing the *best explanation* for all observed symptoms — inference to best explanation rather than first-plausible-cause or pattern-matching.
+
+**Use it when:** Novel failures with no established pattern, symptoms that could have multiple causes, deductive tracing hits dead ends, or complex multi-system failures.
+
+**Key technique:** From "Wiring the 'Why': A Unified Taxonomy of Abductive Reasoning in LLMs" (arXiv:2604.08016) — separates abduction (hypothesis generation), explanatory coherence evaluation, and inference to best explanation.
+
+---
+
+### `systems-and-architecture/everything-as-code-conceptualizer-skill.md` · [framework]
+**What it is:** A conceptual lens that forces viewing any system, process, or problem through a "code lens" — writing pseudocode to represent team dynamics, unclear requirements, deployment issues, or knowledge gaps. The act of codification reveals hidden structure and assumptions.
+
+**Use it when:** Messy human/process problems resist structured analysis, you need to surface hidden assumptions, or "if only we had clear specs" is being said.
+
+**Key technique:** From "Understanding Everything as Code: A Taxonomy and Conceptual Model" (arXiv:2507.05100) — codifying forces precision that natural language obscures.
+
+---
+
+### `output-quality/compression-as-understanding-skill.md` · [protocol]
+**What it is:** A verification protocol that tests understanding by compressing knowledge into minimal essential form (≤10 sentences), then testing if that compressed representation can reconstruct key details. High compression ratio = deep understanding.
+
+**Use it when:** After exploring a large codebase to verify understanding, before explaining complex systems, or when you need to distinguish "familiar with" from "understands."
+
+**Key technique:** Based on Kolmogorov complexity — the shortest program that generates output measures true understanding.
+
 ---
 
 # Recommended Ways to Use This Repo
