@@ -15,6 +15,7 @@ const AGENT_DIRS = {
   hermes: path.join(os.homedir(), '.hermes', 'skills'),
   claude: path.join(os.homedir(), '.claude', 'skills'),
   antigravity: path.join(os.homedir(), '.antigravity', 'skills'),
+  copilot: path.join(os.homedir(), '.copilot', 'skills'),
 };
 
 const SUPPORTED_AGENTS = Object.keys(AGENT_DIRS);
@@ -39,8 +40,10 @@ function getSkillFiles(dir, base) {
   return results.sort();
 }
 
-function getSkillBundlePath(file) {
-  return path.join(path.dirname(file), path.basename(file, '.md'), 'SKILL.md');
+function getSkillBundlePath(file, flat) {
+  const name = path.basename(file, '.md');
+  if (flat) return path.join(name, 'SKILL.md');
+  return path.join(path.dirname(file), name, 'SKILL.md');
 }
 
 function extractSkillName(file) {
@@ -75,39 +78,79 @@ function extractSkillDescription(content) {
     current.push(line);
   }
 
-  const description = paragraphs[0] || current.join(' ') || 'Skill instructions for Codex to follow.';
+  const description = paragraphs[0] || current.join(' ') || 'Skill instructions for an AI agent to follow.';
   return description.replace(/\s+/g, ' ').trim();
 }
 
 function buildSkillBundle(content, file) {
   const name = extractSkillName(file);
   const description = extractSkillDescription(content);
-  return `---\nname: ${JSON.stringify(name)}\ndescription: ${JSON.stringify(description)}\n---\n\n${content}`;
+  return `---\nname: ${JSON.stringify(name)}\ndescription: ${JSON.stringify(description)}\nsource: "jerry-skills"\n---\n\n${content}`;
 }
 
-function installTo(agent, destOverride) {
+function installSkills(skills, dest, flat) {
+  fs.mkdirSync(dest, { recursive: true });
+  let installed = 0;
+
+  for (const file of skills) {
+    const src = path.join(SKILLS_DIR, file);
+    const dst = path.join(dest, getSkillBundlePath(file, flat));
+    fs.mkdirSync(path.dirname(dst), { recursive: true });
+    const bundle = buildSkillBundle(fs.readFileSync(src, 'utf8'), file);
+    fs.writeFileSync(dst, bundle);
+    console.log(`  ✓ ${getSkillBundlePath(file, flat)}`);
+    installed++;
+  }
+
+  console.log(`\nInstalled ${installed} skill(s) to ${dest}`);
+  return installed;
+}
+
+function installTo(agent, skills, destOverride) {
   const dest = destOverride || AGENT_DIRS[agent];
   if (!dest) {
     console.error(`Unknown agent "${agent}". Supported agents: ${SUPPORTED_AGENTS.join(', ')}`);
     process.exit(1);
   }
+  // Copilot requires flat structure (no topic subdirectories)
+  const flat = agent === 'copilot';
+  return installSkills(skills, dest, flat);
+}
 
-  fs.mkdirSync(dest, { recursive: true });
+/**
+ * Match a user-supplied skill name against available skill files.
+ * Accepts:
+ *   - Full path:  "execution/how-to-solve-it-state-machine-skill"
+ *   - Just name:  "how-to-solve-it-state-machine-skill"
+ *   - With .md:   "execution/how-to-solve-it-state-machine-skill.md"
+ *   - Partial:    "how-to-solve-it" (matches if unique)
+ */
+function matchSkill(query, allSkills) {
+  const normalized = query.replace(/\.md$/, '');
 
-  const skills = getSkillFiles(SKILLS_DIR);
-  let installed = 0;
+  // Exact full path match (without .md)
+  const exactPath = allSkills.find((f) => f.replace(/\.md$/, '') === normalized);
+  if (exactPath) return exactPath;
 
-  for (const file of skills) {
-    const src = path.join(SKILLS_DIR, file);
-    const dst = path.join(dest, getSkillBundlePath(file));
-    fs.mkdirSync(path.dirname(dst), { recursive: true });
-    const bundle = buildSkillBundle(fs.readFileSync(src, 'utf8'), file);
-    fs.writeFileSync(dst, bundle);
-    console.log(`  ✓ ${getSkillBundlePath(file)}`);
-    installed++;
+  // Exact basename match
+  const byName = allSkills.filter((f) => extractSkillName(f) === normalized);
+  if (byName.length === 1) return byName[0];
+  if (byName.length > 1) {
+    console.error(`Ambiguous skill "${query}". Matches:\n${byName.map((f) => `  ${f}`).join('\n')}`);
+    process.exit(1);
   }
 
-  console.log(`\nInstalled ${installed} skill(s) to ${dest}`);
+  // Partial / substring match
+  const byPartial = allSkills.filter((f) => extractSkillName(f).includes(normalized));
+  if (byPartial.length === 1) return byPartial[0];
+  if (byPartial.length > 1) {
+    console.error(`Ambiguous skill "${query}". Matches:\n${byPartial.map((f) => `  ${f}`).join('\n')}`);
+    process.exit(1);
+  }
+
+  console.error(`No skill found matching "${query}".`);
+  console.error(`Run "npx jerry-skills list" to see available skills.`);
+  process.exit(1);
 }
 
 const TOPIC_DIRS = [
@@ -158,8 +201,9 @@ function printHelp() {
 jerry-skills — install Jerry's agent skill files into your AI agent
 
 Usage:
-  npx jerry-skills install --agent <name> [--dest <path>]
-  npx jerry-skills install --all [--dest <path>]
+  npx jerry-skills install [options]
+  npx jerry-skills install --agent <name> [--skill <name>] [--skill <name2>]
+  npx jerry-skills install --all
   npx jerry-skills list
   npx jerry-skills help
 
@@ -168,20 +212,123 @@ Commands:
   list      List all available skill files
   help      Show this help message
 
-  Options:
+Options:
   --agent   Target agent: ${SUPPORTED_AGENTS.join(', ')}
   --all     Install to all supported agents
+  --skill   Install a specific skill (repeatable). Accepts full path or name.
   --dest    Override the destination directory
 
 Default install paths:
 ${SUPPORTED_AGENTS.map((a) => `  ${a.padEnd(12)} ${AGENT_DIRS[a]}`).join('\n')}
 
 Examples:
-  npx jerry-skills install --agent codex
-  npx jerry-skills install --agent claude --dest ~/my-skills
-  npx jerry-skills install --all
+  npx jerry-skills install                            # interactive picker
+  npx jerry-skills install --agent copilot            # install all skills to copilot
+  npx jerry-skills install --agent codex --skill how-to-solve-it-state-machine-skill
+  npx jerry-skills install --agent claude --skill checklist-manifesto-skill --skill ooda-loop-state-machine-skill
+  npx jerry-skills install --all                      # install all to all agents
   npx jerry-skills list
 `);
+}
+
+/**
+ * Interactive picker for selecting agent and skills.
+ * Uses 'prompts' if available, falls back to --help output.
+ */
+async function interactivePicker(allSkills) {
+  let prompts;
+  try {
+    prompts = require('prompts');
+  } catch (e) {
+    console.error('Interactive mode requires the "prompts" package.');
+    console.error('Either install it: npm install prompts');
+    console.error('Or use flags: npx jerry-skills install --agent copilot --skill <name>');
+    printHelp();
+    process.exit(1);
+  }
+
+  // Step 1: Pick agent
+  const agentChoices = SUPPORTED_AGENTS.map((a) => ({
+    title: `${a}  (${AGENT_DIRS[a]})`,
+    value: a,
+  }));
+  agentChoices.push({ title: 'custom path...', value: '__custom__' });
+
+  const agentResponse = await prompts({
+    type: 'select',
+    name: 'agent',
+    message: 'Which agent are you installing for?',
+    choices: agentChoices,
+  });
+
+  if (!agentResponse.agent) {
+    console.log('Cancelled.');
+    process.exit(0);
+  }
+
+  let destAgent = agentResponse.agent;
+  let destOverride = null;
+
+  if (destAgent === '__custom__') {
+    const pathResponse = await prompts({
+      type: 'text',
+      name: 'dest',
+      message: 'Enter the destination directory:',
+      validate: (v) => (v.trim().length > 0 ? true : 'Path is required'),
+    });
+    if (!pathResponse.dest) {
+      console.log('Cancelled.');
+      process.exit(0);
+    }
+    destOverride = pathResponse.dest;
+    destAgent = null; // custom path, no agent name
+  }
+
+  // Step 2: Pick skills grouped by topic
+  const choices = [];
+  const labeled = [];
+
+  for (const topic of TOPIC_DIRS) {
+    const files = allSkills.filter((f) => f.startsWith(topic + '/') || f.startsWith(topic + path.sep));
+    if (files.length === 0) continue;
+
+    // Topic separator (not selectable)
+    choices.push({ title: `\x1b[1m${TOPIC_LABELS[topic]}\x1b[0m`, heading: true });
+
+    for (const f of files) {
+      const name = extractSkillName(f);
+      const tag = f.includes('state-machine') ? 'protocol' : 'framework';
+      choices.push({
+        title: `  ${name}  [${tag}]`,
+        value: f,
+      });
+    }
+  }
+
+  const skillResponse = await prompts({
+    type: 'multiselect',
+    name: 'skills',
+    message: 'Select skills to install (Space to toggle, Enter to confirm):',
+    choices: choices,
+    hint: '- Space to toggle. Return to submit',
+    instructions: false,
+  });
+
+  if (!skillResponse.skills || skillResponse.skills.length === 0) {
+    console.log('No skills selected. Cancelled.');
+    process.exit(0);
+  }
+
+  // Step 3: Install
+  console.log('');
+  if (destAgent) {
+    console.log(`Installing ${skillResponse.skills.length} skill(s) for ${destAgent}...\n`);
+    installTo(destAgent, skillResponse.skills, destOverride);
+  } else {
+    console.log(`Installing ${skillResponse.skills.length} skill(s)...\n`);
+    // Custom path: use flat structure (works for all agents)
+    installSkills(skillResponse.skills, destOverride, true);
+  }
 }
 
 function main() {
@@ -198,42 +345,87 @@ function main() {
     return;
   }
 
-  if (command === 'install') {
-    const agentIdx = args.indexOf('--agent');
-    const allFlag = args.includes('--all');
-    const destIdx = args.indexOf('--dest');
-    const destOverride = destIdx !== -1 ? args[destIdx + 1] : null;
+  if (command !== 'install') {
+    console.error(`Unknown command "${command}".\n`);
+    printHelp();
+    process.exit(1);
+  }
 
-    if (allFlag) {
-      console.log("Installing skills to all supported agents...\n");
-      for (const agent of SUPPORTED_AGENTS) {
-        console.log(`[${agent}]`);
-        installTo(agent, destOverride ? path.join(destOverride, agent) : null);
-        console.log('');
-      }
-      return;
+  // Parse flags
+  const allFlag = args.includes('--all');
+  const agentIdx = args.indexOf('--agent');
+  const destIdx = args.indexOf('--dest');
+  const destOverride = destIdx !== -1 ? args[destIdx + 1] : null;
+
+  // Collect all --skill values (repeatable)
+  const skillNames = [];
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--skill' && args[i + 1]) {
+      skillNames.push(args[i + 1]);
     }
+  }
 
-    if (agentIdx === -1 || !args[agentIdx + 1]) {
-      console.error('Error: --agent <name> is required, or use --all.\n');
-      printHelp();
-      process.exit(1);
+  const hasAgent = agentIdx !== -1 && args[agentIdx + 1];
+  const hasSkills = skillNames.length > 0;
+
+  // --all: install everything to all agents
+  if (allFlag) {
+    const all = getSkillFiles(SKILLS_DIR);
+    console.log("Installing all skills to all supported agents...\n");
+    for (const agent of SUPPORTED_AGENTS) {
+      console.log(`[${agent}]`);
+      installTo(agent, all, destOverride ? path.join(destOverride, agent) : null);
+      console.log('');
     }
+    return;
+  }
 
+  // --agent with optional --skill flags
+  if (hasAgent) {
     const agent = args[agentIdx + 1];
     if (!SUPPORTED_AGENTS.includes(agent)) {
       console.error(`Unknown agent "${agent}". Supported: ${SUPPORTED_AGENTS.join(', ')}`);
       process.exit(1);
     }
 
-    console.log(`Installing skills for ${agent}...\n`);
-    installTo(agent, destOverride);
+    const all = getSkillFiles(SKILLS_DIR);
+
+    if (hasSkills) {
+      // Install only specified skills
+      const matched = skillNames.map((name) => matchSkill(name, all));
+      console.log(`Installing ${matched.length} skill(s) for ${agent}...\n`);
+      installTo(agent, matched, destOverride);
+    } else {
+      // Install all skills to this agent
+      console.log(`Installing all skills for ${agent}...\n`);
+      installTo(agent, all, destOverride);
+    }
     return;
   }
 
-  console.error(`Unknown command "${command}".\n`);
-  printHelp();
-  process.exit(1);
+  // --skill without --agent: need to ask for destination
+  if (hasSkills && !hasAgent) {
+    const all = getSkillFiles(SKILLS_DIR);
+    const matched = skillNames.map((name) => matchSkill(name, all));
+
+    if (destOverride) {
+      console.log(`Installing ${matched.length} skill(s)...\n`);
+      installSkills(matched, destOverride);
+    } else {
+      console.error('Error: --skill requires --agent or --dest.\n');
+      printHelp();
+      process.exit(1);
+    }
+    return;
+  }
+
+  // No flags: launch interactive picker
+  const all = getSkillFiles(SKILLS_DIR);
+  interactivePicker(all).catch((err) => {
+    console.error('Interactive picker failed:', err.message);
+    printHelp();
+    process.exit(1);
+  });
 }
 
 main();

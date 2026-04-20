@@ -23,9 +23,15 @@
     "claude",
     "hermes",
     "antigravity",
+    "vscode",
+    "copilot",
+    "github-copilot",
     "prompts"
   ],
   "license": "MIT",
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
   "engines": {
     "node": ">=14"
   }
