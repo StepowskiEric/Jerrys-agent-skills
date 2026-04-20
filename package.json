@@ -1,0 +1,27 @@
+{
+  "name": "jerry-skills",
+  "version": "1.0.0",
+  "description": "Install Jerry's agent skills into Codex, Hermes, Claude, Antigravity, or any agent that loads markdown skill files.",
+  "bin": {
+    "jerry-skills": "./bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "*.md",
+    "!README.md"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "skills",
+    "codex",
+    "claude",
+    "hermes",
+    "antigravity",
+    "prompts"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}
