@@ -32,6 +32,10 @@ function getSkillFiles(dir, base) {
   return results.sort();
 }
 
+function getSkillBundlePath(file) {
+  return path.join(path.dirname(file), path.basename(file, '.md'), 'SKILL.md');
+}
+
 function installTo(agent, destOverride) {
   const dest = destOverride || AGENT_DIRS[agent];
   if (!dest) {
@@ -46,10 +50,10 @@ function installTo(agent, destOverride) {
 
   for (const file of skills) {
     const src = path.join(SKILLS_DIR, file);
-    const dst = path.join(dest, file);
+    const dst = path.join(dest, getSkillBundlePath(file));
     fs.mkdirSync(path.dirname(dst), { recursive: true });
     fs.copyFileSync(src, dst);
-    console.log(`  ✓ ${file}`);
+    console.log(`  ✓ ${getSkillBundlePath(file)}`);
     installed++;
   }
 
@@ -110,7 +114,7 @@ Usage:
   npx jerry-skills help
 
 Commands:
-  install   Copy skill .md files to the agent's skills directory
+  install   Copy skill bundles to the agent's skills directory
   list      List all available skill files
   help      Show this help message
 

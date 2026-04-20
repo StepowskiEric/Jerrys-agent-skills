@@ -670,7 +670,7 @@ List skills without installing:
 npx jerry-skills list
 ```
 
-Each command copies all `.md` skill files from this repository into the target directory. From there you can reference or load them in your agent's system prompt or skill loader.
+Each command copies every skill into a folder bundle with a `SKILL.md` file, which is the format these agent skill loaders expect. For example, `execution/how-to-solve-it-state-machine-skill.md` installs to `execution/how-to-solve-it-state-machine-skill/SKILL.md` under the target directory.
 
 ---
 
