@@ -2,6 +2,33 @@
 
 A catalog of agent skills for making AI systems more reliable, disciplined, and useful in real work.
 
+## 📚 Quick Navigation
+
+**[Find by Use Case](#find-by-use-case)** — I need a skill for...
+- [Debugging / Problem Solving](#debugging--problem-solving)
+- [Code Review / Quality](#code-review--quality)
+- [Architecture / Design Decisions](#architecture--design-decisions)
+- [Documentation / Communication](#documentation--communication)
+- [Planning / Estimation](#planning--estimation)
+- [Learning / Understanding](#learning--understanding)
+- [Multi-Agent / Coordination](#multi-agent--coordination)
+- [Risk / Safety Analysis](#risk--safety-analysis)
+
+**[Browse by Category](#skill-catalog)**
+- [🔧 Execution](#execution--how-to-do-the-work-protocols) — Problem-solving protocols
+- [🧭 Judgment & Routing](#judgment--routing--decision-making-frameworks) — Decision-making frameworks
+- [🎛️ Orchestration](#orchestration--workflow-control) — Workflow control
+- [✅ Output Quality](#output-quality--self-improvement) — Self-improvement
+- [🏗️ Systems & Architecture](#systems--architecture--design-principles) — Design principles
+- [🛠️ Development](#development--skill-building) — Skill building
+
+**[Quick Reference Tables](#quick-reference-tables)**
+- [All Protocol Skills](#all-protocol-skills-state-machine) — State-machine enforced
+- [All Framework Skills](#all-framework-skills-conceptual) — Conceptual lenses
+- [Recently Added](#recently-added) — Newest skills
+
+---
+
 ## Quick Install
 
 Install all skills directly to your agent's configuration directory:
@@ -77,6 +104,93 @@ Use the **state-machine version** when:
 - the task is risky, expensive, or multi-step
 - you need predictable behavior
 - you want mandatory artifacts, stop conditions, and clearer auditability
+
+---
+
+## Find by Use Case
+
+**"I need a skill for..."**
+
+### Debugging / Problem Solving
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Hard bug, don't know where to start | [`how-to-solve-it-state-machine`](#executionhow-to-solve-it-state-machine-skillmd--protocol) | Forces problem framing before action |
+| Multiple possible causes | [`abductive-first-debugging`](#executionabductive-first-debugging-skillmd--protocol) | Generates competing hypotheses, picks best explanation |
+| Need to locate relevant code | [`keyword-agnostic-logic-locator`](#executionkeyword-agnostic-logic-locator-skillmd--protocol) | Finds code by structure, not by grepping |
+| Stuck in a rut, same failed attempts | [`cross-domain-analogy-generator`](#systems-and-architecturecross-domain-analogy-generator-skillmd--framework) | Forces foreign-domain analogies to break fixation |
+| Prematurely jumping to solutions | [`ooda-loop-state-machine`](#executionooda-loop-state-machine-skillmd--protocol) | Observe → Orient → Decide → Act cycle |
+| Over-thinking trivial bugs | [`cognitive-friction-governor`](#executioncognitive-friction-governor-skillmd--protocol) | Budgets deliberation, forces decision |
+
+### Code Review / Quality
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Security + performance + maintainability conflict | [`rashomon-triad-hybrid`](#orchestrationrashomon-triad-hybrid-skillmd--protocol) | Parallel perspectives argue, surface conflicts |
+| Not sure if I understand the code | [`compression-as-understanding`](#output-qualitycompression-as-understanding-skillmd--protocol) | Compress to essence, test reconstruction |
+| Need to verify my understanding | [`metacognitive-monitoring`](#judgment-and-routingmetacognitive-monitoring-skillmd--protocol) | Explicit confidence calibration |
+| Refactoring legacy code | [`working-effectively-with-legacy-code-state-machine`](#executionworking-effectively-with-legacy-code-state-machine-skillmd--protocol) | Safe change protocol |
+| Code smells but not sure what | [`philosophy-of-software-design-state-machine`](#executionphilosophy-of-software-design-state-machine-skillmd--protocol) | Complexity management |
+| Before committing changes | [`verify-before-integrate`](#software-developmentverify-before-integrate-skillmd--protocol) | Pre-commit verification |
+
+### Architecture / Design Decisions
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Big decision, multiple options | [`counterfactual-policy-testing`](#judgment-and-routingcounterfactual-policy-testing-skillmd--protocol) | Test against null/opposite/partial alternatives |
+| Trade-offs between teams/systems | [`team-topologies-ai`](#systems-and-architectureteam-topologies-ai-skillmd--framework) | Organizational architecture patterns |
+| Data system design | [`designing-data-intensive-applications-ai`](#systems-and-architecturedesigning-data-intensive-applications-ai-skillmd--framework) | Data system principles |
+| Scalability concerns | [`sre-error-budget`](#systems-and-architecturesre-error-budget-skillmd--framework) | Reliability vs velocity trade-offs |
+| Domain modeling | [`domain-driven-design`](#systems-and-architecturedomain-driven-design-skillmd--framework) | Bounded contexts, ubiquitous language |
+| Not sure what kind of problem | [`problem-mode-router-cynefin`](#judgment-and-routingproblem-mode-router-cynefin-skillmd--framework) | Cynefin framework routing |
+
+### Documentation / Communication
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Writing README / API docs | [`documentation-craft`](#output-qualitydocumentation-craft-skillmd--protocol) | 5-phase structured writing |
+| Explaining complex system simply | [`feynman-technique`](#output-qualityfeynman-technique-skillmd--framework) | Explain to a child |
+| Team/process problems | [`everything-as-code-conceptualizer`](#systems-and-architectureeverything-as-code-conceptualizer-skillmd--framework) | Codify non-code systems |
+| Need clarity on requirements | [`socratic-clarification`](#orchestrationsocratic-clarification-skillmd--protocol) | Pre-execution clarification |
+| Improving my own output | [`bounded-self-revision`](#output-qualitybounded-self-revision-skillmd--framework) | Structured self-improvement |
+
+### Planning / Estimation
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| How long will this take? | [`reference-class-forecasting`](#judgment-and-routingreference-class-forecasting-skillmd--framework) | Base rate estimation |
+| What could go wrong? | [`pre-mortem-state-machine`](#judgment-and-routingpre-mortem-state-machine-skillmd--protocol) | Prospective hindsight |
+| Should I explore or exploit? | [`explore-vs-exploit-state-machine`](#judgment-and-routingexplore-vs-exploit-state-machine-skillmd--protocol) | Resource allocation |
+| Complex multi-step plan | [`checklist-manifesto`](#executionchecklist-manifesto-skillmd--protocol) | Checklist discipline |
+| Theory of constraints | [`the-goal-theory-of-constraints-ai`](#systems-and-architecturethe-goal-theory-of-constraints-ai-skillmd--framework) | Bottleneck identification |
+
+### Learning / Understanding
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| New codebase, need to understand | [`compression-as-understanding`](#output-qualitycompression-as-understanding-skillmd--protocol) | Verify understanding via compression |
+| Researching a topic | [`tree-of-thoughts`](#output-qualitytree-of-thoughts-skillmd--framework) | Branching exploration |
+| First principles thinking | [`first-principles`](#judgment-and-routingfirst-principles-skillmd--framework) | Deconstruct to fundamentals |
+| Inverting the problem | [`inversion-mental-model`](#judgment-and-routinginversion-mental-model-skillmd--framework) | Think backwards |
+| Analyzing from multiple angles | [`six-thinking-hats`](#judgment-and-routingsix-thinking-hats-skillmd--framework) | Parallel thinking modes |
+
+### Multi-Agent / Coordination
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Need to spawn specialized sub-agents | [`agentic-design-patterns-orchestrator`](#orchestrationagentic-design-patterns-orchestrator-skillmd--framework) | Agent workflow patterns |
+| Storing reasoning for later | [`thought-retriever-coppermind`](#orchestrationthought-retriever-coppermind-skillmd--protocol) | Memory-augmented reasoning |
+| Managing agent memory | [`agent-memory-hygiene`](#orchestrationagent-memory-hygiene-skillmd--framework) | Memory categorization |
+| Debating which branch to pursue | [`monte-carlo-tree-search`](#monte-carlo-tree-search-skillmd--framework) | Branch allocation |
+
+### Risk / Safety Analysis
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Safety-critical changes | [`unsafe-control-actions-hazard-analysis`](#judgment-and-routingunsafe-control-actions-hazard-analysis-skillmd--framework) | STPA safety analysis |
+| What could break? | [`pre-mortem`](#judgment-and-routingpre-mortem-skillmd--framework) | Prospective hindsight |
+| Second-order effects | [`second-order-thinking`](#judgment-and-routingsecond-order-thinking-skillmd--framework) | Consequences of consequences |
+| Release planning | [`release-it-stability`](#systems-and-architecturerelease-it-stability-skillmd--framework) | Stability patterns |
 
 ---
 
@@ -830,6 +944,98 @@ A practical default sequence is:
 4. one task-specific protocol or framework from the relevant topic folder
 5. `output-quality/tool-interactive-critic-skill.md` if the output depends on facts or code that can be externally checked
 6. `execution/toyota-kata-state-machine-skill.md` if the goal is iterative improvement rather than one-shot change
+
+---
+
+# Quick Reference Tables
+
+## All Protocol Skills (State Machine)
+
+| Skill | Location | Best For |
+|-------|----------|----------|
+| how-to-solve-it-state-machine | execution/ | Hard problems, debugging |
+| ooda-loop-state-machine | execution/ | Fast-changing situations |
+| refactoring-state-machine | execution/ | Code restructuring |
+| working-effectively-with-legacy-code-state-machine | execution/ | Legacy code changes |
+| checklist-manifesto | execution/ | Procedural safety |
+| pdca-deman-skill | execution/ | Iterative improvement |
+| toyota-kata-state-machine | execution/ | Continuous improvement |
+| philosophy-of-software-design-state-machine | execution/ | Complexity management |
+| pragmatic-programmer-state-machine | execution/ | Grounded execution |
+| cognitive-friction-governor | execution/ | Deliberation budgeting |
+| abductive-first-debugging | execution/ | Novel failure diagnosis |
+| keyword-agnostic-logic-locator | execution/ | Code navigation |
+| thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level |
+| pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight |
+| recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage |
+| problem-mode-router-cynefin-state-machine | judgment-and-routing/ | Problem classification |
+| inversion-mental-model-state-machine | judgment-and-routing/ | Backward reasoning |
+| explore-vs-exploit-state-machine | judgment-and-routing/ | Resource allocation |
+| metacognitive-monitoring | judgment-and-routing/ | Confidence calibration |
+| counterfactual-policy-testing | judgment-and-routing/ | Decision validation |
+| agentic-design-patterns-orchestrator-state-machine | orchestration/ | Workflow control |
+| rashomon-triad-hybrid | orchestration/ | Multi-perspective decisions |
+| socratic-clarification | orchestration/ | Pre-execution clarity |
+| thought-retriever-coppermind | orchestration/ | Memory-augmented reasoning |
+| cognitive-load-operator-state-machine | output-quality/ | Reducing complexity |
+| bounded-self-revision | output-quality/ | Self-improvement |
+| documentation-craft | output-quality/ | Technical writing |
+| compression-as-understanding | output-quality/ | Understanding verification |
+| thinking-in-systems-state-machine | systems-and-architecture/ | System analysis |
+
+## All Framework Skills (Conceptual)
+
+| Skill | Location | Best For |
+|-------|----------|----------|
+| how-to-solve-it-analogy | execution/ | Analogical problem solving |
+| six-thinking-hats | judgment-and-routing/ | Multi-perspective analysis |
+| first-principles | judgment-and-routing/ | Deconstruction |
+| second-order-thinking | judgment-and-routing/ | Consequence analysis |
+| steelmanning | judgment-and-routing/ | Challenge testing |
+| kahneman-thinking-fast-slow | judgment-and-routing/ | Cognitive mode switching |
+| cognitive-bias-checklist | judgment-and-routing/ | Bias correction |
+| bayesian-updating | judgment-and-routing/ | Belief revision |
+| reference-class-forecasting | judgment-and-routing/ | Estimation |
+| pre-mortem | judgment-and-routing/ | Failure prediction |
+| unsafe-control-actions-hazard-analysis | judgment-and-routing/ | Safety analysis |
+| problem-mode-router-cynefin | judgment-and-routing/ | Domain classification |
+| recognition-primed-triage | judgment-and-routing/ | Pattern matching |
+| inversion-mental-model | judgment-and-routing/ | Reverse thinking |
+| explore-vs-exploit | judgment-and-routing/ | Decision timing |
+| agent-memory-hygiene | orchestration/ | Memory management |
+| agentic-design-patterns-orchestrator | orchestration/ | Agent patterns |
+| separation-of-concerns | orchestration/ | Work separation |
+| tree-of-thoughts | output-quality/ | Branching exploration |
+| self-consistency | output-quality/ | Triangulation |
+| tool-interactive-critic | output-quality/ | External verification |
+| mece-pyramid-principle | output-quality/ | Clear structure |
+| feynman-technique | output-quality/ | Simple explanation |
+| cross-domain-analogy-generator | systems-and-architecture/ | Creative solutions |
+| everything-as-code-conceptualizer | systems-and-architecture/ | System modeling |
+| domain-driven-design | systems-and-architecture/ | Domain modeling |
+| team-topologies-ai | systems-and-architecture/ | Team alignment |
+| accelerate-ai | systems-and-architecture/ | DevOps improvement |
+| designing-data-intensive-applications-ai | systems-and-architecture/ | Data systems |
+| release-it-stability | systems-and-architecture/ | Stability patterns |
+| sre-error-budget | systems-and-architecture/ | Reliability trade-offs |
+| the-goal-theory-of-constraints-ai | systems-and-architecture/ | Bottleneck focus |
+| monte-carlo-tree-search | ./ | Branch exploration |
+
+## Recently Added
+
+| Skill | Date | Key Technique |
+|-------|------|---------------|
+| documentation-craft | 2025-04 | 5-phase structured writing (arXiv:2504.08725) |
+| counterfactual-policy-testing | 2025-04 | Null/opposite/partial alternatives (arXiv:2604.10511) |
+| cognitive-friction-governor | 2025-04 | Deliberation budgeting (arXiv:2603.30031) |
+| cross-domain-analogy-generator | 2025-04 | Foreign-domain analogies (arXiv:2603.19087) |
+| metacognitive-monitoring | 2025-04 | Confidence calibration (arXiv:2604.15702) |
+| abductive-first-debugging | 2025-04 | Inference to best explanation (arXiv:2604.08016) |
+| keyword-agnostic-logic-locator | 2025-04 | Datalog code queries (arXiv:2604.16021) |
+| compression-as-understanding | 2025-04 | Kolmogorov complexity verification |
+| everything-as-code-conceptualizer | 2025-04 | System codification (arXiv:2507.05100) |
+| rashomon-triad-hybrid | 2025-04 | Multi-perspective reasoning |
+| thought-retriever-coppermind | 2025-04 | Memory-augmented reasoning |
 
 ---
 
