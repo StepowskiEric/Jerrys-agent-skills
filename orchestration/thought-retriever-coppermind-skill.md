@@ -2,9 +2,9 @@
 
 ## Purpose
 
-Enable sub-agents to build collective reasoning memory using the Coppermind three-layer memory architecture. Instead of just returning answers, agents store structured "thoughts" (intermediate reasoning) as Coppermind memories that future agents can retrieve and build upon.
+Enable sub-agents to build collective reasoning memory using the Coppermind three-layer memory architecture. Instead of just returning answers, agents store structured "thoughts" (intermediate reasoning) that future agents can retrieve and build upon.
 
-This skill bridges the paper's Thought-Retriever algorithm with Coppermind's working/episodic/semantic memory layers, giving agents self-evolving long-term memory that grows more capable through continuous interaction.
+This skill bridges the paper's Thought-Retriever algorithm with Coppermind's actual implementation: **episodes** (immutable audit) → **memories** (promoted durable records with lifecycle) → **edges** (graph relationships).
 
 ---
 
@@ -17,34 +17,54 @@ This skill bridges the paper's Thought-Retriever algorithm with Coppermind's wor
 
 ---
 
-## Coppermind Integration Architecture
+## Coppermind Architecture (Verified)
+
+Coppermind uses three tables in SurrealDB:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         COPPERMIND MEMORY                           │
+│                    COPPERMIND MEMORY ARCHITECTURE                   │
 ├─────────────────┬─────────────────┬─────────────────────────────────┤
-│  Working Layer  │  Episodic Layer │      Semantic Layer             │
-│  (Session)      │  (Episodes)     │      (Long-term)                │
+│    episode      │    memories     │      Edge Tables                │
+│  (immutable)    │  (promoted)     │    (graph relations)            │
 ├─────────────────┼─────────────────┼─────────────────────────────────┤
-│ Active thoughts │ Thought episodes│ Abstracted reasoning patterns     │
-│ being generated │ with full       │ ("how we solve auth problems")   │
-│ right now       │ context + trace │                                   │
-└────────┬────────┴────────┬────────┴────────────────┬────────────────┘
-         │                 │                       │
-         ▼                 ▼                       ▼
-   Real-time          Persistent              Generalized
-   reasoning          task memory             knowledge
+│ raw_text        │ content         │ supersedes (new → old)          │
+│ created_at      │ search_text     │ contradicts (bidirectional)     │
+│ source          │ importance      │ related_to (memories → memories)│
+│ actor           │ memory_type     │ derived_from (mem → episode)    │
+│ promotion       │ status*         │                                 │
+│ memory_entry_id │ durability*     │                                 │
+│                 │ canonical_key*  │                                 │
+│                 │ episode_id      │                                 │
+└─────────────────┴─────────────────┴─────────────────────────────────┘
+
+* Phase 2 lifecycle fields
 ```
 
-**Thought Types Map to Layers:**
+**Episode Table:** Immutable raw audit trail. Every ingest starts here. Links to promoted memory via `memory_entry_id`.
 
-| Thought Type | Coppermind Layer | Purpose |
-|--------------|------------------|---------|
-| `observation` | Working → Episodic | Facts detected during task execution |
-| `inference` | Episodic | Reasoning steps connecting observations |
-| `hypothesis` | Working | Candidate explanations being tested |
-| `uncertainty` | Episodic | Known unknowns, gaps in understanding |
-| `conclusion` | Semantic | Validated findings promoted to long-term |
+**Memories Table:** Durable truth with lifecycle. Status = `active|stale|superseded|archived|pending_review`. Durability = `ephemeral|working|durable|canonical_candidate`.
+
+**Edge Tables:** Graph relationships using SurrealDB `TYPE RELATION`. Enable traversal from memories to related memories or source episodes.
+
+---
+
+## Mapping Thought-Retriever to Coppermind
+
+| Thought Type | Coppermind Storage | Lifecycle | Edges Created |
+|--------------|-------------------|-----------|---------------|
+| `observation` | Episode → Memory | `durability: working` | `derived_from` (mem → episode) |
+| `inference` | Memory directly | `durability: durable` | `related_to` links to supporting observations |
+| `hypothesis` | Episode (if unverified) | `status: pending_review` | None until validated |
+| `uncertainty` | Episode | `promotion: none` (audit only) | None |
+| `conclusion` | Memory | `durability: durable`, `canonical_candidate: true` | `supersedes` old conclusions |
+
+**Key Fields for Thought Retrieval:**
+- `memory_type`: Store thought type here ("observation", "inference", etc.)
+- `metadata`: Store confidence, source agent, task ID, related thought IDs
+- `tags`: Domain tags for filtering ("auth", "performance", "security")
+- `canonical_key`: For deduplication (e.g., "thought:auth:ssr-issue")
+- `scene_trace`: Encoding context — what was the agent trying to do
 
 ---
 
@@ -53,16 +73,24 @@ This skill bridges the paper's Thought-Retriever algorithm with Coppermind's wor
 ```
 ┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
 │  Sub-agent  │────▶│  Thought Store   │────▶│  Coppermind      │
-│  solves task│     │  (structured)    │     │  Memory System   │
+│  solves task│     │  (structured)    │     │  Episode         │
 └─────────────┘     └──────────────────┘     └────────┬─────────┘
-                                                        │
-                              ┌─────────────────────────┘
+                                                       │
+                              ┌────────────────────────┘
+                              │ (promotion on validation)
+                              ▼
+┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│  Sub-agent  │◀────│  Retrieved       │◀────│  Memories        │
+│  builds on  │     │  Thoughts        │     │  (active status) │
+│  prior work │     │  + Edges         │     │                  │
+└─────────────┘     └──────────────────┘     └──────────────────┘
                               │
-┌─────────────┐     ┌─────────▼─────────┐     ┌─────────────┐
-│  Sub-agent  │◀────│  Retrieved        │◀────│  Semantic   │
-│  builds on  │     │  Thoughts         │     │  Search     │
-│  prior work │     │  (context-rich)   │     │  + Episodic │
-└─────────────┘     └───────────────────┘     └─────────────┘
+                              │ (graph traversal)
+                              ▼
+                       ┌──────────────┐
+                       │  Edge Tables │
+                       │  (context)   │
+                       └──────────────┘
 ```
 
 ---
@@ -73,22 +101,27 @@ Every thought stored in Coppermind must include:
 
 ```yaml
 thought:
-  id: "thought_<timestamp>_<hash>"  # Unique identifier
+  id: "<entry_id UUID>"              # Coppermind primary key
   type: "observation|inference|hypothesis|uncertainty|conclusion"
   content: "The actual reasoning content"
-  confidence: 0.0-1.0               # Certainty level
-  source:                           # Traceability
+  confidence: 0.0-1.0                 # Stored in metadata.confidence
+  source:                             # Stored in metadata
     agent_id: "<sub-agent-name>"
     task_id: "<parent-task-id>"
-    session_id: "<coppermind-session>"
-  context:                          # Retrieval context
+    session_id: "<session-id>"
+  context:                            # Stored in tags + metadata
     domain: "auth|performance|security|etc"
     tags: ["jwt", "react", "ssr"]
     related_files: ["/middleware/auth.ts"]
-  temporal:                         # For memory lifecycle
-    created: "<iso-timestamp>"
-    last_accessed: "<iso-timestamp>"
-    access_count: 0                 # For liveness scoring
+    canonical_key: "thought:auth:ssr-issue"  # For dedup
+  temporal:
+    created: "<ISO-timestamp>"        # created_at field
+    valid_at: "<ISO-timestamp>"       # Phase 2: when thought becomes valid
+  relations:                          # Stored as edges
+    derives_from: ["<episode_id>"]    # For observations
+    supports: ["<thought_id>"]        # For inferences → observations
+    contradicts: ["<thought_id>"]   # For conflicting conclusions
+    supersedes: ["<thought_id>"]      # For updated conclusions
 ```
 
 ---
@@ -97,73 +130,71 @@ thought:
 
 ### Phase 1: Thought Generation (During Task Execution)
 
-As the sub-agent works, it generates thoughts:
+As the sub-agent works, it generates thoughts and stores to Coppermind:
 
 ```
-## State: Working → Generate Thoughts
+## State: Generate → Store Episode
 
 When making observations:
-- Store as type: "observation"
-- Include file paths, line numbers, exact quotes
-- Confidence: 0.9+ for direct evidence, 0.7-0.8 for interpretation
+- Create episode record with raw_text = observation content
+- promotion = "none" initially
+- source = "agent_thought", actor = agent_id
+- canonical_key = auto-generated from domain + topic
 
-When drawing conclusions:
-- Store as type: "inference" 
-- Link to supporting observations via thought_ids
-- Confidence reflects strength of reasoning chain
+When drawing inferences:
+- Create episode (raw)
+- After validation, promote to memory:
+  - durability = "durable"
+  - memory_type = "inference"
+  - status = "active"
+  - episode_id links back to source episode
+- Create edges:
+  - derived_from (memory → episode)
+  - related_to (inference → supporting observations)
 
 When encountering gaps:
-- Store as type: "uncertainty"
-- Be explicit about what's unknown
-- These become valuable retrieval targets for future debugging
+- Create episode with promotion = "none"
+- Store as uncertainty for audit trail
+- These become valuable when future agents hit same gap
 
 When completing:
-- Store as type: "conclusion"
-- Summarize key findings
-- These may be promoted to semantic layer
+- Create memory directly (skip episode for efficiency)
+- durability = "durable", canonical_candidate = true
+- If supersedes prior conclusion:
+  - Create supersedes edge (new → old)
+  - Mark old memory status = "superseded"
+  - Set old memory invalid_at timestamp
 ```
 
-### Phase 2: Thought Persistence (To Coppermind)
-
-```
-## State: Store → Coppermind Integration
-
-For each thought:
-1. Serialize to Coppermind memory format
-2. Store in appropriate layer:
-   - Working: Active task context (auto-expires)
-   - Episodic: Full episode with thought trace (persistent)
-   - Semantic: Abstracted patterns (if conclusion type + high confidence)
-
-3. Create cross-references:
-   - Link observations → inferences → conclusions
-   - Tag with domain vocabulary for retrieval
-   - Index file paths for code-aware retrieval
-```
-
-### Phase 3: Thought Retrieval (For New Tasks)
+### Phase 2: Thought Retrieval (For New Tasks)
 
 ```
 ## State: Retrieve → Prior Work Integration
 
 Before starting new task:
-1. Query Coppermind semantic layer for relevant patterns:
-   - "How have we solved {domain} problems before?"
-   - Retrieve abstracted reasoning patterns
+1. Query Coppermind memories table:
+   - Filter: status = "active"
+   - Filter: tags overlap with query domain
+   - Sort: importance DESC, last_accessed_at DESC
 
-2. Query Coppermind episodic layer for specific precedents:
-   - "What thoughts exist about {specific files/topics}?"
-   - Retrieve full reasoning traces
+2. For each candidate memory, traverse edges:
+   - Follow related_to for supporting context
+   - Follow derived_from to see raw source
+   - Check contradicts for alternative perspectives
 
-3. Rank by relevance + confidence + recency:
-   - Semantic match score
-   - Confidence threshold (default: 0.7)
-   - Liveness score (access-based decay)
+3. Rank by relevance + confidence + liveness:
+   - Semantic match on search_text (BM25 + vector if embedded)
+   - metadata.confidence threshold (default: 0.7)
+   - liveness = times_confirmed / days_since_access
 
-4. Inject retrieved thoughts as context:
-   - Include thought content + source traceability
+4. Update access metrics:
+   - Increment times_confirmed if used
+   - Update last_accessed_at timestamp
+
+5. Inject retrieved thoughts as context:
+   - Include content + source traceability
    - Preserve uncertainty markers
-   - Surface conflicting inferences if present
+   - Surface conflicting conclusions if present
 ```
 
 ---
@@ -179,159 +210,209 @@ delegate_task:
     Focus on JWT handling, token refresh, and session management.
     Use thought-retriever pattern: store observations, inferences, 
     and uncertainties as you discover them.
-  
-  # Sub-agent returns structured result with thoughts
 ```
 
-### Sub-Agent Output (Stored to Coppermind)
+### Sub-Agent Stores Thoughts to Coppermind
 
 ```yaml
-result:
-  answer: "Found 3 auth patterns: middleware-based, hook-based, and HOC-based"
-  
-  thoughts:
-    - id: "thought_20250420_001"
-      type: "observation"
-      content: "Middleware pattern in /middleware/auth.ts uses edge runtime"
-      confidence: 0.95
-      source:
-        agent_id: "auth-researcher"
-        task_id: "auth-pattern-research"
-      context:
-        domain: "auth"
-        tags: ["middleware", "edge", "jwt"]
-        related_files: ["/middleware/auth.ts"]
-      
-    - id: "thought_20250420_002"
-      type: "inference"
-      content: "Hook pattern couples auth state with React lifecycle - potential SSR issues"
-      confidence: 0.80
-      source:
-        agent_id: "auth-researcher"
-        task_id: "auth-pattern-research"
-      context:
-        domain: "auth"
-        tags: ["hooks", "react", "ssr", "lifecycle"]
-        related_files: ["/hooks/useAuth.ts"]
-      supporting_thoughts: ["thought_20250420_003"]  # Links to observation
-      
-    - id: "thought_20250420_003"
-      type: "uncertainty"
-      content: "HOC pattern usage unclear - may be legacy, needs verification"
-      confidence: 0.40
-      source:
-        agent_id: "auth-researcher"
-        task_id: "auth-pattern-research"
-      context:
-        domain: "auth"
-        tags: ["hoc", "legacy", "verification-needed"]
-        related_files: ["/components/withAuth.tsx"]
+# 1. Observation thought → Episode
+coppermind_ingest:
+  raw_text: "Middleware pattern in /middleware/auth.ts uses edge runtime"
+  source: "agent_thought"
+  actor: "auth-researcher"
+  metadata:
+    thought_type: "observation"
+    confidence: 0.95
+    task_id: "auth-pattern-research"
+    related_files: ["/middleware/auth.ts"]
+  tags: ["auth", "middleware", "edge", "jwt"]
+  canonical_key: "thought:auth:middleware-edge"
+
+# 2. Inference thought → Memory (after validation)
+coppermind_ingest:
+  content: "Hook pattern couples auth state with React lifecycle - potential SSR issues"
+  search_text: "Hook auth state React lifecycle SSR issues"
+  memory_type: "inference"
+  durability: "durable"
+  status: "active"
+  importance: 0.8
+  metadata:
+    thought_type: "inference"
+    confidence: 0.80
+    task_id: "auth-pattern-research"
+    supports: ["<observation_episode_id>"]  # Links to supporting obs
+  tags: ["auth", "hooks", "react", "ssr", "lifecycle"]
+  canonical_key: "thought:auth:hook-ssr-risk"
+
+# 3. Uncertainty → Episode (audit only, not promoted)
+coppermind_ingest:
+  raw_text: "HOC pattern usage unclear - may be legacy, needs verification"
+  source: "agent_thought"
+  actor: "auth-researcher"
+  metadata:
+    thought_type: "uncertainty"
+    confidence: 0.40
+    task_id: "auth-pattern-research"
+  tags: ["auth", "hoc", "legacy", "verification-needed"]
+  # No canonical_key — not confident enough for dedup
 ```
 
-### Later: Different Sub-Agent Queries Thought Memory
+### Later: Different Sub-Agent Queries
 
 ```yaml
 thought_retriever:
   query: "What auth patterns have SSR compatibility issues?"
   filters:
-    domain: "auth"
-    confidence_min: 0.70
+    tags: ["auth", "ssr"]
+    status: "active"
+    metadata.confidence_min: 0.70
     thought_types: ["inference", "conclusion"]
   
+# Coppermind query:
+# SELECT * FROM memories 
+# WHERE status = "active" 
+#   AND tags CONTAINSANY ["auth", "ssr"]
+#   AND metadata.confidence >= 0.70
+# ORDER BY importance DESC
+
 # Returns:
 retrieved_thoughts:
-  - id: "thought_20250420_002"
-    type: "inference"
+  - entry_id: "<uuid>"
     content: "Hook pattern couples auth state with React lifecycle - potential SSR issues"
+    memory_type: "inference"
     confidence: 0.80
     source:
       agent_id: "auth-researcher"
       task_id: "auth-pattern-research"
-      created: "2025-04-20T10:30:00Z"
-    # Includes full traceability and context
+      created_at: "2025-04-20T10:30:00Z"
+    edges:
+      derived_from: "<episode_id>"  # Raw observation
+      related_to: ["<other_observation>"]  # Supporting evidence
 ```
 
 ---
 
-## Integration with Coppermind Tools
+## Integration with Coppermind MCP Tools
 
-### Storing Thoughts (via MCP)
-
-```
-Use mcp_coppermind_store_memory with:
-- content: serialized thought JSON
-- layer: "episodic" (default) or "semantic" (for conclusions)
-- metadata: thought context, tags, source traceability
-- episode_id: link to parent task episode
-```
-
-### Retrieving Thoughts (via MCP)
+### Storing Thoughts
 
 ```
-Use mcp_coppermind_semantic_search_nodes with:
-- query: natural language description of needed reasoning
-- kind: "Thought" (if using custom node types)
-- filters: confidence, domain, recency
+Use mcp_coppermind_run with function "ingest":
+- For observations: include raw_text, source="agent_thought", metadata.thought_type
+- For inferences/conclusions: include content, memory_type, durability="durable"
+- Always set canonical_key for deduplication
+- Use tags for domain classification
+```
 
-Or use mcp_coppermind_traverse_graph:
-- query: thought_id to expand from
-- mode: "bfs" to find related thoughts
-- depth: 2-3 for reasoning chains
+### Retrieving Thoughts
+
+```
+Use mcp_coppermind_run with function "search":
+- query: natural language description
+- filters: tags, status="active", metadata fields
+- Returns memories ranked by relevance
+
+For graph traversal:
+Use mcp_coppermind_query_graph with pattern:
+- "children_of" to find thoughts in same task
+- "related_to" to find supporting/contradicting thoughts
+```
+
+### Creating Edges
+
+```
+Edge creation happens automatically during ingest for:
+- derived_from: when memory promoted from episode
+- supersedes: when canonical_key conflict resolved
+
+For manual relationships (inference → observation):
+Use mcp_coppermind_run with custom mutation:
+- RELATE $inference_id->related_to->$observation_id
 ```
 
 ---
 
 ## Confidence Thresholds
 
-| Confidence | Interpretation | Retrieval Behavior |
-|------------|----------------|-------------------|
-| 0.90-1.0 | Direct observation, verified fact | Always retrieve, high priority |
-| 0.70-0.89 | Strong inference, good evidence | Retrieve unless contradicted |
-| 0.50-0.69 | Weak inference, some evidence | Retrieve with uncertainty flag |
-| 0.30-0.49 | Hypothesis, unverified | Retrieve only if no better options |
-| <0.30 | Pure speculation | Do not retrieve (store for record) |
+| Confidence | Durability | Status | Retrieval |
+|------------|------------|--------|-----------|
+| 0.90-1.0 | durable | active | Always, high priority |
+| 0.70-0.89 | durable | active | Yes, standard priority |
+| 0.50-0.69 | working | active | Yes, with uncertainty flag |
+| 0.30-0.49 | ephemeral | pending_review | No — needs validation |
+| <0.30 | ephemeral | archived | No — audit only |
 
 ---
 
 ## Memory Lifecycle
 
-Thoughts in Coppermind follow access-based liveness:
+Thoughts in Coppermind follow this lifecycle:
 
 ```
-Creation → Active Use → Decay → Archive/Delete
-   │           │          │          │
-   ▼           ▼          ▼          ▼
-High score   Accessed    Not accessed Purged or
-freshness    increases   for N days archived to
-             liveness    → liveness   cold storage
-                         decays
+Episode Created
+      │
+      ├─► promotion = "none" ──► Archived after TTL
+      │
+      ├─► promotion = "pending_review" ──► Manual review
+      │
+      └─► promotion = "promoted" ──► Memory Created
+              │
+              ├─► status = "active" ──► Retrieved, updated
+              │        │
+              │        ├─► Superseded ──► status="superseded", supersedes edge
+              │        │
+              │        ├─► Contradicted ──► contradicts edge, review job
+              │        │
+              │        └─► Stale ──► status="stale" after no access
+              │
+              └─► durability = "canonical_candidate" ──► Canonical truth
 ```
 
-**Implementation:**
-- Use Coppermind's liveness scoring if available
-- Otherwise: track `access_count` and `last_accessed` in thought metadata
-- Decay function: `liveness = access_count / (days_since_access + 1)`
+**Liveness Decay:**
+- `last_accessed_at` updated on each retrieval
+- `times_confirmed` incremented when used in reasoning
+- Old thoughts decay: `importance *= 0.95` per week without access
 
 ---
 
 ## Anti-Patterns
 
 **Don't:**
-- Store raw outputs without reasoning structure
-- Merge conflicting thoughts without marking conflict
-- Retrieve low-confidence thoughts without flagging uncertainty
-- Forget to include source traceability (makes thoughts untrustworthy)
+- Store raw outputs without thought structure in metadata
+- Create memories without canonical_key (prevents dedup)
+- Forget to link inferences to supporting observations (loses traceability)
+- Retrieve pending_review or superseded thoughts without flagging
+- Store every thought as durable (use ephemeral for speculative)
 
 **Do:**
-- Be explicit about uncertainty — it's valuable for future debugging
-- Link related thoughts (observation → inference → conclusion)
-- Include file paths and code snippets in observation thoughts
-- Let high-confidence conclusions bubble up to semantic layer
+- Be explicit about uncertainty — store low-confidence as episodes only
+- Link related thoughts via edges (not just metadata references)
+- Use canonical_key for deduplication (e.g., "thought:{domain}:{topic}")
+- Update access metrics when retrieving (keeps thoughts alive)
+- Mark old conclusions superseded when new evidence arrives
+
+---
+
+## Verification Checklist
+
+Before using this skill, verify Coppermind daemon is running:
+
+```bash
+coppermind doctor
+```
+
+Check that three-layer schema is provisioned:
+
+```sql
+-- In SurrealDB (via coppermind debug)
+INFO FOR DB;
+-- Should show: episode, memories, supersedes, contradicts, related_to, derived_from tables
+```
 
 ---
 
 ## See Also
 
 - Paper: "Thought-Retriever: Don't Just Retrieve Raw Data, Retrieve Thoughts" (arXiv:2604.12231)
-- Coppermind three-layer memory architecture
+- Coppermind skill: `coppermind-three-layer-memory` — full architecture details
 - `rashomon-triad-hybrid-skill` — for when multiple conflicting perspectives exist
