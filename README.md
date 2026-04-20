@@ -658,6 +658,12 @@ npx jerry-skills install --agent claude      # → ~/.claude/skills/
 npx jerry-skills install --agent antigravity # → ~/.antigravity/skills/
 ```
 
+To make the skills show up in a Codex repository workspace, install them into the repo-local Team Config path:
+
+```bash
+npx jerry-skills install --agent codex --dest .codex/skills
+```
+
 Use a custom destination:
 
 ```bash
