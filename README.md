@@ -630,6 +630,24 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `output-quality/documentation-craft-skill.md` · [framework]
+**What it is:** A structured technical writing skill for generating high-quality documentation. Follows a 5-phase process: outline-first planning, context enrichment, drafting, verification, and refinement. Based on DocAgent multi-agent architecture and literate programming research.
+
+**Use it when:** Writing README files, API documentation, architecture decision records, or any technical documentation where clarity and completeness matter.
+
+**Best for:** Repository documentation, API docs, complex function/class documentation, architecture explanations, onboarding guides.
+
+---
+
+### `output-quality/large-documentation-navigation-skill.md` · [framework]
+**What it is:** A skill for transforming unwieldy documentation repositories into navigable, user-centered knowledge bases. Builds multi-layered navigation systems that help users find what they need based on their situation, not just categorical listings.
+
+**Use it when:** Documentation has grown beyond 20+ items, users report "can't find anything", or the README is just a long list without situational guidance.
+
+**Best for:** Large skill catalogs, extensive API documentation, multi-module project documentation, any reference library where users think in tasks, not categories.
+
+---
+
 ---
 
 ## 🏗️ Systems & Architecture — thinking about structure and scale
@@ -898,6 +916,19 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 **Use it when:** After exploring a large codebase to verify understanding, before explaining complex systems, or when you need to distinguish "familiar with" from "understands."
 
 **Key technique:** Based on Kolmogorov complexity — the shortest program that generates output measures true understanding.
+
+---
+
+## 🛠️ Development — skill building
+
+Skills for creating skills, integrating external systems, and development workflows.
+
+### `software-development/verify-before-integrate-skill.md` · [framework]
+**What it is:** A verification skill for integrating research paper concepts, API documentation, or external system descriptions into implementations. Verifies actual system behavior rather than assuming terminology alignment — names that sound similar often refer to different implementations.
+
+**Use it when:** Writing a skill that connects to an existing system (Coppermind, Convex, Supabase, etc.), implementing a research paper's algorithm, or mapping abstract concepts to concrete APIs or database schemas.
+
+**Best for:** Integration documentation, skill development, API mapping, system integration where terminology might not match the abstract description.
 
 ---
 
