@@ -159,6 +159,8 @@ const TOPIC_DIRS = [
   'output-quality',
   'systems-and-architecture',
   'orchestration',
+  'debugging',
+  'mlops',
 ];
 
 const TOPIC_LABELS = {
@@ -167,6 +169,8 @@ const TOPIC_LABELS = {
   'output-quality': 'Output Quality — improving what the agent produces',
   'systems-and-architecture': 'Systems & Architecture — thinking about structure and scale',
   'orchestration': 'Orchestration — agent coordination and workflow control',
+  'debugging': 'Debugging — log trace correlation and problem solving',
+  'mlops': 'MLOps — local LLM tooling and model management',
 };
 
 function listSkills() {

@@ -13,7 +13,9 @@
     "judgment-and-routing/*.md",
     "output-quality/*.md",
     "systems-and-architecture/*.md",
-    "orchestration/*.md"
+    "orchestration/*.md",
+    "debugging/*.md",
+    "mlops/*.md"
   ],
   "keywords": [
     "ai",
