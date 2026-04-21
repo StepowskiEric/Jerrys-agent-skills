@@ -115,9 +115,10 @@ Use the **state-machine version** when:
 
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
-| Hard bug, don't know where to start | [`how-to-solve-it-state-machine`](execution/how-to-solve-it-state-machine-skill.md) | Forces problem framing before action |
-| Multiple possible causes | [`abductive-first-debugging`](execution/abductive-first-debugging-skill.md) | Generates competing hypotheses, picks best explanation |
-| Need to locate relevant code | [`keyword-agnostic-logic-locator`](execution/keyword-agnostic-logic-locator-skill.md) | Finds code by structure, not by grepping |
+|| Hard bug, don't know where to start | [`how-to-solve-it-state-machine`](execution/how-to-solve-it-state-machine-skill.md) | Forces problem framing before action |
+|| Multiple possible causes | [`abductive-first-debugging`](execution/abductive-first-debugging-skill.md) | Generates competing hypotheses, picks best explanation |
+|| Need to locate relevant code | [`keyword-agnostic-logic-locator`](execution/keyword-agnostic-logic-locator-skill.md) | Finds code by structure, not by grepping |
+|| **Correlate error logs and stack traces** | [`log-trace-correlation`](debugging/log-trace-correlation) | Maps traces to source, inspects context, suggests fix |
 | Stuck in a rut, same failed attempts | [`cross-domain-analogy-generator`](systems-and-architecture/cross-domain-analogy-generator-skill.md) | Forces foreign-domain analogies to break fixation |
 | Prematurely jumping to solutions | [`ooda-loop-state-machine`](execution/ooda-loop-state-machine-skill.md) | Observe → Orient → Decide → Act cycle |
 | Over-thinking trivial bugs | [`cognitive-friction-governor`](execution/cognitive-friction-governor-skill.md) | Budgets deliberation, forces decision |
@@ -128,7 +129,6 @@ Use the **state-machine version** when:
 | Toyota-style continuous improvement | [`toyota-kata-state-machine`](execution/toyota-kata-state-machine-skill.md) | Scientific thinking pattern |
 | Verify each step before proceeding | [`step-level-verification-protocol`](execution/step-level-verification-protocol-skill.md) | Prevents error propagation |
 
-|| Hard-to-diagnose error with stack trace | [`log-trace-correlation`](debugging/log-trace-correlation) | Correlate logs and traces to source to find root cause and suggest fix |
 ### Code Review / Quality
 
 | Situation | Best Skill | Why |
@@ -371,7 +371,6 @@ Skills for executing technical work in a bounded, disciplined way.
 ---
 
 
-### `debugging/log-trace-correlation.md` · [protocol]
 **What it is:** A protocol for correlating error logs and stack traces to source code to identify root cause and suggest fixes.
 
 **Use it when:** You have an error log with a stack trace and need to determine the exact location and cause of failure.

@@ -3,18 +3,18 @@
   "version": "1.0.1",
   "description": "Install Jerry's agent skills into Codex, Hermes, Claude, Antigravity, or any agent that loads markdown skill files.",
   "bin": {
-    "jerry-skills": "./bin/install.js"
+    "jerry-skills": "bin/install.js"
   },
   "files": [
     "bin/",
     "*.md",
     "!README.md",
+    "debugging/*.md",
     "execution/*.md",
     "judgment-and-routing/*.md",
     "output-quality/*.md",
     "systems-and-architecture/*.md",
     "orchestration/*.md",
-    "debugging/*.md",
     "mlops/*.md"
   ],
   "keywords": [
