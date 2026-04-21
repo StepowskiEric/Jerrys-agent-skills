@@ -122,11 +122,13 @@ Use the **state-machine version** when:
 | Prematurely jumping to solutions | [`ooda-loop-state-machine`](execution/ooda-loop-state-machine-skill.md) | Observe → Orient → Decide → Act cycle |
 | Over-thinking trivial bugs | [`cognitive-friction-governor`](execution/cognitive-friction-governor-skill.md) | Budgets deliberation, forces decision |
 | Backtrack when reasoning goes wrong | [`process-reward-model-protocol`](execution/process-reward-model-protocol-skill.md) | Self-correcting reasoning path |
+| Mid-reasoning "actually wait" self-correction | [`latent-phase-shift-rollback-lite`](output-quality/latent-phase-shift-rollback-lite-skill.md) | Detects and rolls back compounding errors mid-generation |
 | Use analogy to solve problems | [`how-to-solve-it-analogy`](execution/how-to-solve-it-analogy-skill.md) | Structured analogy-based problem solving |
 | Continuous improvement cycle | [`pdca-deming`](execution/pdca-deming-skill.md) | Plan-Do-Check-Act iterative improvement |
 | Toyota-style continuous improvement | [`toyota-kata-state-machine`](execution/toyota-kata-state-machine-skill.md) | Scientific thinking pattern |
 | Verify each step before proceeding | [`step-level-verification-protocol`](execution/step-level-verification-protocol-skill.md) | Prevents error propagation |
 
+|| Hard-to-diagnose error with stack trace | [`log-trace-correlation`](debugging/log-trace-correlation) | Correlate logs and traces to source to find root cause and suggest fix |
 ### Code Review / Quality
 
 | Situation | Best Skill | Why |
@@ -204,6 +206,13 @@ Use the **state-machine version** when:
 | RPD state machine | [`recognition-primed-triage-state-machine`](judgment-and-routing/recognition-primed-triage-state-machine-skill.md) | Structured expert decision |
 | Kahneman fast/slow thinking | [`kahneman-thinking-fast-slow-software-agent`](judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md) | Dual-process thinking |
 | Detect reasoning hallucinations | [`faithfulness-aware-reasoning`](reasoning/faithfulness-aware-reasoning-skill.md) | Ensures reasoning is logically entailed |
+
+
+### Development / Skill Building
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+|| Setting up and using local LLMs for agent tasks | [`local-llm-tooling`](mlops/local-llm-tooling) | Reliable workflow for running, prompting, and extracting structured output from local LLMs |
 
 ### Multi-Agent / Coordination
 
@@ -360,6 +369,14 @@ Skills for executing technical work in a bounded, disciplined way.
 **Best for:** Design decisions, algorithm selection, architecture patterns, any problem where a known solution from another domain is structurally applicable.
 
 ---
+
+
+### `debugging/log-trace-correlation.md` · [protocol]
+**What it is:** A protocol for correlating error logs and stack traces to source code to identify root cause and suggest fixes.
+
+**Use it when:** You have an error log with a stack trace and need to determine the exact location and cause of failure.
+
+**Best for:** Debugging, root-cause analysis, failure triage.
 
 ## 🧭 Judgment & Routing — deciding what to do and how rigorously
 
@@ -645,10 +662,18 @@ Skills that refine, critique, and simplify the agent's own outputs.
 **Use it when:** Documentation has grown beyond 20+ items, users report "can't find anything", or the README is just a long list without situational guidance.
 
 **Best for:** Large skill catalogs, extensive API documentation, multi-module project documentation, any reference library where users think in tasks, not categories.
-
----
-
----
+|
+|---
+|
+|### `output-quality/latent-phase-shift-rollback-lite-skill.md` · [framework]
+|**What it is:** A lightweight version of latent-phase-shift rollback that detects and rolls back mid-generation reasoning errors using token-level entropy and confidence thresholds. Prevents compounding errors by triggering "actually wait" self-correction before completing a flawed reasoning chain. Based on arXiv:2604.xxxxx (phase-shift detection via hidden-state monitoring).
+|
+|**Use it when:** The agent's reasoning feels shaky mid-way, or you want a safety net against compounding reasoning errors without full hidden-state introspection.
+|
+|**Best for:** Multi-step reasoning, debugging, planning, any task where early errors cascade, and you need a simple rollback mechanism.
+|
+|---
+|---
 
 ## 🏗️ Systems & Architecture — thinking about structure and scale
 
@@ -934,6 +959,14 @@ Skills for creating skills, integrating external systems, and development workfl
 
 # Recommended Ways to Use This Repo
 
+
+### `mlops/local-llm-tooling.md` · [framework]
+**What it is:** A workflow for running, prompting, and extracting structured output from local LLMs (e.g., Ollama, llama.cpp).
+
+**Use it when:** You need to run an LLM locally for agent tasks, data extraction, or generation, and want to avoid API rate limits, costs, or privacy concerns.
+
+**Best for:** Local LLM tooling, structured output extraction, model switching.
+
 ## If you want execution discipline
 Start with the protocol skills, especially:
 
@@ -1050,6 +1083,7 @@ Why this stack works: classify the situation, take the first plausible strong mo
 4. `output-quality/tool-interactive-critic-skill.md`
 5. `output-quality/mece-pyramid-principle-skill.md`
 6. `output-quality/feynman-technique-skill.md`
+7. `output-quality/latent-phase-shift-rollback-lite-skill.md`
 
 Why this stack works: it broadens the search space, triangulates conclusions, then tightens the result into a clear and testable answer.
 
@@ -1128,6 +1162,7 @@ A practical default sequence is:
 | tool-interactive-critic | output-quality/ | External verification |
 | mece-pyramid-principle | output-quality/ | Clear structure |
 | feynman-technique | output-quality/ | Simple explanation |
+| latent-phase-shift-rollback-lite | output-quality/ | Mid-generation error detection/rollback |
 | cross-domain-analogy-generator | systems-and-architecture/ | Creative solutions |
 | everything-as-code-conceptualizer | systems-and-architecture/ | System modeling |
 | domain-driven-design | systems-and-architecture/ | Domain modeling |
@@ -1153,9 +1188,10 @@ A practical default sequence is:
 | compression-as-understanding | 2025-04 | Kolmogorov complexity verification |
 | everything-as-code-conceptualizer | 2025-04 | System codification (arXiv:2507.05100) |
 | rashomon-triad-hybrid | 2025-04 | Multi-perspective reasoning |
-| thought-retriever-coppermind | 2025-04 | Memory-augmented reasoning |
-
----
+|| thought-retriever-coppermind | 2025-04 | Memory-augmented reasoning |
+|| latent-phase-shift-rollback-lite | 2025-04 | Mid-generation error detection/rollback (arXiv:2604.xxxxx) |
+|
+|---
 
 # Installation
 
