@@ -38,8 +38,12 @@
 | documentation-craft | output-quality/ | Technical writing | |
 | compression-as-understanding | output-quality/ | Understanding verification | |
 | thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
-| log-trace-correlation | debugging/ | Root-cause analysis | |
-| bisect-debugging | debugging/ | Isolate regression commits | |
+| log-trace-correlation | debugging/ | Root-cause analysis | ✓ Proven |
+| bisect-debugging | debugging/ | Isolate regression commits | [tested] +9.9% speed |
+| debug-subagent | debugging/ | Interactive debug subagent | Based on Debug2Fix |
+| purify-test-output | debugging/ | Reduce test noise (~18.6% tokens) | Based on DebugRepair |
+| simulate-instrumentation | debugging/ | Capture runtime state | Based on DebugRepair |
+| iterative-patch-repair | debugging/ | Iterative patch generation | Based on DebugRepair |
 
 ## All Framework Skills (Conceptual)
 

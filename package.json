@@ -16,7 +16,8 @@
     "mlops/",
     "reasoning/",
     "software-development/",
-    "development/"
+    "development/",
+    "testing/"
   ],
   "keywords": [
     "ai",

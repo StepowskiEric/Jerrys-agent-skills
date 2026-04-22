@@ -19,6 +19,7 @@ Run paired A/B trials to measure whether loading a specific jerrysagentskill act
 - The skill is purely preventative (e.g., security audit) — failures are rare and catastrophic, requiring adversarial test cases instead of random tasks
 - You cannot define a clear "done" criteria for the task
 - Token budget is severely constrained (10 subagent runs = 10× cost of single run)
+- The skill is a planning/risk-analysis framework (e.g., `abductive-first-debugging`, `inversion-mental-model-state-machine`, `pdca-deming`) being tested on deterministic code bugs. These skills burn tool-call budgets on analysis theater and empirically fail on typical code bugs.
 
 ## Prerequisites
 1. **Target skill** — which skill to evaluate
@@ -26,15 +27,35 @@ Run paired A/B trials to measure whether loading a specific jerrysagentskill act
 3. **Repository state** — a known commit or temp repo with a reproducible problem
 4. **Test harness** — a script or criteria that can score the result objectively
 
+## Where to get real bugs (better than synthetic)
+
+Synthetic bugs often have tell-tale comments or trivial fixes. For realistic evaluation, use actual buggy commits from real repos.
+
+**Method:**
+1. Clone a small repo (<1GB, has tests): `fastapi`, `express`, `flask`, `axios`
+2. Find a fix commit: `git log --oneline --grep='fix' -- '*.py'`
+3. Check out the commit *before* the fix: `git checkout <fix-commit>~1`
+4. Cherry-pick *only the test* from the fix commit (the test should fail on buggy code)
+5. Task: "Make this test pass"
+
+This gives you a real bug with ground-truth verification.
+
 ## Core protocol
 
-### Step 1 — Prepare isolation
+### Step 1 — Prepare isolation (disposable snapshots, NOT worktrees)
+
+**Do not use git worktrees or shared node_modules.** Worktrees share state and contaminate results. Use disposable copied snapshots instead.
+
 ```bash
-# From the repo root
-git worktree add /tmp/skill-eval-{n}-skill HEAD
-git worktree add /tmp/skill-eval-{n}-base HEAD
+# Good: per-run copied snapshot
+cp -r benchmarks/repo-a/base /tmp/skill-eval-{n}-skill
+cp -r benchmarks/repo-a/base /tmp/skill-eval-{n}-base
+
+# Better: tarball extraction for speed
+tar -xzf repo-a-base.tar.gz -C /tmp/skill-eval-{n}-skill
 ```
-Use separate worktrees for every single trial (do not reuse). If not a git repo, copy to `/tmp/skill-eval-{n}-*/`.
+
+After the run, delete the temp directory. Never run in active project directories.
 
 ### Step 2 — Run 5 Skill trials
 For `n` in 1..5:
@@ -49,6 +70,12 @@ For `n` in 1..5:
 - Collect same metrics
 
 ### Step 4 — Score each trial
+
+**Important:** When comparing skill vs baseline, account for skill-read overhead.
+
+- If the skill agent must `read_file` the skill before starting, that costs 1+ tool calls and tokens.
+- For a fair comparison, either **pre-inject the skill into context** or **measure only the debugging phase** (time from first source file read to fix).
+
 Use this rubric (0-100 per trial):
 
 | Dimension | Weight | How to measure |
@@ -58,6 +85,8 @@ Use this rubric (0-100 per trial):
 | Efficiency | 15% | Time to solution, token usage, files touched |
 | Safety | 10% | No unintended changes outside scope? |
 | Code quality | 10% | Matches style? Clean diff? No hacks? |
+
+**Critical rule:** If the agent hits its tool-call limit without fixing the bug, correctness = 0 regardless of analysis quality. A skill that burns the budget on hypothesis generation or failure-map creation before touching code is a failed trial.
 
 A human or a second "judge" subagent can apply the rubric if no automated tests exist.
 
@@ -80,6 +109,26 @@ Report:
 - If a subagent tries to modify files outside its worktree, kill it
 - After scoring, delete all `/tmp/skill-eval-*` directories
 
+## Benchmark pack structure
+
+For reproducible evaluation, organize tasks as frozen snapshots:
+
+```
+benchmarks/
+  repo-a/
+    base/                 # frozen repo snapshot with dependencies installed
+    tasks/
+      task-001-.../       # each task has prompt, metadata, verify script
+        prompt.md
+        metadata.json
+        verify.sh
+```
+
+Each task:
+- Defines exact starting snapshot
+- Includes verification script (pass/fail)
+- Runs in disposable copy, never in active worktree
+
 ## Example
 
 Evaluate `convex-auth-expo-debugging`:
@@ -100,6 +149,8 @@ A task that both agents solve trivially teaches you nothing. Match complexity to
 | Git bisect | Bug in latest commit only | Bug introduced 10 commits ago, mixed with refactors |
 | Architecture design | "Should I use REST or GraphQL?" | Multi-service data flow with consistency trade-offs |
 | Security audit | Obvious SQL injection in one file | Auth bypass requiring multi-step state manipulation |
+
+**Key rule:** If the skill's unique tools (graph queries, bisect, structured protocol) are never invoked during the trial, the task is too shallow. Check the agent's tool trace — if it never used `query_graph`, `semantic_search_nodes`, etc., redesign the test.
 
 **Smoke test first.** Before running all 5 trials, do 1 skill + 1 baseline. If both score 100 with trivial effort, redesign the test case before committing tokens.
 

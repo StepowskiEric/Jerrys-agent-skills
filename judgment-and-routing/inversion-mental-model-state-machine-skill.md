@@ -21,6 +21,10 @@ This is useful for:
 - reliability strategy
 - agent guardrail design
 
+**Not useful for (empirically proven harmful):**
+- debugging deterministic code bugs — this skill forces the agent to write a `failure-map.md` before fixing code, burning the tool-call budget on risk analysis instead of reading source. In a FastAPI router bug trial, the skill agent consumed 20 tool calls and failed to fix the bug, while the baseline fixed it in 5 calls.
+- any task with a tight tool-call budget (≤25 calls) — the 6-state protocol requires 8-12 calls just to complete the analysis phase.
+
 ---
 
 ## Core Law

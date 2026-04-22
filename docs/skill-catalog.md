@@ -156,6 +156,42 @@ Skills for executing technical work in a bounded, disciplined way.
 
 **Best for:** Finding regression commits, understanding what changed, root-cause analysis.
 
+---
+
+### `debugging/debug-subagent/SKILL.md` · [protocol]
+**What it is:** A dedicated debugging subagent that must be consulted before making code edits. Wraps debugger complexity behind natural-language queries and enforces "debug before edit" workflow.
+
+**Use it when:** The bug is not immediately obvious from the error message, or static analysis hasn't revealed the root cause.
+
+**Best for:** Interactive debugging, program repair, enforcing debug-before-edit discipline. Based on Debug2Fix research (+13-22% bug fix rate).
+
+---
+
+### `debugging/purify-test-output/SKILL.md` · [protocol]
+**What it is:** Slice failing test output to only failure-relevant lines before showing to the LLM. Removes noise and reduces tokens by ~18.6%.
+
+**Use it when:** Failing tests produce verbose output, or stack traces include framework frames that drown out user code.
+
+**Best for:** Token efficiency, debugging focus, test output processing. Based on DebugRepair research.
+
+---
+
+### `debugging/simulate-instrumentation/SKILL.md` · [protocol]
+**What it is:** Auto-insert temporary print/logging statements at key points, run the failing test, and feed captured runtime state to the LLM.
+
+**Use it when:** The bug involves runtime state invisible in source code, or static analysis has hit a dead end.
+
+**Best for:** Runtime state capture, verifying data flow assumptions, debugging logic errors. Based on DebugRepair research (+26.3% when removed in ablation).
+
+---
+
+### `debugging/iterative-patch-repair/SKILL.md` · [protocol]
+**What it is:** Loop of generate patch → run test → capture runtime state → refine patch. Max N iterations with patch augmentation to avoid overfitting.
+
+**Use it when:** The first patch attempt failed, or multiple plausible fixes exist and you need to find the correct one.
+
+**Best for:** Non-obvious bugs, avoiding symptom-only fixes, patch search and verification. Based on DebugRepair research (+19.9% from patch augmentation alone).
+
 ## 🧭 Judgment & Routing — deciding what to do and how rigorously
 
 Skills for routing tasks, calibrating rigor, and reasoning about risks and tradeoffs.

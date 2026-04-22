@@ -15,6 +15,10 @@
 |-----------|------------|-----|--------|
 | Have a stack trace or error log | [`log-trace-correlation`](debugging/log-trace-correlation/SKILL.md) | Maps traces to source, inspects context, suggests fix | ✓ Proven |
 | Know the bug was introduced recently | [`bisect-debugging`](debugging/bisect-debugging/SKILL.md) | Binary search commits to isolate the exact change | [tested] +9.9% speed |
+| Bug not obvious from error message | [`debug-subagent`](debugging/debug-subagent/SKILL.md) | Dedicated subagent enforces debug-before-edit | Based on Debug2Fix |
+| Verbose test output drowning signal | [`purify-test-output`](debugging/purify-test-output/SKILL.md) | Slice to failure-relevant lines only | Based on DebugRepair |
+| Need runtime state invisible in source | [`simulate-instrumentation`](debugging/simulate-instrumentation/SKILL.md) | Inject prints, capture actual values | Based on DebugRepair |
+| First patch failed, need alternatives | [`iterative-patch-repair`](debugging/iterative-patch-repair/SKILL.md) | Loop: patch → test → refine → augment | Based on DebugRepair |
 | Need structured debug workflow | [`debug-issue`](software-development/debug-issue.md) | Graph-powered code navigation to trace issues | Framework |
 | Tests fail, need reproducibility | [`debug-issue`](software-development/debug-issue.md) | Reproduce → Isolate → Fix → Verify cycle | Framework |
 | Need to understand unfamiliar code before fixing | [`explore-codebase`](software-development/explore-codebase.md) | Graph-powered navigation with token efficiency | Framework |

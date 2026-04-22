@@ -20,6 +20,9 @@ Based on "Wiring the 'Why': A Unified Taxonomy of Abductive Reasoning in LLMs" (
 - Clear error message points to specific line
 - Known pattern match (use inductive instead)
 - Simple cause-effect chain visible (use deductive instead)
+- **Deterministic code bugs with a reproducible failing test** — empirical testing shows this skill burns the entire tool-call budget on hypothesis generation without fixing the bug. In a FastAPI router bug trial, the skill agent consumed 20 tool calls and failed to produce a fix, while the baseline agent fixed it in 5 calls.
+- **You have a tight tool-call budget** — the 6-state protocol (symptom collection → hypothesis generation → coherence evaluation → IBE → differential diagnosis → execution) requires ~10-15 calls before any code change. If your budget is ≤25 calls, this skill will likely fail.
+- **The failure is a silent logic error in a single module** — abduction is designed for multi-system novel failures, not localized type mismatches or initialization order bugs.
 
 ---
 
