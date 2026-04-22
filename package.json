@@ -7,15 +7,16 @@
   },
   "files": [
     "bin/",
-    "*.md",
-    "!README.md",
-    "debugging/*.md",
-    "execution/*.md",
-    "judgment-and-routing/*.md",
-    "output-quality/*.md",
-    "systems-and-architecture/*.md",
-    "orchestration/*.md",
-    "mlops/*.md"
+    "debugging/",
+    "execution/",
+    "judgment-and-routing/",
+    "output-quality/",
+    "systems-and-architecture/",
+    "orchestration/",
+    "mlops/",
+    "reasoning/",
+    "software-development/",
+    "development/"
   ],
   "keywords": [
     "ai",

@@ -27,14 +27,28 @@ function getSkillFiles(dir, base) {
     if (entry.name.startsWith('.')) {
       continue;
     }
+    // Skip non-skill directories
+    if (entry.isDirectory() && (entry.name === 'docs' || entry.name === 'node_modules' || entry.name === 'scripts')) {
+      continue;
+    }
     if (entry.isDirectory()) {
-      const siblingMarkdown = path.join(dir, `${entry.name}.md`);
-      if (fs.existsSync(siblingMarkdown)) {
+      // Skip subdirectory if a sibling .md file already covers this skill
+      // e.g. skip execution/step-level-verification-protocol/ when execution/step-level-verification-protocol-skill.md exists
+      const parentFiles = fs.readdirSync(dir);
+      const hasSiblingMd = parentFiles.some(
+        (f) => f.endsWith('.md') && f !== 'README.md' && f.startsWith(entry.name)
+      );
+      if (hasSiblingMd) {
         continue;
       }
       results = results.concat(getSkillFiles(path.join(dir, entry.name), base));
     } else if (entry.name.endsWith('.md') && entry.name !== 'README.md') {
-      results.push(path.relative(base, path.join(dir, entry.name)));
+      // Skip files inside docs/ (can happen if dir is project root)
+      const rel = path.relative(base, path.join(dir, entry.name));
+      if (rel.startsWith('docs' + path.sep) || rel.startsWith('docs/')) {
+        continue;
+      }
+      results.push(rel);
     }
   }
   return results.sort();
@@ -161,6 +175,9 @@ const TOPIC_DIRS = [
   'orchestration',
   'debugging',
   'mlops',
+  'reasoning',
+  'software-development',
+  'development',
 ];
 
 const TOPIC_LABELS = {
@@ -171,6 +188,9 @@ const TOPIC_LABELS = {
   'orchestration': 'Orchestration — agent coordination and workflow control',
   'debugging': 'Debugging — log trace correlation and problem solving',
   'mlops': 'MLOps — local LLM tooling and model management',
+  'reasoning': 'Reasoning — faithfulness and reasoning verification',
+  'software-development': 'Software Development — practical development workflows',
+  'development': 'Development — skill building and repository management',
 };
 
 function listSkills() {
