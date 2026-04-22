@@ -131,6 +131,14 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
+### `execution/intent-specification-protocol-skill.md` · [protocol]
+**What it is:** Crystallize vague coding requests into precise, testable specs before writing code. Prevents over-engineering via the Intent-Behavior Mirroring Effect.
+
+**Use it when:** The request is vague, ambiguous, or likely to lead to over-engineering.
+
+**Best for:** Requirement clarification, spec writing, preventing over-engineering, aligning with stakeholders.
+
+---
 
 ### `debugging/log-trace-correlation/SKILL.md` · [protocol]
 **What it is:** A protocol for correlating error logs and stack traces to source code to identify root cause and suggest fixes.

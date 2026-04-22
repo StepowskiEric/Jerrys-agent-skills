@@ -45,6 +45,7 @@
 
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
+| Prevent over-engineering, clarify scope before coding | [`intent-specification-protocol`](execution/intent-specification-protocol-skill.md) | Scope control via explicit intent specification |
 | Big decision, multiple options | [`counterfactual-policy-testing`](judgment-and-routing/counterfactual-policy-testing-skill.md) | Test against null/opposite/partial alternatives |
 | Trade-offs between teams/systems | [`team-topologies-ai`](systems-and-architecture/team-topologies-ai-skill.md) | Organizational architecture patterns |
 | Data system design | [`designing-data-intensive-applications-ai`](systems-and-architecture/designing-data-intensive-applications-ai-skill.md) | Data system principles |
@@ -61,6 +62,7 @@
 
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
+| Ambiguous requirements, need to clarify before coding | [`intent-specification-protocol`](execution/intent-specification-protocol-skill.md) | Specify and validate intent before writing code |
 | Writing README / API docs | [`documentation-craft`](output-quality/documentation-craft-skill.md) | 5-phase structured writing |
 | Explaining complex system simply | [`feynman-technique`](output-quality/feynman-technique-skill.md) | Explain to a child |
 | Team/process problems | [`everything-as-code-conceptualizer`](systems-and-architecture/everything-as-code-conceptualizer-skill.md) | Codify non-code systems |
@@ -108,6 +110,7 @@
 
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
+| Writing features or fixing bugs, requirements unclear | [`intent-specification-protocol`](execution/intent-specification-protocol-skill.md) | Clarify intent before coding, prevent over-engineering |
 | Need a structured debugging workflow | [`debug-issue`](software-development/debug-issue.md) | Forces reproduce-isolate-fix-verify cycle |
 | Need to understand an unfamiliar codebase | [`explore-codebase`](software-development/explore-codebase.md) | Structured exploration with progressive deepening |
 | Need to refactor code safely | [`refactor-safely`](software-development/refactor-safely.md) | Characterization testing + bounded changes |

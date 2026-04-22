@@ -68,9 +68,10 @@ Use these as default stacks when the task matches the scenario.
 1. `judgment-and-routing/problem-mode-router-cynefin-skill.md`
 2. `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md`
 3. `execution/how-to-solve-it-state-machine-skill.md`
-4. `judgment-and-routing/explore-vs-exploit-state-machine-skill.md`
-5. `execution/ooda-loop-state-machine-skill.md` if the situation is changing while you investigate
-6. `output-quality/tool-interactive-critic-skill.md` to verify the conclusion against code, logs, or tests
+4. `intent-specification-protocol-skill.md` to clarify what correct behavior looks like before diving in
+5. `judgment-and-routing/explore-vs-exploit-state-machine-skill.md`
+6. `execution/ooda-loop-state-machine-skill.md` if the situation is changing while you investigate
+7. `output-quality/tool-interactive-critic-skill.md` to verify the conclusion against code, logs, or tests
 
 Why this stack works: classify the problem first, set the rigor bar, force disciplined diagnosis, then keep evidence and action in a tight loop.
 
@@ -90,11 +91,12 @@ Why this stack works: it separates problem classification from design, then forc
 ### Large refactor or cleanup of bad code
 
 1. `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md`
-2. `execution/working-effectively-with-legacy-code-state-machine-skill.md`
-3. `execution/refactoring-state-machine-skill.md`
-4. `execution/pragmatic-programmer-state-machine-skill.md`
-5. `execution/checklist-manifesto-skill.md` if the change is risky or procedural
-6. `output-quality/tool-interactive-critic-skill.md` before claiming the work is done
+2. `intent-specification-protocol-skill.md` to lock the target behavior before changing code
+3. `execution/working-effectively-with-legacy-code-state-machine-skill.md`
+4. `execution/refactoring-state-machine-skill.md`
+5. `execution/pragmatic-programmer-state-machine-skill.md`
+6. `execution/checklist-manifesto-skill.md` if the change is risky or procedural
+7. `output-quality/tool-interactive-critic-skill.md` before claiming the work is done
 
 Why this stack works: stabilize first, refactor in bounded slices, keep the blast radius explicit, and verify before closure.
 
@@ -129,6 +131,14 @@ Why this stack works: classify the situation, take the first plausible strong mo
 6. `output-quality/feynman-technique-skill.md`
 
 Why this stack works: it broadens the search space, triangulates conclusions, then tightens the result into a clear and testable answer.
+
+### Specification-driven coding (any non-trivial code change)
+
+1. `intent-specification-protocol-skill.md` — state what correct behavior looks like before writing code
+2. `output-quality/bounded-self-revision-skill.md` — verify the spec is achievable and self-consistent
+3. `step-level-verification-protocol-skill.md` — check each unit of work against the spec before moving on
+
+Why this stack works: spec-first eliminates rework, bounded self-revision catches spec gaps early, step-level verification keeps each change aligned with intent.
 
 ## If you are unsure where to begin
 

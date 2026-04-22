@@ -171,9 +171,70 @@ response=$(curl -s http://localhost:11434/api/generate \
   }' | jq -r '.response')
 
 # Parse and validate
-echo "$response" | jq '{
+}' | jq '{
   company: .company,
   founder: .founder,
   year: .year|tonumber
 }'
 ```
+
+---
+
+## 3. intent-specification-protocol-skill (protocol)
+
+### Purpose
+State machine protocol forcing crystallization of intent into executable specs before coding. Addresses the bottleneck: specification quality, not model capability.
+
+### When to Use
+- Before writing any code, to formalize what the system should do
+- When intent is vague or multi-step, requiring explicit state transitions
+- To ensure alignment between human intent and generated code
+- As a pre-coding step in agent workflows
+
+### Research Basis
+- **Project Prometheus** (2604.17464): Intent-driven specification for code generation
+- **AdaCoder** (2504.04220): Adaptive intent specification for code completion
+- **Self-repair research** (2604.10508): Iterative specification refinement
+
+### Detailed Workflow
+
+#### Step 1: Capture Raw Intent
+- Collect natural-language description of desired behavior
+- Identify constraints, edge cases, and success criteria
+
+#### Step 2: Define State Machine
+- Enumerate states (e.g., INITIAL, PARSING, VALIDATING, SPECIFIED, FAILED)
+- Define transitions triggered by specification events
+- Each state produces an artifact (raw intent → draft spec → validated spec → executable spec)
+
+#### Step 3: Crystallize into Executable Spec
+- Convert natural-language intent into machine-parseable format (JSON/YAML with strict types)
+- Include preconditions, postconditions, and invariants
+- Specify input/output schemas with exact types
+
+#### Step 4: Validate Spec
+- Check completeness: all states covered, all transitions defined
+- Check consistency: no contradictory constraints
+- Run automated checks if spec language supports them
+
+#### Step 5: Lock and Commit
+- Once spec is validated, lock it as the contract for code generation
+- Any subsequent code must satisfy this spec
+
+### Outputs
+- State machine diagram or transition table
+- Executable specification (JSON/YAML with schemas)
+- Validation report
+
+### Pitfalls
+- Skipping spec step when intent seems "obvious" — leads to misalignment later
+- Under-specifying edge cases — code passes simple tests but fails in production
+- Over-specifying with premature optimization — wastes time, limits flexibility
+- Treating spec as static — should evolve with new understanding
+
+### Verification Checklist
+- [ ] All states reachable from INITIAL
+- [ ] All transitions have valid triggers
+- [ ] Executable spec parses without errors
+- [ ] Schema types match implementation language
+- [ ] Edge cases have explicit handling in spec
