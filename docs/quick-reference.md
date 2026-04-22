@@ -39,6 +39,7 @@
 | compression-as-understanding | output-quality/ | Understanding verification | |
 | thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
 | log-trace-correlation | debugging/ | Root-cause analysis | |
+| bisect-debugging | debugging/ | Isolate regression commits | |
 
 ## All Framework Skills (Conceptual)
 

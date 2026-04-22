@@ -2,23 +2,59 @@
 
 **"I need a skill for..."**
 
-### Debugging / Problem Solving
+> **Note:** Skill recommendations below are empirically validated where marked with [tested].
+> Unmarked recommendations are theoretical. See `../evaluations/` for test results.
+
+---
+
+### Debugging / Bug Fixing
+
+*Skills that actually help find and fix code bugs.*
+
+| Situation | Best Skill | Why | Status |
+|-----------|------------|-----|--------|
+| Have a stack trace or error log | [`log-trace-correlation`](debugging/log-trace-correlation/SKILL.md) | Maps traces to source, inspects context, suggests fix | ✓ Proven |
+| Know the bug was introduced recently | [`bisect-debugging`](debugging/bisect-debugging/SKILL.md) | Binary search commits to isolate the exact change | [tested] +9.9% speed |
+| Need structured debug workflow | [`debug-issue`](software-development/debug-issue.md) | Graph-powered code navigation to trace issues | Framework |
+| Tests fail, need reproducibility | [`debug-issue`](software-development/debug-issue.md) | Reproduce → Isolate → Fix → Verify cycle | Framework |
+| Need to understand unfamiliar code before fixing | [`explore-codebase`](software-development/explore-codebase.md) | Graph-powered navigation with token efficiency | Framework |
+
+**Not recommended for typical code bugs** (empirically ineffective in our tests):
+- `abductive-first-debugging` — Designed for novel failures with multiple competing hypotheses. Tested on a real repo bug: **-0.4% vs baseline**.
+- `pdca-deming` — Designed for process/system improvement with measurable baselines. Tested on a real repo bug: **-1.6% vs baseline**.
+- `step-level-verification-protocol` — Designed for multi-step reasoning verification (math, logic). Tested on a real repo bug: **+9.9% time efficiency** but **0% correctness improvement**.
+
+---
+
+### Reasoning / Problem Solving
+
+*Skills for structured thinking when the problem is unclear.*
 
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
-| Hard bug, don't know where to start | [`how-to-solve-it-state-machine`](execution/how-to-solve-it-state-machine-skill.md) | Forces problem framing before action |
-| Multiple possible causes | [`abductive-first-debugging`](execution/abductive-first-debugging-skill.md) | Generates competing hypotheses, picks best explanation |
-| Need to locate relevant code | [`keyword-agnostic-logic-locator`](execution/keyword-agnostic-logic-locator-skill.md) | Finds code by structure, not by grepping |
-| **Correlate error logs and stack traces** | [`log-trace-correlation`](debugging/log-trace-correlation) | Maps traces to source, inspects context, suggests fix |
+| Hard problem, don't know where to start | [`how-to-solve-it-state-machine`](execution/how-to-solve-it-state-machine-skill.md) | Forces problem framing before action |
+| Multiple possible causes, novel failure | [`abductive-first-debugging`](execution/abductive-first-debugging-skill.md) | Generates competing hypotheses, picks best explanation |
+| Need to locate relevant code by structure | [`keyword-agnostic-logic-locator`](execution/keyword-agnostic-logic-locator-skill.md) | Finds code by structure, not by grepping |
 | Stuck in a rut, same failed attempts | [`cross-domain-analogy-generator`](systems-and-architecture/cross-domain-analogy-generator-skill.md) | Forces foreign-domain analogies to break fixation |
 | Prematurely jumping to solutions | [`ooda-loop-state-machine`](execution/ooda-loop-state-machine-skill.md) | Observe → Orient → Decide → Act cycle |
-| Over-thinking trivial bugs | [`cognitive-friction-governor`](execution/cognitive-friction-governor-skill.md) | Budgets deliberation, forces decision |
+| Over-thinking trivial problems | [`cognitive-friction-governor`](execution/cognitive-friction-governor-skill.md) | Budgets deliberation, forces decision |
 | Backtrack when reasoning goes wrong | [`process-reward-model-protocol`](execution/process-reward-model-protocol-skill.md) | Self-correcting reasoning path |
-| Mid-reasoning "actually wait" self-correction | [`process-reward-model-protocol`](execution/process-reward-model-protocol-skill.md) | Self-correcting reasoning path with backtracking |
 | Use analogy to solve problems | [`how-to-solve-it-analogy`](execution/how-to-solve-it-analogy-skill.md) | Structured analogy-based problem solving |
+| Verify each step before proceeding | [`step-level-verification-protocol`](execution/step-level-verification-protocol-skill.md) | Prevents error propagation in multi-step reasoning |
+
+---
+
+### Process Improvement
+
+*Skills for improving systems, workflows, or outputs over time.*
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
 | Continuous improvement cycle | [`pdca-deming`](execution/pdca-deming-skill.md) | Plan-Do-Check-Act iterative improvement |
 | Toyota-style continuous improvement | [`toyota-kata-state-machine`](execution/toyota-kata-state-machine-skill.md) | Scientific thinking pattern |
-| Verify each step before proceeding | [`step-level-verification-protocol`](execution/step-level-verification-protocol-skill.md) | Prevents error propagation |
+| Complex multi-step procedure | [`checklist-manifesto`](execution/checklist-manifesto-skill.md) | Checklist discipline |
+
+---
 
 ### Code Review / Quality
 
@@ -41,6 +77,8 @@
 | Verify self-consistency | [`self-consistency`](output-quality/self-consistency-skill.md) | Cross-check reasoning |
 | Interactive criticism of work | [`tool-interactive-critic`](output-quality/tool-interactive-critic-skill.md) | Structured critique process |
 
+---
+
 ### Architecture / Design Decisions
 
 | Situation | Best Skill | Why |
@@ -58,6 +96,8 @@
 | Router for problem types (state machine) | [`problem-mode-router-cynefin-state-machine`](judgment-and-routing/problem-mode-router-cynefin-state-machine-skill.md) | Enforced Cynefin routing |
 | System thinking protocol | [`thinking-in-systems-state-machine`](systems-and-architecture/thinking-in-systems-state-machine-skill.md) | System dynamics analysis |
 
+---
+
 ### Documentation / Communication
 
 | Situation | Best Skill | Why |
@@ -71,6 +111,8 @@
 | MECE structuring | [`mece-pyramid-principle`](output-quality/mece-pyramid-principle-skill.md) | Mutually exclusive, collectively exhaustive |
 | Steelman opposing views | [`steelmanning`](judgment-and-routing/steelmanning-skill.md) | Strongest version of opponent's argument |
 
+---
+
 ### Planning / Estimation
 
 | Situation | Best Skill | Why |
@@ -78,10 +120,11 @@
 | How long will this take? | [`reference-class-forecasting`](judgment-and-routing/reference-class-forecasting-skill.md) | Base rate estimation |
 | What could go wrong? | [`pre-mortem-state-machine`](judgment-and-routing/pre-mortem-state-machine-skill.md) | Prospective hindsight |
 | Should I explore or exploit? | [`explore-vs-exploit-state-machine`](judgment-and-routing/explore-vs-exploit-state-machine-skill.md) | Resource allocation |
-| Complex multi-step plan | [`checklist-manifesto`](execution/checklist-manifesto-skill.md) | Checklist discipline |
 | Theory of constraints | [`the-goal-theory-of-constraints-ai`](systems-and-architecture/the-goal-theory-of-constraints-ai-skill.md) | Bottleneck identification |
 | Explore vs exploit (framework) | [`explore-vs-exploit`](judgment-and-routing/explore-vs-exploit-skill.md) | Decision framework |
 | Pre-mortem (framework) | [`pre-mortem`](judgment-and-routing/pre-mortem-skill.md) | Prospective hindsight analysis |
+
+---
 
 ### Learning / Understanding
 
@@ -100,11 +143,7 @@
 | Kahneman fast/slow thinking | [`kahneman-thinking-fast-slow-software-agent`](judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md) | Dual-process thinking |
 | Detect reasoning hallucinations | [`faithfulness-aware-reasoning`](reasoning/faithfulness-aware-reasoning-skill.md) | Ensures reasoning is logically entailed |
 
-### Development / Skill Building
-
-| Situation | Best Skill | Why |
-|-----------|------------|-----|
-| Setting up and using local LLMs for agent tasks | [`local-llm-tooling`](mlops/local-llm-tooling) | Reliable workflow for running, prompting, and extracting structured output from local LLMs |
+---
 
 ### Software Development
 
@@ -116,11 +155,7 @@
 | Need to refactor code safely | [`refactor-safely`](software-development/refactor-safely.md) | Characterization testing + bounded changes |
 | Need to review code changes | [`review-changes`](software-development/review-changes.md) | Structured review checklist |
 
-### Skill Building
-
-| Situation | Best Skill | Why |
-|-----------|------------|-----|
-| Adding a new skill to this repo | [`add-new-skill-to-repository`](development/add-new-skill-to-repository/SKILL.md) | Ensures proper documentation, install support, cross-platform verification |
+---
 
 ### Multi-Agent / Coordination
 
@@ -133,6 +168,8 @@
 | Debating which branch to pursue | [`monte-carlo-tree-search`](monte-carlo-tree-search-skill.md) | Branch allocation |
 | Identify weak agent reasoning | [`weak-link-detection-multi-agent`](orchestration/weak-link-detection-multi-agent-skill.md) | Prevents error amplification |
 
+---
+
 ### Risk / Safety Analysis
 
 | Situation | Best Skill | Why |
@@ -142,6 +179,8 @@
 | Second-order effects | [`second-order-thinking`](judgment-and-routing/second-order-thinking-skill.md) | Consequences of consequences |
 | Release planning | [`release-it-stability`](systems-and-architecture/release-it-stability-skill.md) | Stability patterns |
 | Pre-mortem protocol | [`pre-mortem-state-machine`](judgment-and-routing/pre-mortem-state-machine-skill.md) | Enforced prospective analysis |
+
+---
 
 ### Cognitive Load / Operator Support
 

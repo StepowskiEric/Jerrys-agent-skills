@@ -147,6 +147,15 @@ Skills for executing technical work in a bounded, disciplined way.
 
 **Best for:** Debugging, root-cause analysis, failure triage.
 
+---
+
+### `debugging/bisect-debugging/SKILL.md` · [protocol]
+**What it is:** Binary search through git history to isolate the exact commit that introduced a regression.
+
+**Use it when:** Tests pass on an older commit but fail on HEAD, or a feature worked previously but is now broken.
+
+**Best for:** Finding regression commits, understanding what changed, root-cause analysis.
+
 ## 🧭 Judgment & Routing — deciding what to do and how rigorously
 
 Skills for routing tasks, calibrating rigor, and reasoning about risks and tradeoffs.
