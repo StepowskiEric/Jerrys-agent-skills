@@ -1,0 +1,107 @@
+# Quick Reference Tables
+
+## All Protocol Skills (State Machine)
+
+| Skill | Location | Best For | Notes |
+|-------|----------|----------|-------|
+| how-to-solve-it-state-machine | execution/ | Hard problems, debugging | |
+| ooda-loop-state-machine | execution/ | Fast-changing situations | |
+| refactoring-state-machine | execution/ | Code restructuring | |
+| working-effectively-with-legacy-code-state-machine | execution/ | Legacy code changes | |
+| checklist-manifesto | execution/ | Procedural safety | |
+| pdca-deming | execution/ | Iterative improvement | |
+| toyota-kata-state-machine | execution/ | Continuous improvement | |
+| philosophy-of-software-design-state-machine | execution/ | Complexity management | |
+| pragmatic-programmer-state-machine | execution/ | Grounded execution | |
+| cognitive-friction-governor | execution/ | Deliberation budgeting | |
+| abductive-first-debugging | execution/ | Novel failure diagnosis | |
+| **keyword-agnostic-logic-locator** | execution/ | Code navigation | Requires manual script setup |
+| step-level-verification-protocol | execution/ | Preventing error propagation | |
+| speculative-drafting-verification | execution/ | Parallel candidate evaluation | |
+| process-reward-model-protocol | execution/ | Self-correcting reasoning | |
+| thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level | |
+| pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight | |
+| recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage | |
+| problem-mode-router-cynefin-state-machine | judgment-and-routing/ | Problem classification | |
+| inversion-mental-model-state-machine | judgment-and-routing/ | Backward reasoning | |
+| explore-vs-exploit-state-machine | judgment-and-routing/ | Resource allocation | |
+| metacognitive-monitoring | judgment-and-routing/ | Confidence calibration | |
+| counterfactual-policy-testing | judgment-and-routing/ | Decision validation | |
+| agentic-design-patterns-orchestrator-state-machine | orchestration/ | Workflow control | |
+| rashomon-triad-hybrid | orchestration/ | Multi-perspective decisions | |
+| socratic-clarification | orchestration/ | Pre-execution clarity | |
+| thought-retriever-coppermind | orchestration/ | Memory-augmented reasoning | |
+| weak-link-detection-multi-agent | orchestration/ | Multi-agent quality control | |
+| cognitive-load-operator-state-machine | output-quality/ | Reducing complexity | |
+| bounded-self-revision | output-quality/ | Self-improvement | |
+| documentation-craft | output-quality/ | Technical writing | |
+| compression-as-understanding | output-quality/ | Understanding verification | |
+| thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
+| log-trace-correlation | debugging/ | Root-cause analysis | |
+
+## All Framework Skills (Conceptual)
+
+| Skill | Location | Best For |
+|-------|----------|----------|
+| how-to-solve-it-analogy | execution/ | Analogical problem solving |
+| six-thinking-hats | judgment-and-routing/ | Multi-perspective analysis |
+| first-principles | judgment-and-routing/ | Deconstruction |
+| second-order-thinking | judgment-and-routing/ | Consequence analysis |
+| steelmanning | judgment-and-routing/ | Challenge testing |
+| kahneman-thinking-fast-slow | judgment-and-routing/ | Cognitive mode switching |
+| cognitive-bias-checklist | judgment-and-routing/ | Bias correction |
+| bayesian-updating | judgment-and-routing/ | Belief revision |
+| reference-class-forecasting | judgment-and-routing/ | Estimation |
+| pre-mortem | judgment-and-routing/ | Failure prediction |
+| unsafe-control-actions-hazard-analysis | judgment-and-routing/ | Safety analysis |
+| problem-mode-router-cynefin | judgment-and-routing/ | Domain classification |
+| recognition-primed-triage | judgment-and-routing/ | Pattern matching |
+| inversion-mental-model | judgment-and-routing/ | Reverse thinking |
+| explore-vs-exploit | judgment-and-routing/ | Decision timing |
+| thoroughness-check-etto | judgment-and-routing/ | Rigor calibration |
+| agent-memory-hygiene | orchestration/ | Memory management |
+| agentic-design-patterns-orchestrator | orchestration/ | Agent patterns |
+| separation-of-concerns | orchestration/ | Work separation |
+| monte-carlo-tree-search | orchestration/ | Branch exploration |
+| tree-of-thoughts | output-quality/ | Branching exploration |
+| self-consistency | output-quality/ | Triangulation |
+| tool-interactive-critic | output-quality/ | External verification |
+| mece-pyramid-principle | output-quality/ | Clear structure |
+| feynman-technique | output-quality/ | Simple explanation |
+| large-documentation-navigation | output-quality/ | Navigating large docs |
+| faithfulness-aware-reasoning | reasoning/ | Reasoning hallucination detection |
+| cross-domain-analogy-generator | systems-and-architecture/ | Creative solutions |
+| everything-as-code-conceptualizer | systems-and-architecture/ | System modeling |
+| domain-driven-design | systems-and-architecture/ | Domain modeling |
+| team-topologies-ai | systems-and-architecture/ | Team alignment |
+| accelerate-ai | systems-and-architecture/ | DevOps improvement |
+| designing-data-intensive-applications-ai | systems-and-architecture/ | Data systems |
+| release-it-stability | systems-and-architecture/ | Stability patterns |
+| sre-error-budget | systems-and-architecture/ | Reliability trade-offs |
+| the-goal-theory-of-constraints-ai | systems-and-architecture/ | Bottleneck focus |
+| verify-before-integrate | software-development/ | Pre-integration verification |
+| debug-issue | software-development/ | Structured debugging |
+| explore-codebase | software-development/ | Codebase exploration |
+| refactor-safely | software-development/ | Safe refactoring |
+| review-changes | software-development/ | Code review |
+| skill-development-with-supporting-files | development/ | Skills with scripts/templates |
+| add-new-skill-to-repository | development/ | Contributing new skills |
+| local-llm-tooling | mlops/ | Running local LLMs |
+
+## Recently Added
+
+| Skill | Date | Key Technique |
+|-------|------|---------------|
+| documentation-craft | 2025-04 | 5-phase structured writing (arXiv:2504.08725) |
+| counterfactual-policy-testing | 2025-04 | Null/opposite/partial alternatives (arXiv:2604.10511) |
+| cognitive-friction-governor | 2025-04 | Deliberation budgeting (arXiv:2603.30031) |
+| cross-domain-analogy-generator | 2025-04 | Foreign-domain analogies (arXiv:2603.19087) |
+| metacognitive-monitoring | 2025-04 | Confidence calibration (arXiv:2604.15702) |
+| abductive-first-debugging | 2025-04 | Inference to best explanation (arXiv:2604.08016) |
+| keyword-agnostic-logic-locator | 2025-04 | Datalog code queries (arXiv:2604.16021) |
+| compression-as-understanding | 2025-04 | Kolmogorov complexity verification |
+| everything-as-code-conceptualizer | 2025-04 | System codification (arXiv:2507.05100) |
+| rashomon-triad-hybrid | 2025-04 | Multi-perspective reasoning |
+| thought-retriever-coppermind | 2025-04 | Memory-augmented reasoning |
+| log-trace-correlation | 2025-04 | Error log to source code mapping |
+| local-llm-tooling | 2025-04 | Local LLM structured output |
