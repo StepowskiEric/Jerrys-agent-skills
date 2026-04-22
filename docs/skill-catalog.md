@@ -768,3 +768,12 @@ Skills for creating skills, integrating external systems, and development workfl
 **Use it when:** You need to run an LLM locally for agent tasks, data extraction, or generation, and want to avoid API rate limits, costs, or privacy concerns.
 
 **Best for:** Local LLM tooling, structured output extraction, model switching.
+
+---
+
+### `testing/skill-ab-evaluation/SKILL.md` · [protocol]
+**What it is:** A/B evaluate any jerrysagentskill against a baseline using isolated subagents, 5 trials each, and an objective rubric.
+
+**Use it when:** You want empirical proof that a skill actually improves outcomes vs. general knowledge.
+
+**Best for:** Skill quality benchmarking, evidence-based skill curation, measuring ROI of structured prompts.

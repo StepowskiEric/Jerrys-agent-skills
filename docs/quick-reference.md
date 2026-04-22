@@ -24,7 +24,7 @@
 | recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage | |
 | problem-mode-router-cynefin-state-machine | judgment-and-routing/ | Problem classification | |
 | inversion-mental-model-state-machine | judgment-and-routing/ | Backward reasoning | |
-| intent-specification-protocol-skill | execution/ | Crystallize vague requests into testable specs | Prevents Intent-Behavior Mirroring Effect |
+| intent-specification-protocol | execution/ | Crystallize vague requests into testable specs | Prevents Intent-Behavior Mirroring Effect |
 | explore-vs-exploit-state-machine | judgment-and-routing/ | Resource allocation | |
 | metacognitive-monitoring | judgment-and-routing/ | Confidence calibration | |
 | counterfactual-policy-testing | judgment-and-routing/ | Decision validation | |
@@ -50,7 +50,7 @@
 | first-principles | judgment-and-routing/ | Deconstruction |
 | second-order-thinking | judgment-and-routing/ | Consequence analysis |
 | steelmanning | judgment-and-routing/ | Challenge testing |
-| kahneman-thinking-fast-slow | judgment-and-routing/ | Cognitive mode switching |
+| kahneman-thinking-fast-slow-software-agent | judgment-and-routing/ | Cognitive mode switching |
 | cognitive-bias-checklist | judgment-and-routing/ | Bias correction |
 | bayesian-updating | judgment-and-routing/ | Belief revision |
 | reference-class-forecasting | judgment-and-routing/ | Estimation |
@@ -107,3 +107,9 @@
 | thought-retriever-coppermind | 2025-04 | Memory-augmented reasoning |
 | log-trace-correlation | 2025-04 | Error log to source code mapping |
 | local-llm-tooling | 2025-04 | Local LLM structured output |
+
+## Meta / Evaluation
+
+| Skill | Location | Best For |
+|-------|----------|----------|
+| skill-ab-evaluation | testing/ | A/B test any skill for % improvement |

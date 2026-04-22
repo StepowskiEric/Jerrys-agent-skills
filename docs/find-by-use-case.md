@@ -187,3 +187,14 @@
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
 | Reduce cognitive load | [`cognitive-load-operator-state-machine`](output-quality/cognitive-load-operator-state-machine-skill.md) | Load management protocol |
+
+---
+
+### Testing / Evaluation
+
+*Skills for measuring and improving other skills.*
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Want to know if a skill is actually helping | [`skill-ab-evaluation`](testing/skill-ab-evaluation/SKILL.md) | 5-trial A/B test with objective rubric |
+| Need empirical data to justify skill refinement | [`skill-ab-evaluation`](testing/skill-ab-evaluation/SKILL.md) | Isolated worktrees, zero risk to current projects |

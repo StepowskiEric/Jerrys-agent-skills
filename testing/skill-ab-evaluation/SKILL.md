@@ -1,0 +1,96 @@
+---
+name: skill-ab-evaluation
+description: A/B evaluate any jerrysagentskill against a baseline using isolated subagents, 5 trials each, and an objective rubric. Measures real % improvement without touching current projects.
+category: testing
+priority: high
+tags: [evaluation, ab-test, subagent, skill-quality, benchmarking]
+---
+
+## Overview
+Run paired A/B trials to measure whether loading a specific jerrysagentskill actually improves outcomes vs. general knowledge. Uses isolated git worktrees or temp directories so zero risk to current projects. Minimum 5 trials per condition for statistical relevance.
+
+## When to use
+- You want to know if a skill is worth keeping / promoting
+- You suspect a skill is fluff or counter-productive
+- You need empirical data to justify skill refinement
+- A skill's domain is narrow enough to create a reproducible task
+
+## When NOT to use
+- The skill is purely preventative (e.g., security audit) — failures are rare and catastrophic, requiring adversarial test cases instead of random tasks
+- You cannot define a clear "done" criteria for the task
+- Token budget is severely constrained (10 subagent runs = 10× cost of single run)
+
+## Prerequisites
+1. **Target skill** — which skill to evaluate
+2. **Task definition** — a self-contained prompt the subagent can execute (e.g., "Fix this Convex auth bug in the provided repo")
+3. **Repository state** — a known commit or temp repo with a reproducible problem
+4. **Test harness** — a script or criteria that can score the result objectively
+
+## Core protocol
+
+### Step 1 — Prepare isolation
+```bash
+# From the repo root
+git worktree add /tmp/skill-eval-{n}-skill HEAD
+git worktree add /tmp/skill-eval-{n}-base HEAD
+```
+Use separate worktrees for every single trial (do not reuse). If not a git repo, copy to `/tmp/skill-eval-{n}-*/`.
+
+### Step 2 — Run 5 Skill trials
+For `n` in 1..5:
+- Spawn subagent with the **target skill loaded**
+- Prompt: identical task instruction pointing at the isolated worktree
+- Collect: final state, test results, diff, time elapsed, token usage
+
+### Step 3 — Run 5 Baseline trials
+For `n` in 1..5:
+- Spawn subagent **without the target skill** (general knowledge only)
+- Prompt: identical task instruction pointing at the isolated worktree
+- Collect same metrics
+
+### Step 4 — Score each trial
+Use this rubric (0-100 per trial):
+
+| Dimension | Weight | How to measure |
+|-----------|--------|----------------|
+| Correctness | 40% | Tests pass? Bug actually fixed? |
+| Completeness | 25% | All requirements met? No partial fixes? |
+| Efficiency | 15% | Time to solution, token usage, files touched |
+| Safety | 10% | No unintended changes outside scope? |
+| Code quality | 10% | Matches style? Clean diff? No hacks? |
+
+A human or a second "judge" subagent can apply the rubric if no automated tests exist.
+
+### Step 5 — Calculate improvement
+```
+skill_avg    = average score of 5 skill trials
+baseline_avg = average score of 5 baseline trials
+improvement  = ((skill_avg - baseline_avg) / baseline_avg) × 100
+```
+
+Report:
+- Skill average ± stddev
+- Baseline average ± stddev
+- % improvement
+- Anecdotal observations (e.g., "skill trials consistently found root cause in step 3 instead of step 7")
+
+## Safety rules
+- **Never** run trials in current working directories or active projects
+- **Always** use `/tmp/` or disposable worktrees
+- If a subagent tries to modify files outside its worktree, kill it
+- After scoring, delete all `/tmp/skill-eval-*` directories
+
+## Example
+
+Evaluate `convex-auth-expo-debugging`:
+1. Create temp Expo repo with a known auth bug (e.g., missing `loading` check causing race)
+2. Task: "Fix the auth redirect loop. Do not change anything else."
+3. Run 5 subagents with skill loaded → score each
+4. Run 5 subagents without skill → score each
+5. Result: "Skill avg 82/100, Baseline avg 61/100, +34.4% improvement. Skill trials correctly identified `loading` bundling issue 4/5 times; baseline only 1/5."
+
+## Pitfalls
+- **N=1 is noise.** Run the full 5 trials even if the first skill trial looks amazing.
+- **Task too vague.** "Make this better" is unscoreable. Use "Fix bug X so test Y passes."
+- **Contamination.** If the baseline subagent stumbles across the skill file and reads it, the trial is invalid. Isolate by directory or explicitly instruct baseline subagent not to load skills.
+- **Regression skills.** Skills like `bisect-debugging` only help when preconditions hold (tests pass on old commit). Craft test cases that satisfy preconditions or the skill will score unfairly low.
