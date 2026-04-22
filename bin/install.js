@@ -20,20 +20,20 @@ const AGENT_DIRS = {
 
 const SUPPORTED_AGENTS = Object.keys(AGENT_DIRS);
 
+// Directories that should never be scanned for skills
+const SKIP_DIRS = new Set(['docs', 'node_modules', 'scripts', '.git', '.agents', '.worktrees']);
+
 function getSkillFiles(dir, base) {
   base = base || dir;
   let results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith('.')) {
-      continue;
-    }
-    // Skip non-skill directories
-    if (entry.isDirectory() && (entry.name === 'docs' || entry.name === 'node_modules' || entry.name === 'scripts')) {
+    if (entry.name.startsWith('.') || SKIP_DIRS.has(entry.name)) {
       continue;
     }
     if (entry.isDirectory()) {
       // Skip subdirectory if a sibling .md file already covers this skill
-      // e.g. skip execution/step-level-verification-protocol/ when execution/step-level-verification-protocol-skill.md exists
+      // e.g. skip execution/step-level-verification-protocol/ when
+      //      execution/step-level-verification-protocol-skill.md exists
       const parentFiles = fs.readdirSync(dir);
       const hasSiblingMd = parentFiles.some(
         (f) => f.endsWith('.md') && f !== 'README.md' && f.startsWith(entry.name)
@@ -43,25 +43,52 @@ function getSkillFiles(dir, base) {
       }
       results = results.concat(getSkillFiles(path.join(dir, entry.name), base));
     } else if (entry.name.endsWith('.md') && entry.name !== 'README.md') {
-      // Skip files inside docs/ (can happen if dir is project root)
-      const rel = path.relative(base, path.join(dir, entry.name));
-      if (rel.startsWith('docs' + path.sep) || rel.startsWith('docs/')) {
-        continue;
-      }
-      results.push(rel);
+      results.push(path.relative(base, path.join(dir, entry.name)));
     }
   }
   return results.sort();
 }
 
-function getSkillBundlePath(file, flat) {
-  const name = path.basename(file, '.md');
-  if (flat) return path.join(name, 'SKILL.md');
-  return path.join(path.dirname(file), name, 'SKILL.md');
+/**
+ * Extract the skill name from a file path.
+ * For SKILL.md files (already in agent skills format), use the parent directory name.
+ * For regular .md files, strip the extension.
+ */
+function extractSkillName(file) {
+  const base = path.basename(file, '.md');
+  if (base === 'SKILL') {
+    return path.basename(path.dirname(file));
+  }
+  return base;
 }
 
-function extractSkillName(file) {
-  return path.basename(file, '.md');
+/**
+ * Compute the destination bundle path for a skill file.
+ *
+ * For regular .md files: dirname/skill-name/SKILL.md (non-flat) or skill-name/SKILL.md (flat)
+ * For SKILL.md source files (already bundled): install as-is preserving directory structure
+ *
+ * Codex uses non-flat (topic-grouped subdirectories).
+ * VS Code Copilot uses flat (skill-name/SKILL.md directly under skills root).
+ * Both follow the Agent Skills open standard: skill folder contains SKILL.md,
+ * and the folder name must match the `name` field in frontmatter.
+ */
+function getSkillBundlePath(file, flat) {
+  const name = extractSkillName(file);
+
+  if (flat) {
+    // Flat mode (Copilot): skill-name/SKILL.md at root
+    return path.join(name, 'SKILL.md');
+  }
+
+  // For SKILL.md source files, the directory structure is already correct
+  // e.g. debugging/log-trace-correlation/SKILL.md -> debugging/log-trace-correlation/SKILL.md
+  if (path.basename(file) === 'SKILL.md') {
+    return file;
+  }
+
+  // Non-flat mode (Codex, Hermes, etc.): dirname/skill-name/SKILL.md
+  return path.join(path.dirname(file), name, 'SKILL.md');
 }
 
 function extractSkillDescription(content) {
@@ -96,13 +123,29 @@ function extractSkillDescription(content) {
   return description.replace(/\s+/g, ' ').trim();
 }
 
-function buildSkillBundle(content, file) {
+function buildSkillBundle(content, file, agent) {
   const name = extractSkillName(file);
+
+  // If content already has frontmatter, don't double-wrap.
+  // Just ensure source marker is present.
+  if (content.trimStart().startsWith('---')) {
+    let result = content;
+    // Add source marker if not present
+    if (!result.includes('source: "jerry-skills"') && !result.includes("source: 'jerry-skills'")) {
+      result = result.replace(/^---\r?\n/, `---\nsource: "jerry-skills"\n`);
+    }
+    // For copilot, name field MUST be slug-format matching the directory
+    if (agent === 'copilot') {
+      result = result.replace(/^name:.*$/m, `name: ${JSON.stringify(name)}`);
+    }
+    return result;
+  }
+
   const description = extractSkillDescription(content);
   return `---\nname: ${JSON.stringify(name)}\ndescription: ${JSON.stringify(description)}\nsource: "jerry-skills"\n---\n\n${content}`;
 }
 
-function installSkills(skills, dest, flat) {
+function installSkills(skills, dest, flat, agent) {
   fs.mkdirSync(dest, { recursive: true });
   let installed = 0;
 
@@ -110,7 +153,7 @@ function installSkills(skills, dest, flat) {
     const src = path.join(SKILLS_DIR, file);
     const dst = path.join(dest, getSkillBundlePath(file, flat));
     fs.mkdirSync(path.dirname(dst), { recursive: true });
-    const bundle = buildSkillBundle(fs.readFileSync(src, 'utf8'), file);
+    const bundle = buildSkillBundle(fs.readFileSync(src, 'utf8'), file, agent);
     fs.writeFileSync(dst, bundle);
     console.log(`  ✓ ${getSkillBundlePath(file, flat)}`);
     installed++;
@@ -128,7 +171,7 @@ function installTo(agent, skills, destOverride) {
   }
   // Copilot requires flat structure (no topic subdirectories)
   const flat = agent === 'copilot';
-  return installSkills(skills, dest, flat);
+  return installSkills(skills, dest, flat, agent);
 }
 
 /**
@@ -146,7 +189,7 @@ function matchSkill(query, allSkills) {
   const exactPath = allSkills.find((f) => f.replace(/\.md$/, '') === normalized);
   if (exactPath) return exactPath;
 
-  // Exact basename match
+  // Exact name match (handles SKILL.md parent dir names too)
   const byName = allSkills.filter((f) => extractSkillName(f) === normalized);
   if (byName.length === 1) return byName[0];
   if (byName.length > 1) {
@@ -202,20 +245,21 @@ function listSkills() {
     if (files.length === 0) continue;
     console.log(`${TOPIC_LABELS[topic] || topic}:`);
     for (const f of files) {
+      const name = extractSkillName(f);
       const tag = f.includes('state-machine') ? ' [protocol]' : ' [framework]';
-      console.log(`  ${f}${tag}`);
+      console.log(`  ${name}${tag}`);
     }
     console.log('');
   }
 
-  // Catch any files not in a known topic dir (e.g. root-level extras)
+  // Catch any files not in a known topic dir
   const categorized = TOPIC_DIRS.flatMap((t) =>
     all.filter((f) => f.startsWith(t + path.sep) || f.startsWith(t + '/'))
   );
   const uncategorized = all.filter((f) => !categorized.includes(f));
   if (uncategorized.length > 0) {
     console.log('Other:');
-    uncategorized.forEach((f) => console.log(`  ${f}`));
+    uncategorized.forEach((f) => console.log(`  ${extractSkillName(f)}`));
     console.log('');
   }
 }
@@ -244,6 +288,11 @@ Options:
 
 Default install paths:
 ${SUPPORTED_AGENTS.map((a) => `  ${a.padEnd(12)} ${AGENT_DIRS[a]}`).join('\n')}
+
+Skill format (Agent Skills open standard):
+  Each skill installs as a directory containing SKILL.md with YAML frontmatter.
+  Copilot uses flat layout (skill-name/SKILL.md at root).
+  Codex uses grouped layout (topic/skill-name/SKILL.md).
 
 Examples:
   npx jerry-skills install                            # interactive picker
@@ -310,7 +359,6 @@ async function interactivePicker(allSkills) {
 
   // Step 2: Pick skills grouped by topic
   const choices = [];
-  const labeled = [];
 
   for (const topic of TOPIC_DIRS) {
     const files = allSkills.filter((f) => f.startsWith(topic + '/') || f.startsWith(topic + path.sep));

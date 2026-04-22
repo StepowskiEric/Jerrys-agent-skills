@@ -13,12 +13,27 @@ npx jerry-skills install --agent copilot
 npx jerry-skills install --agent codex
 npx jerry-skills install --agent hermes
 npx jerry-skills install --agent claude
+npx jerry-skills install --agent antigravity
 
 # List available skills without installing
 npx jerry-skills list
 ```
 
 See [docs/installation.md](docs/installation.md) for full details including all agents, custom destinations, and VS Code Copilot setup.
+
+## Supported Agents
+
+| Agent | Install location | Format |
+|-------|-----------------|--------|
+| **OpenAI Codex** | `~/.agents/skills/` | `topic/name/SKILL.md` with YAML frontmatter |
+| **VS Code Copilot** | `~/.copilot/skills/` | `name/SKILL.md` (flat), name must be lowercase-hyphen matching directory |
+| **Hermes** | `~/.hermes/skills/` | `topic/name/SKILL.md` with YAML frontmatter |
+| **Claude Code** | `~/.claude/skills/` | `topic/name/SKILL.md` with YAML frontmatter |
+| **Antigravity** | `~/.antigravity/skills/` | `topic/name/SKILL.md` with YAML frontmatter |
+
+The installer automatically adapts the format for each agent:
+- Copilot uses a flat structure (no topic subdirectories) and slug-normalizes the `name` field to match the directory
+- All other agents use topic-based subdirectories preserving the original `name` field
 
 ## Documentation
 
@@ -70,6 +85,7 @@ The strongest setups use **both**: protocols for execution discipline, framework
 | 🛠️ Development | Skill building and development workflows |
 | 🐛 Debugging | Root-cause analysis and log correlation |
 | 🧠 Reasoning | Faithfulness and reasoning verification |
+| 🤖 MLOps | Local LLM tooling and model management |
 
 ## Philosophy
 
