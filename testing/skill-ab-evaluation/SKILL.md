@@ -89,8 +89,23 @@ Evaluate `convex-auth-expo-debugging`:
 4. Run 5 subagents without skill → score each
 5. Result: "Skill avg 82/100, Baseline avg 61/100, +34.4% improvement. Skill trials correctly identified `loading` bundling issue 4/5 times; baseline only 1/5."
 
+## Designing test cases that actually exercise the skill
+
+A task that both agents solve trivially teaches you nothing. Match complexity to the skill's unique capabilities:
+
+| Skill type | Shallow task (bad) | Deep task (good) |
+|------------|-------------------|------------------|
+| Graph-powered debug (`debug-issue`) | Single-file typo or KeyError | Bug spans 3+ files, requires tracing call chains |
+| Log trace correlation | Error message names the broken line | Stack trace is deep, root cause is 4 calls away |
+| Git bisect | Bug in latest commit only | Bug introduced 10 commits ago, mixed with refactors |
+| Architecture design | "Should I use REST or GraphQL?" | Multi-service data flow with consistency trade-offs |
+| Security audit | Obvious SQL injection in one file | Auth bypass requiring multi-step state manipulation |
+
+**Smoke test first.** Before running all 5 trials, do 1 skill + 1 baseline. If both score 100 with trivial effort, redesign the test case before committing tokens.
+
 ## Pitfalls
 - **N=1 is noise.** Run the full 5 trials even if the first skill trial looks amazing.
 - **Task too vague.** "Make this better" is unscoreable. Use "Fix bug X so test Y passes."
 - **Contamination.** If the baseline subagent stumbles across the skill file and reads it, the trial is invalid. Isolate by directory or explicitly instruct baseline subagent not to load skills.
 - **Regression skills.** Skills like `bisect-debugging` only help when preconditions hold (tests pass on old commit). Craft test cases that satisfy preconditions or the skill will score unfairly low.
+- **False confidence from shallow tasks.** A simple bug may show the skill agent is "faster" (fewer tool calls) but that measures prompt discipline, not skill value. Design tasks where the skill's unique tools or protocol are required to succeed.
