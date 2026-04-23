@@ -1,5 +1,5 @@
 ---
-name: "recognition-primed-triage-state-machine-skill"
+name: "recognition-primed-triage-state-machine"
 description: "Use this skill when the agent must execute a formal, gated incident-response or urgent-triage protocol — not just make a fast first move, but make it through an enforced sequence that prevents reckless action while maintaining response tempo."
 ---
 

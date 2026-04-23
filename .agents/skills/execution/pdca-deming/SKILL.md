@@ -1,5 +1,5 @@
 ---
-name: "pdca-deming-skill"
+name: "pdca-deming"
 description: "Use this skill when the agent must improve a process, system, or output through a measurement-anchored cycle of planning, execution, and verification before standardizing or escalating."
 ---
 

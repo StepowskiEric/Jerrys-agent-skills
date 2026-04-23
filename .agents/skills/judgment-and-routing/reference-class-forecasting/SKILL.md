@@ -1,5 +1,5 @@
 ---
-name: "reference-class-forecasting-skill"
+name: "reference-class-forecasting"
 description: "Use this skill when the agent must estimate a timeline, cost, scope, or probability of success before beginning a plan."
 ---
 

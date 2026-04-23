@@ -324,5 +324,5 @@ When stuck, ask:
 ## See Also
 
 - Paper: "Serendipity by Design: Evaluating the Impact of Cross-domain Mappings on Human and LLM Creativity" (arXiv:2603.19087)
-- `how-to-solve-it-analogy-skill` — for structured analogy
-- `first-principles-skill` — for deconstruction before analogy
+- `how-to-solve-it-analogy` — for structured analogy
+- `first-principles` — for deconstruction before analogy

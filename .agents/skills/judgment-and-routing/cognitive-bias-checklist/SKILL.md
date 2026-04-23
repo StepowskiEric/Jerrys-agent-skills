@@ -1,5 +1,5 @@
 ---
-name: "cognitive-bias-checklist-skill"
+name: "cognitive-bias-checklist"
 description: "Use this skill when the agent is in slow-mode reasoning — making an important decision, recommendation, estimate, architecture choice, or analysis — and needs to check whether specific high-consequence cognitive biases have contaminated the output."
 ---
 

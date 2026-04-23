@@ -1,5 +1,5 @@
 ---
-name: "checklist-manifesto-skill"
+name: "checklist-manifesto"
 description: "Use this skill when the agent must perform a high-stakes procedure where expert knowledge is necessary but not sufficient, and where skip-ahead errors cause most failures."
 ---
 

@@ -316,4 +316,4 @@ if (condition) {
 
 - Paper: "Understanding Everything as Code: A Taxonomy and Conceptual Model" (arXiv:2507.05100)
 - Infrastructure-as-Code, Configuration-as-Code movements
-- `domain-driven-design-skill` — for modeling domains
+- `domain-driven-design` — for modeling domains

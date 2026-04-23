@@ -1,5 +1,5 @@
 ---
-name: "recognition-primed-triage-skill"
+name: "recognition-primed-triage"
 description: "Use this skill when the agent must make a strong **first move** under time pressure, incomplete information, or operational ambiguity."
 ---
 

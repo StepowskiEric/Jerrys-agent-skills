@@ -1,5 +1,5 @@
 ---
-name: "kahneman-thinking-fast-slow-software-agent-skill"
+name: "kahneman-thinking-fast-slow-software-agent"
 description: "Use Daniel Kahneman’s **fast vs. slow thinking** model to make an AI software agent more reliable during coding, debugging, refactoring, review, estimation, and architecture work."
 ---
 

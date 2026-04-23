@@ -33,7 +33,7 @@ function getSkillFiles(dir, base) {
     if (entry.isDirectory()) {
       // Skip subdirectory if a sibling .md file already covers this skill
       // e.g. skip execution/step-level-verification-protocol/ when
-      //      execution/step-level-verification-protocol-skill.md exists
+      //      execution/step-level-verification-protocol.md exists
       const parentFiles = fs.readdirSync(dir);
       const hasSiblingMd = parentFiles.some(
         (f) => f.endsWith('.md') && f !== 'README.md' && f.startsWith(entry.name)
@@ -197,9 +197,9 @@ function installTo(agent, skills, destOverride, withScripts) {
 /**
  * Match a user-supplied skill name against available skill files.
  * Accepts:
- *   - Full path:  "execution/how-to-solve-it-state-machine-skill"
- *   - Just name:  "how-to-solve-it-state-machine-skill"
- *   - With .md:   "execution/how-to-solve-it-state-machine-skill.md"
+ *   - Full path:  "execution/how-to-solve-it-state-machine"
+ *   - Just name:  "how-to-solve-it-state-machine"
+ *   - With .md:   "execution/how-to-solve-it-state-machine.md"
  *   - Partial:    "how-to-solve-it" (matches if unique)
  */
 function matchSkill(query, allSkills) {
@@ -329,7 +329,7 @@ Skill format (Agent Skills open standard):
 Examples:
   npx jerry-skills install                            # interactive picker
   npx jerry-skills install --agent copilot            # install all skills to copilot
-  npx jerry-skills install --agent codex --skill how-to-solve-it-state-machine-skill
+  npx jerry-skills install --agent codex --skill how-to-solve-it-state-machine
   npx jerry-skills install --agent claude --skill purify-test-output --with-scripts
   npx jerry-skills install --all                      # install all to all agents
   npx jerry-skills list

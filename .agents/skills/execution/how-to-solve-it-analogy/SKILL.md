@@ -1,5 +1,5 @@
 ---
-name: "how-to-solve-it-analogy-skill"
+name: "how-to-solve-it-analogy"
 description: "Use this skill when the agent must solve a problem that resembles a problem already solved somewhere else — and can deliberately import the structure of that prior solution."
 ---
 

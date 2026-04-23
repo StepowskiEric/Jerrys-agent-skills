@@ -1,5 +1,5 @@
 ---
-name: "inversion-mental-model-skill"
+name: "inversion-mental-model"
 description: "Use this skill when the agent needs a stronger way to reason about risks, failure modes, blind spots, or strategy."
 ---
 

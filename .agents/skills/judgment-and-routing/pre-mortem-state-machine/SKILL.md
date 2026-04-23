@@ -1,5 +1,5 @@
 ---
-name: "pre-mortem-state-machine-skill"
+name: "pre-mortem-state-machine"
 description: "Use this skill when the agent must formally validate a plan before execution by assuming failure has already occurred and working backward to identify what went wrong, rank the risks, and adjust the plan."
 ---
 

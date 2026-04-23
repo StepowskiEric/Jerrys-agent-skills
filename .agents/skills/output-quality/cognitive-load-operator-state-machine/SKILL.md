@@ -1,5 +1,5 @@
 ---
-name: "cognitive-load-operator-state-machine-skill"
+name: "cognitive-load-operator-state-machine"
 description: "Use this skill when the agent must make information easier to understand, retain, and act on."
 ---
 

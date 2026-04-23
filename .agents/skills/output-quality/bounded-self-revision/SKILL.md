@@ -1,5 +1,5 @@
 ---
-name: "bounded-self-revision-skill"
+name: "bounded-self-revision"
 description: "Use this skill when the agent’s first output is probably improvable, but you want revision to stay disciplined and finite."
 ---
 

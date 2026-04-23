@@ -1,5 +1,5 @@
 ---
-name: "mece-pyramid-principle-skill"
+name: "mece-pyramid-principle"
 description: "Use this skill when the agent must structure a complex output — a plan, analysis, recommendation, memo, or explanation — so that it is both complete and non-redundant."
 ---
 

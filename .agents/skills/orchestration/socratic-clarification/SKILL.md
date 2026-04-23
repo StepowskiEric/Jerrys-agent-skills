@@ -1,5 +1,5 @@
 ---
-name: "socratic-clarification-skill"
+name: "socratic-clarification"
 description: "Use this skill when the agent is about to execute an ambiguous or high-stakes task and needs to surface and resolve the most critical unknown assumptions before acting."
 ---
 

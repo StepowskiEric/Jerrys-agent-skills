@@ -1,5 +1,5 @@
 ---
-name: "self-consistency-skill"
+name: "self-consistency"
 description: "Use this skill when the agent must verify that its reasoning about a problem is reliable — by generating multiple independent reasoning paths to the same conclusion and checking whether they converge."
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: "accelerate-ai-skill"
+name: "accelerate-ai"
 description: "Use this skill when the agent must improve engineering delivery, operational reliability, or team productivity using evidence rather than folklore."
 ---
 

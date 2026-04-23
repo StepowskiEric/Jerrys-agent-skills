@@ -289,9 +289,9 @@ Plan: Use Heron's formula. Verify each calculation step.
 ## Integration
 
 Combine with:
-- `tree-of-thoughts-skill`: Use step-level verification on each branch
-- `cognitive-friction-governor-skill`: Budget verification effort
-- `how-to-solve-it-state-machine-skill`: For problem decomposition before stepping
+- `tree-of-thoughts`: Use step-level verification on each branch
+- `cognitive-friction-governor`: Budget verification effort
+- `how-to-solve-it-state-machine`: For problem decomposition before stepping
 
 ## Research Basis
 

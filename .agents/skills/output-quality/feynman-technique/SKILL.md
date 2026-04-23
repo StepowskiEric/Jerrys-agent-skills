@@ -1,5 +1,5 @@
 ---
-name: "feynman-technique-skill"
+name: "feynman-technique"
 description: "Use this skill when the agent needs to verify that it genuinely understands something — not that it can recite it, but that it can explain it from the ground up in simple language."
 ---
 

@@ -14,7 +14,7 @@ Skills are organized into five topic areas. Each entry shows its file path and w
 
 Skills for executing technical work in a bounded, disciplined way.
 
-### `execution/how-to-solve-it-state-machine-skill.md` · [protocol]
+### `execution/how-to-solve-it-state-machine.md` · [protocol]
 **What it is:** A disciplined problem-solving protocol that forces problem framing, evidence gathering, planning, execution, and reflection.
 
 **Use it when:** The task is hard, uncertain, or likely to tempt premature coding.
@@ -23,7 +23,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/refactoring-state-machine-skill.md` · [protocol]
+### `execution/refactoring-state-machine.md` · [protocol]
 **What it is:** A bounded refactoring protocol that defines a target, accounts for shared surfaces, limits the transformation budget, and stops cleanly with an anti-loop circuit breaker.
 
 **Use it when:** Structure needs improvement but the task could spiral into endless cleanup.
@@ -32,7 +32,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/working-effectively-with-legacy-code-state-machine-skill.md` · [protocol]
+### `execution/working-effectively-with-legacy-code-state-machine.md` · [protocol]
 **What it is:** A protocol for making brittle code safe to change before trying to improve it. Forces characterization testing, seam creation, and explicit stopping to prevent rewrite gambling and cleanup drift.
 
 **Use it when:** The system has weak tests, unclear behavior, tight coupling, or rewrite temptation.
@@ -41,7 +41,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/toyota-kata-state-machine-skill.md` · [protocol]
+### `execution/toyota-kata-state-machine.md` · [protocol]
 **What it is:** A continuous-improvement protocol that forces the agent to define the current condition, set the next target condition, isolate one obstacle, and run one bounded experiment at a time.
 
 **Use it when:** The path forward is uncertain and progress should be discovered iteratively rather than through one large redesign.
@@ -50,7 +50,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/pragmatic-programmer-state-machine-skill.md` · [protocol]
+### `execution/pragmatic-programmer-state-machine.md` · [protocol]
 **What it is:** A practical engineering protocol focused on bounded changes, reversible decisions, automation, and root-cause fixes. Enforces blast-radius accounting, consumer discovery, and clean stopping.
 
 **Use it when:** The agent needs to work like a senior pragmatist instead of an idealist or cleanup maximalist.
@@ -59,7 +59,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/philosophy-of-software-design-state-machine-skill.md` · [protocol]
+### `execution/philosophy-of-software-design-state-machine.md` · [protocol]
 **What it is:** A protocol for managing complexity, building deeper modules, and avoiding shallow abstraction sprawl. Adds hard gates for consumer discovery before shared-interface edits, unknowns/blast-radius declaration, and bounded change scope.
 
 **Use it when:** The agent is changing shared interfaces or making design decisions that can spread complexity.
@@ -68,7 +68,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/ooda-loop-state-machine-skill.md` · [protocol]
+### `execution/ooda-loop-state-machine.md` · [protocol]
 **What it is:** A decision-tempo protocol based on Boyd's OODA Loop: Observe → Orient → Decide → Act → Loop. Enforces explicit observation before interpretation, mandatory model updates at each cycle, bounded action scope, and loop assessment after every action.
 
 **Use it when:** The environment is changing rapidly, adversarially, or unpredictably between actions — where conditions shift before the previous move settles.
@@ -77,7 +77,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/checklist-manifesto-skill.md` · [protocol]
+### `execution/checklist-manifesto.md` · [protocol]
 **What it is:** A pre-execution checklist protocol based on Gawande's *The Checklist Manifesto*. Builds the minimal purposeful checklist before any high-stakes procedure, enforces read-do or do-confirm execution, gates each step with confirmation evidence, and halts on exception triggers.
 
 **Use it when:** The task is a high-stakes, known procedure where expert skip-ahead causes failures — and confidence is not a substitute for verification.
@@ -86,7 +86,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/pdca-deming-skill.md` · [protocol]
+### `execution/pdca-deming.md` · [protocol]
 **What it is:** A measurement-anchored improvement protocol based on the Shewhart/Deming PDCA cycle. Requires a measurable baseline and written prediction before action, mandates a Check phase comparing actual vs. predicted results, and gates standardization on confirmed measurement rather than felt improvement.
 
 **Use it when:** Improving a system or process where you must verify what worked before standardizing it — and where "it seemed better" is not a sufficient conclusion.
@@ -95,7 +95,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/step-level-verification-protocol-skill.md` · [protocol]
+### `execution/step-level-verification-protocol.md` · [protocol]
 **What it is:** A verification protocol that validates each reasoning step before proceeding to the next. Prevents error propagation by catching mistakes early in multi-step chains.
 
 **Use it when:** Working on multi-step tasks where early errors compound into larger failures downstream.
@@ -104,7 +104,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/speculative-drafting-verification-skill.md` · [protocol]
+### `execution/speculative-drafting-verification.md` · [protocol]
 **What it is:** A parallel solution generation protocol that creates multiple candidate branches, verifies each against constraints, and selects the best. Prevents local minima traps.
 
 **Use it when:** The problem has multiple plausible approaches and committing to one too early risks suboptimal outcomes.
@@ -113,7 +113,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/process-reward-model-protocol-skill.md` · [protocol]
+### `execution/process-reward-model-protocol.md` · [protocol]
 **What it is:** A self-correcting reasoning protocol that assigns process rewards to each step and backtracks when cumulative reward drops below threshold.
 
 **Use it when:** Reasoning may go down wrong paths and needs mechanism to detect and recover from poor reasoning chains.
@@ -122,7 +122,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/how-to-solve-it-analogy-skill.md` · [framework]
+### `execution/how-to-solve-it-analogy.md` · [framework]
 **What it is:** A transfer-reasoning skill based on Polya's analogy technique from *How to Solve It*. Finds structural analogs to the current problem, makes the mapping explicit, identifies what transfers and what does not, and adapts the imported solution structure.
 
 **Use it when:** The problem resembles a previously solved one and importing the solution structure would accelerate the work — but only after verifying the mapping holds.
@@ -131,7 +131,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
-### `execution/intent-specification-protocol-skill.md` · [protocol]
+### `execution/intent-specification-protocol.md` · [protocol]
 **What it is:** Crystallize vague coding requests into precise, testable specs before writing code. Prevents over-engineering via the Intent-Behavior Mirroring Effect.
 
 **Use it when:** The request is vague, ambiguous, or likely to lead to over-engineering.
@@ -196,7 +196,7 @@ Skills for executing technical work in a bounded, disciplined way.
 
 Skills for routing tasks, calibrating rigor, and reasoning about risks and tradeoffs.
 
-### `judgment-and-routing/problem-mode-router-cynefin-skill.md` · [framework]
+### `judgment-and-routing/problem-mode-router-cynefin.md` · [framework]
 **What it is:** A routing skill based on Cynefin-style problem classification that helps the agent decide whether the situation is obvious, complicated, complex, chaotic, or still disordered.
 
 **Use it when:** The first question is not "what do I do?" but "what kind of problem is this, and what response style fits it?"
@@ -205,7 +205,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/recognition-primed-triage-skill.md` · [framework]
+### `judgment-and-routing/recognition-primed-triage.md` · [framework]
 **What it is:** A fast-judgment skill for urgent situations that tells the agent to recognize the pattern, choose the first plausible strong move, mentally simulate it, and then reassess.
 
 **Use it when:** Delay is costly, information is incomplete, and the agent needs a high-quality first move rather than exhaustive comparison.
@@ -214,7 +214,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/kahneman-thinking-fast-slow-software-agent-skill.md` · [framework]
+### `judgment-and-routing/kahneman-thinking-fast-slow-software-agent.md` · [framework]
 **What it is:** A judgment skill based on fast versus slow thinking for software engineering work. Uses fast mode for cheap pattern recognition and slow mode for anything expensive, irreversible, ambiguous, or security-sensitive.
 
 **Use it when:** The agent needs to decide when cheap pattern recognition is fine and when slow, careful reasoning is mandatory.
@@ -223,7 +223,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/unsafe-control-actions-hazard-analysis-skill.md` · [framework]
+### `judgment-and-routing/unsafe-control-actions-hazard-analysis.md` · [framework]
 **What it is:** A hazard-analysis skill for checking whether a consequential action becomes unsafe if it is omitted, applied incorrectly, mistimed, misordered, or left in place too long.
 
 **Use it when:** The agent is about to recommend or perform a high-consequence action where timing, sequencing, constraints, and safeguards matter.
@@ -232,7 +232,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/thoroughness-check-etto-skill.md` · [framework]
+### `judgment-and-routing/thoroughness-check-etto.md` · [framework]
 **What it is:** A conceptual version of the ETTO principle for deciding the right rigor level before work begins.
 
 **Use it when:** You want the judgment of ETTO without a formal gate.
@@ -241,7 +241,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/thoroughness-check-etto-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/thoroughness-check-etto-state-machine.md` · [protocol]
 **What it is:** A universal preflight gate based on the efficiency–thoroughness trade-off. Decides how much evidence is required, whether the agent may act yet, what tools are permitted, and when to stop or escalate.
 
 **Use it when:** The agent should decide how much evidence, validation, and caution are required before acting.
@@ -250,7 +250,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/explore-vs-exploit-skill.md` · [framework]
+### `judgment-and-routing/explore-vs-exploit.md` · [framework]
 **What it is:** A conceptual version of the exploration-vs-commitment tradeoff.
 
 **Use it when:** You want the agent to think clearly about search breadth versus action, without a rigid execution protocol.
@@ -259,7 +259,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/explore-vs-exploit-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/explore-vs-exploit-state-machine.md` · [protocol]
 **What it is:** A control system for deciding whether to keep gathering information or commit to action.
 
 **Use it when:** The agent risks either acting too early or searching forever.
@@ -268,7 +268,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/inversion-mental-model-skill.md` · [framework]
+### `judgment-and-routing/inversion-mental-model.md` · [framework]
 **What it is:** A conceptual version of inversion as a reasoning tool for risks, blind spots, and failure modes.
 
 **Use it when:** The agent needs a better strategic lens rather than a formal failure-mapping workflow.
@@ -277,7 +277,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/inversion-mental-model-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/inversion-mental-model-state-machine.md` · [protocol]
 **What it is:** A protocol for reasoning from failure backward: define the opposite of success, enumerate failure paths, rank them, and turn them into guardrails.
 
 **Use it when:** Risk, blind spots, defensive design, or failure modes matter.
@@ -286,7 +286,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/problem-mode-router-cynefin-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/problem-mode-router-cynefin-state-machine.md` · [protocol]
 **What it is:** The protocol version of the Cynefin router. Gates all subsequent work on an explicit, challenged domain classification before any tool use or execution may begin. Enforces the unjustified-Obvious check, mandates evaluation of all five domains, and monitors for reclassification triggers during execution.
 
 **Use it when:** You need domain classification to be an enforced gate, not an optional lens — especially when over-classifying as Obvious is a known risk.
@@ -295,7 +295,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/recognition-primed-triage-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/recognition-primed-triage-state-machine.md` · [protocol]
 **What it is:** The protocol version of Recognition-Primed Triage. Enforces four gated phases: pattern recognition + confidence declaration, mandatory mental simulation before action, bounded first action within declared scope, and mandatory reassessment before continuing or handing off.
 
 **Use it when:** You need urgent triage to be fast and disciplined — not fast and reckless — and you need the reasoning documented at each gate.
@@ -304,7 +304,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/first-principles-skill.md` · [framework]
+### `judgment-and-routing/first-principles.md` · [framework]
 **What it is:** A reasoning skill for decomposing problems to their axiomatic constraints before reasoning upward. Separates confirmed facts from inherited assumptions, distinguishes hard constraints from soft ones, and builds solutions from verified foundations rather than from convention or analogy.
 
 **Use it when:** The problem feels intractable because every option has been tried, the framing imports constraints from a prior context that may not apply, or a creative solution requires questioning the problem itself.
@@ -313,7 +313,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/second-order-thinking-skill.md` · [framework]
+### `judgment-and-routing/second-order-thinking.md` · [framework]
 **What it is:** A consequence-tracing skill that asks "and then what?" at least twice after every first-order effect. Traces how systems, stakeholders, and feedback loops adapt to a change and whether the benefit holds, erodes, or reverses across time horizons.
 
 **Use it when:** A recommendation has a clear first-order benefit but the downstream effects on the system, stakeholders, or incentives have not been traced.
@@ -322,7 +322,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/pre-mortem-skill.md` · [framework]
+### `judgment-and-routing/pre-mortem.md` · [framework]
 **What it is:** A plan-validation skill based on Gary Klein's prospective hindsight technique. Assumes the plan has already failed and generates specific narrative failure stories from that vantage point, then ranks and converts them into plan adjustments.
 
 **Use it when:** A plan is being finalized before execution and the team or agent has strong consensus that it will work (the highest-risk time for optimism blindness).
@@ -331,7 +331,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/pre-mortem-state-machine-skill.md` · [protocol]
+### `judgment-and-routing/pre-mortem-state-machine.md` · [protocol]
 **What it is:** The protocol version of the Pre-Mortem. Enforces minimum failure story generation, mandatory ranking, required risk profiles with prevention and detection for top risks, and a formal proceed/adjust/do-not-proceed verdict before execution is unlocked.
 
 **Use it when:** A high-stakes plan requires formal validation and the pre-mortem must be a genuine gate, not a formality.
@@ -340,7 +340,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/six-thinking-hats-skill.md` · [framework]
+### `judgment-and-routing/six-thinking-hats.md` · [framework]
 **What it is:** A multi-perspective analysis skill based on Edward de Bono's *Six Thinking Hats*. Separates White (facts), Red (intuition), Black (caution), Yellow (value), Green (alternatives), and Blue (process) thinking into distinct phases so each mode can operate fully without interference.
 
 **Use it when:** A decision involves multiple stakeholders or perspectives, one reasoning mode (usually caution or optimism) is dominating unfairly, or the agent needs to generate alternatives before evaluating them.
@@ -349,7 +349,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/steelmanning-skill.md` · [framework]
+### `judgment-and-routing/steelmanning.md` · [framework]
 **What it is:** A commitment-quality skill that requires the agent to build the strongest possible case for the opposing position before finalizing a recommendation. Prevents confirmation bias, distinguishes strawman arguments from genuine alternatives, and requires the residual tension to be named honestly.
 
 **Use it when:** The agent has formed a preference and needs to test it against the best available counter-argument before committing.
@@ -358,7 +358,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/reference-class-forecasting-skill.md` · [framework]
+### `judgment-and-routing/reference-class-forecasting.md` · [framework]
 **What it is:** An estimation skill that anchors forecasts to the base rate of similar past projects before applying inside-view reasoning. Corrects for planning fallacy by requiring an explicit reference class, base rate evidence, and evidence-based adjustments rather than optimism-based ones.
 
 **Use it when:** The agent must estimate a timeline, cost, or success probability and the estimate might otherwise be built from the imagined happy path.
@@ -367,7 +367,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/bayesian-updating-skill.md` · [framework]
+### `judgment-and-routing/bayesian-updating.md` · [framework]
 **What it is:** A belief-management skill for maintaining and updating competing hypotheses as evidence arrives. Prevents over-updating on single data points and under-updating on disconfirming evidence by keeping priors explicit and requiring likelihood assessment for each piece of evidence.
 
 **Use it when:** The agent must reason across multiple observations rather than flipping belief at each signal — debugging, incident analysis, planning under uncertainty, or any multi-step investigation.
@@ -376,7 +376,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
-### `judgment-and-routing/cognitive-bias-checklist-skill.md` · [framework]
+### `judgment-and-routing/cognitive-bias-checklist.md` · [framework]
 **What it is:** A post-analysis checklist of the eight biases most dangerous to agents in slow-mode reasoning: anchoring, availability heuristic, confirmation bias, planning fallacy, scope insensitivity, overconfidence, substitution, and narrative fallacy. Requires explicit correction before finalizing any slow-mode output.
 
 **Use it when:** The agent has completed a slow-mode analysis, recommendation, or estimate and needs to verify that these biases have not contaminated the output.
@@ -389,7 +389,7 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 Skills that refine, critique, and simplify the agent's own outputs.
 
-### `output-quality/bounded-self-revision-skill.md` · [framework]
+### `output-quality/bounded-self-revision.md` · [framework]
 **What it is:** A disciplined self-refine skill that generates an initial output, critiques it against explicit dimensions, revises it up to two passes, and stops when gains flatten. Prevents endless polish loops, vague self-criticism, and rewriting without improvement.
 
 **Use it when:** The first draft is decent but should improve through one or two structured refinement passes, and you need the revision to stay finite and purposeful.
@@ -398,7 +398,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/tool-interactive-critic-skill.md` · [framework]
+### `output-quality/tool-interactive-critic.md` · [framework]
 **What it is:** A post-generation verification skill based on the CRITIC pattern. Generates an initial output, selects the right external tools to critique it, revises only where tool-grounded evidence demands it, and stops when the major weaknesses are resolved.
 
 **Use it when:** The first draft is plausible but not yet trustworthy, and external tools can materially improve the answer's accuracy or safety.
@@ -407,7 +407,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/cognitive-load-operator-state-machine-skill.md` · [protocol]
+### `output-quality/cognitive-load-operator-state-machine.md` · [protocol]
 **What it is:** A protocol for making outputs easier to understand, retain, and act on. Forces the agent to inspect complexity before output, identify overload sources, choose a lower-load structure, and verify the result is easier to process.
 
 **Use it when:** An answer is technically correct but mentally expensive.
@@ -416,7 +416,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/feynman-technique-skill.md` · [framework]
+### `output-quality/feynman-technique.md` · [framework]
 **What it is:** A verification skill based on Feynman's teaching philosophy. After generating an explanation, plan, or recommendation, re-explains the core mechanism in plain language to expose gaps. Where the simple explanation breaks down is where the understanding is incomplete.
 
 **Use it when:** The agent has generated an explanation or recommendation and needs to verify it actually understands what it produced — not just that it can recite correct-sounding language.
@@ -425,7 +425,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/mece-pyramid-principle-skill.md` · [framework]
+### `output-quality/mece-pyramid-principle.md` · [framework]
 **What it is:** A structure skill based on Barbara Minto's *The Pyramid Principle*. Requires the governing thought to be stated first, supporting arguments to be Mutually Exclusive and Collectively Exhaustive (MECE), and evidence to belong to exactly one argument. Applies the MECE test to identify overlaps and gaps.
 
 **Use it when:** Structuring a complex output — plan, memo, architecture decision, analysis, recommendation — to be complete, non-redundant, and clear.
@@ -434,7 +434,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/tree-of-thoughts-skill.md` · [framework]
+### `output-quality/tree-of-thoughts.md` · [framework]
 **What it is:** A problem-solving skill based on the Tree of Thoughts paper (Yao et al., 2023). Generates multiple candidate reasoning branches, develops each to an intermediate checkpoint, evaluates their promise, prunes weak branches, and pursues only the strongest paths to a conclusion.
 
 **Use it when:** The problem has multiple plausible solution strategies and committing to one too early risks a confident but wrong conclusion.
@@ -443,7 +443,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/self-consistency-skill.md` · [framework]
+### `output-quality/self-consistency.md` · [framework]
 **What it is:** A reasoning-verification skill based on the Self-Consistency paper (Wang et al., 2022). Generates multiple independent reasoning chains to the same conclusion, checks whether they converge, and investigates divergence points where the reasoning is uncertain.
 
 **Use it when:** A single reasoning chain has produced a confident-looking conclusion and the stakes are high enough to warrant checking whether independent paths agree.
@@ -452,7 +452,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/faithfulness-aware-reasoning-skill.md` · [framework]
+### `reasoning/faithfulness-aware-reasoning.md` · [framework]
 **What it is:** A reasoning-verification skill that detects faithfulness hallucinations — reasoning that sounds plausible but isn't logically entailed by the premises. Based on arXiv:2602.05897 research on measuring faithfulness in chain-of-thought reasoning.
 
 **Use it when:** The agent produces confident-sounding reasoning that may not actually follow from the stated facts or premises.
@@ -461,7 +461,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/claim-verification-reasoning-skill.md` · [protocol]
+### `reasoning/claim-verification-reasoning.md` · [protocol]
 **What it is:** A claim-level verification protocol that breaks reasoning into atomic claims, assigns confidence labels (CERTAIN/LIKELY/UNCERTAIN/SPECULATIVE), verifies uncertain claims with tools, and builds dependency graphs. Based on CURE (arXiv:2604.12046), DCF (arXiv:2604.20098), and PRISM (arXiv:2604.16909).
 
 **Use it when:** Multi-step reasoning where errors compound, high-stakes conclusions requiring traceable evidence, or previous outputs contained confabulated justifications.
@@ -470,7 +470,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/reasoning-verification-hybrid-skill.md` · [protocol]
+### `reasoning/reasoning-verification-hybrid.md` · [protocol]
 **What it is:** A master anti-hallucination protocol combining 4 techniques: claim decomposition + verification (Phase 1), backward contradiction checks (Phase 2), confidence calibration with abstention (Phase 3), and logical entailment validation (Phase 4). Catches all 4 hallucination types from PRISM.
 
 **Use it when:** Hallucinations have caused bad outputs before, high-confidence conclusions are required, or you need to explain *why* you're confident.
@@ -479,7 +479,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/context-density-operator-skill.md` · [protocol]
+### `reasoning/context-density-operator.md` · [protocol]
 **What it is:** A context-management protocol that maximizes decision-relevant information per token. Uses hierarchical memory (always-visible / summarized / reference-table tiers), redundancy elimination, and on-demand expansion to keep the context window dense. Based on GenericAgent (arXiv:2604.17091) and information bottleneck principles.
 
 **Use it when:** The context window is filling during long-horizon tasks, retrieved memories or tool outputs are drowning out decision-relevant info, or you need to preserve reasoning quality while reducing token burn.
@@ -488,7 +488,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/cot-pruning-reasoning-skill.md` · [protocol]
+### `reasoning/cot-pruning-reasoning.md` · [protocol]
 **What it is:** A chain-of-thought compression protocol that applies two-pass pruning: coarse step-level (does removing this step change the conclusion?) and fine token-level (keep only assertions, key evidence, and logical connectors). Based on CoT-Influx (arXiv:2312.08901) and sufficiency-conciseness trade-off research.
 
 **Use it when:** Chain-of-thought reasoning exceeds 10 steps, contains redundant justifications, or you need to fit more reasoning within a context budget.
@@ -497,7 +497,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/selective-halt-reasoning-skill.md` · [protocol]
+### `reasoning/selective-halt-reasoning.md` · [protocol]
 **What it is:** An early-stopping protocol that monitors reasoning output for semantic stabilization. Halts after 3 consecutive no-change steps or when halting criteria are met. Based on DASH delta-attention selective halting (arXiv:2604.18103) adapted for agent reasoning.
 
 **Use it when:** Reasoning is converging but continuing to elaborate, token budget is constrained, or you need to know when to stop iterating.
@@ -506,7 +506,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `reasoning/token-budget-operator-skill.md` · [protocol]
+### `reasoning/token-budget-operator.md` · [protocol]
 **What it is:** A master token-efficiency protocol that orchestrates four techniques in sequence: context density maximization (Phase 1), CoT pruning (Phase 2), selective halting (Phase 3), and SOP capture (Phase 4). Designed for long-horizon tasks where token burn is the bottleneck.
 
 **Use it when:** Context window is filling during multi-step tasks, you expect >10 reasoning steps, or you want experience to compound via reusable SOPs.
@@ -515,7 +515,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/documentation-craft-skill.md` · [framework]
+### `output-quality/documentation-craft.md` · [framework]
 **What it is:** A structured technical writing skill for generating high-quality documentation. Follows a 5-phase process: outline-first planning, context enrichment, drafting, verification, and refinement. Based on DocAgent multi-agent architecture and literate programming research.
 
 **Use it when:** Writing README files, API documentation, architecture decision records, or any technical documentation where clarity and completeness matter.
@@ -524,7 +524,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `output-quality/large-documentation-navigation-skill.md` · [framework]
+### `output-quality/large-documentation-navigation.md` · [framework]
 **What it is:** A skill for transforming unwieldy documentation repositories into navigable, user-centered knowledge bases. Builds multi-layered navigation systems that help users find what they need based on their situation, not just categorical listings.
 
 **Use it when:** Documentation has grown beyond 20+ items, users report "can't find anything", or the README is just a long list without situational guidance.
@@ -534,7 +534,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 |---
 
 
-### `systems-and-architecture/the-goal-theory-of-constraints-ai-skill.md` · [framework]
+### `systems-and-architecture/the-goal-theory-of-constraints-ai.md` · [framework]
 **What it is:** A throughput and bottleneck lens based on Theory of Constraints. Every system has a limiting constraint; identify, exploit, and elevate it before optimizing anything else.
 
 **Use it when:** The agent must improve performance or delivery by finding the real limiting factor rather than optimizing everything.
@@ -543,7 +543,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/team-topologies-ai-skill.md` · [framework]
+### `systems-and-architecture/team-topologies-ai.md` · [framework]
 **What it is:** A coordination and ownership lens for multi-agent or multi-team systems. Enforces bounded ownership, clear interaction modes, cognitive load control, and stream-aligned delivery.
 
 **Use it when:** The problem is less about one task and more about how work should be split, owned, and coordinated.
@@ -552,7 +552,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/accelerate-ai-skill.md` · [framework]
+### `systems-and-architecture/accelerate-ai.md` · [framework]
 **What it is:** A delivery and reliability lens inspired by Accelerate-style thinking. Optimizes flow, stability, and feedback together; measures what matters; prefers capability improvements over vanity activity.
 
 **Use it when:** The agent must improve engineering throughput, feedback loops, reliability, or team productivity using evidence rather than folklore.
@@ -561,7 +561,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/designing-data-intensive-applications-ai-skill.md` · [framework]
+### `systems-and-architecture/designing-data-intensive-applications-ai.md` · [framework]
 **What it is:** A data-systems reasoning lens inspired by DDIA. Reasons about consistency, replication, partitioning, failure modes, and data flow choices consciously.
 
 **Use it when:** The agent must reason about storage, distributed systems, consistency, replication, partitioning, messaging, or reliability tradeoffs.
@@ -570,7 +570,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/domain-driven-design-skill.md` · [framework]
+### `systems-and-architecture/domain-driven-design.md` · [framework]
 **What it is:** A domain-modeling lens based on Eric Evans' *Domain-Driven Design*. Identifies bounded contexts, ubiquitous language gaps, aggregate boundaries, domain events, and anti-corruption layer needs. Maps how contexts relate (shared kernel, customer-supplier, conformist, ACL) and aligns system structure to domain structure.
 
 **Use it when:** The agent must make architecture decisions about service or module boundaries, ownership, or integration patterns — especially when the existing structure has drifted from the domain it serves.
@@ -579,7 +579,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/release-it-stability-skill.md` · [framework]
+### `systems-and-architecture/release-it-stability.md` · [framework]
 **What it is:** A production-resilience lens based on Michael Nygard's *Release It!*. Checks every integration point for circuit breakers, timeouts, and bulkheads; identifies unbounded accumulations that cause time-deferred failure; verifies fail-fast, load-shedding, and steady-state patterns are present.
 
 **Use it when:** The agent is designing or reviewing a distributed system and needs to verify it is stable under failure conditions, not just under normal operation.
@@ -588,7 +588,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
-### `systems-and-architecture/sre-error-budget-skill.md` · [framework]
+### `systems-and-architecture/sre-error-budget.md` · [framework]
 **What it is:** A reliability-governance lens based on Google's *Site Reliability Engineering* book. Defines SLIs and SLOs at the right level, calculates error budgets, and enforces a release policy: spend the budget on velocity when healthy, freeze non-critical changes when depleted. Includes toil assessment and automation targeting.
 
 **Use it when:** The agent must reason about the tradeoff between reliability and deployment velocity — making that tradeoff explicit, measurable, and governed rather than implicit and conflict-driven.
@@ -601,7 +601,7 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 Skills for structuring how agents plan, route, delegate, and control complex workflows.
 
-### `orchestration/agentic-design-patterns-orchestrator-skill.md` · [framework]
+### `orchestration/agentic-design-patterns-orchestrator.md` · [framework]
 **What it is:** A conceptual version of the orchestration skill focused on planning, routing, deliberate tool use, reflection, memory, sub-agents, and human-in-the-loop behavior.
 
 **Use it when:** You want the agent to reason with agentic patterns without necessarily enforcing a strict protocol.
@@ -610,7 +610,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/agentic-design-patterns-orchestrator-state-machine-skill.md` · [protocol]
+### `orchestration/agentic-design-patterns-orchestrator-state-machine.md` · [protocol]
 **What it is:** A workflow-control skill for tasks that need classification, planning, routing, evidence gathering, execution, reflection, verification, and stopping.
 
 **Use it when:** The agent should behave like an orchestrated system, not a one-shot responder.
@@ -619,7 +619,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/socratic-clarification-skill.md` · [protocol]
+### `orchestration/socratic-clarification.md` · [protocol]
 **What it is:** A pre-execution clarification protocol. Maps the agent's assumptions explicitly, identifies the single most critical assumption whose failure would redirect the work, formulates one targeted clarifying question, and gates execution on the answer — or requires the ambiguity to be explicitly accepted with stated reasoning.
 
 **Use it when:** The agent is about to execute an ambiguous or high-stakes task where confident wrong execution is the primary failure risk.
@@ -628,7 +628,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/separation-of-concerns-skill.md` · [framework]
+### `orchestration/separation-of-concerns.md` · [framework]
 **What it is:** An orchestration-discipline skill based on Dijkstra's Separation of Concerns principle. Explicitly separates planning from execution, diagnosis from remediation, observation from interpretation, and design from review — so that concerns in one phase do not contaminate the reasoning or side effects of another.
 
 **Use it when:** A multi-step task is producing confused or contaminated output because different kinds of work are happening simultaneously, or the agent is diagnosing and fixing at the same time.
@@ -637,7 +637,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/agent-memory-hygiene-skill.md` · [framework]
+### `orchestration/agent-memory-hygiene.md` · [framework]
 **What it is:** A memory-management skill for agents that have cross-session memory or stored context. Categorizes stored items by durability and trust level (durable fact / working context / provisional belief / decision + rationale), applies staleness signals when retrieving, and ensures stored decisions include their rationale and the conditions under which they should be revisited.
 
 **Use it when:** The agent has access to stored context from prior sessions and needs to decide what to trust, what to re-verify, and what to prune.
@@ -647,7 +647,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/sop-evolution-memory-skill.md` · [protocol]
+### `orchestration/sop-evolution-memory.md` · [protocol]
 **What it is:** A trajectory-distillation protocol that turns successful task executions into reusable Standard Operating Procedures (SOPs). Future similar tasks load the compact SOP (500 tokens) instead of the full trajectory (3000+ tokens). Includes indexing, retrieval, and quality gates. Based on GenericAgent self-evolution (arXiv:2604.17091).
 
 **Use it when:** You repeatedly solve similar tasks, previous trajectories contain reusable patterns, or context budget is too tight to load full historical traces.
@@ -656,7 +656,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/monte-carlo-tree-search-skill.md` · [framework]
+### `orchestration/monte-carlo-tree-search.md` · [framework]
 **What it is:** A branch-allocation skill based on Monte Carlo Tree Search (MCTS). Generates distinct candidate branches, spends more effort on branches that earn it through evidence, preserves limited exploration to avoid early lock-in, and uses bounded probes instead of full commitment too early.
 
 **Use it when:** Multiple plausible strategies exist and the agent needs a disciplined way to decide which branch deserves more reasoning, testing, or tool budget.
@@ -665,7 +665,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/thought-retriever-coppermind-skill.md` · [protocol]
+### `orchestration/thought-retriever-coppermind.md` · [protocol]
 **What it is:** A memory-augmented reasoning skill that stores structured "thoughts" (observations, inferences, hypotheses, uncertainties, conclusions) in the Coppermind three-layer memory system. Enables sub-agents to retrieve not just raw data but the reasoning traces of prior agents.
 
 **Use it when:** You want agents to build collective memory across sessions, learn from each other's problem-solving approaches, or retrieve "how we thought about this" not just "what we concluded."
@@ -676,7 +676,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/weak-link-detection-multi-agent-skill.md` · [protocol]
+### `orchestration/weak-link-detection-multi-agent.md` · [protocol]
 **What it is:** A multi-agent quality control protocol that identifies and isolates the weakest reasoning chain before aggregation. Prevents error amplification when one agent produces poor output.
 
 **Use it when:** Coordinating multiple agents where one bad output could contaminate the final result.
@@ -685,7 +685,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `orchestration/rashomon-triad-hybrid-skill.md` · [protocol]
+### `orchestration/rashomon-triad-hybrid.md` · [protocol]
 **What it is:** A multi-perspective structured reasoning system combining Rashomon Memory (parallel goal-conditioned perspectives that maintain conflicting interpretations) with Triad Reasoning (abductive hypothesis generation → deductive verification → inductive pattern extraction). Perspectives argue via structured argumentation; Dung's semantics determines winners.
 
 **Use it when:** Multiple stakeholders have genuinely conflicting goals, the decision has no single "correct" answer, or you need to surface and document why alternatives were rejected rather than hiding conflict behind false consensus.
@@ -720,7 +720,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `judgment-and-routing/counterfactual-policy-testing-skill.md` · [protocol]
+### `judgment-and-routing/counterfactual-policy-testing.md` · [protocol]
 **What it is:** A decision-validation protocol that tests proposed changes against three explicit counterfactuals — null (do nothing), opposite (do reverse), partial (do 50%) — and only proceeds if the change beats all alternatives.
 
 **Use it when:** Before significant code changes, when multiple solutions seem plausible, or when you need to prevent "we did X, therefore X caused Y" fallacies.
@@ -729,7 +729,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `execution/cognitive-friction-governor-skill.md` · [protocol]
+### `execution/cognitive-friction-governor.md` · [protocol]
 **What it is:** A deliberation budgeting system that assigns "friction costs" to cognitive operations (search=1, read=2, analysis=10, etc.). When budget is exhausted, you must decide or explicitly request more budget with justification.
 
 **Use it when:** You tend to over-think trivial problems or under-think complex ones, or when analysis paralysis is a recurring issue.
@@ -738,7 +738,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `systems-and-architecture/cross-domain-analogy-generator-skill.md` · [framework]
+### `systems-and-architecture/cross-domain-analogy-generator.md` · [framework]
 **What it is:** A creative problem-solving lens that breaks fixation by forcing structural analogies from unrelated domains (biology, music, traffic engineering, cooking). Maps problem structures to foreign frameworks and transfers insights.
 
 **Use it when:** Stuck on a problem with repeated failed attempts, when local optima seem like global optima, or when you need "fresh eyes" on a familiar problem.
@@ -766,7 +766,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `judgment-and-routing/metacognitive-monitoring-skill.md` · [protocol]
+### `judgment-and-routing/metacognitive-monitoring.md` · [protocol]
 **What it is:** A confidence calibration protocol forcing agents to explicitly decide KEEP or WITHDRAW their output, and BET or decline — based on the Nelson-Narens metacognitive monitoring framework. Tracks "withdraw delta" to distinguish blanket confidence from selective sensitivity.
 
 **Use it when:** You need to know when the agent knows it doesn't know — before committing to high-stakes code changes, for selective prediction, or when overconfidence is the primary failure mode.
@@ -775,7 +775,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `execution/keyword-agnostic-logic-locator-skill.md` · [protocol]
+### `execution/keyword-agnostic-logic-locator.md` · [protocol]
 **What it is:** A neurosymbolic code navigation system that extracts program facts (call graphs, data flows, type hierarchies) into a queryable knowledge graph, then uses Datalog-style logic queries to locate code by structural relationships — not by grepping for names.
 
 **Use it when:** Function names are unclear or misleading, you need to find code by "what it does" not "what it's called," or keyword search returns too much noise.
@@ -786,7 +786,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `execution/abductive-first-debugging-skill.md` · [protocol]
+### `execution/abductive-first-debugging.md` · [protocol]
 **What it is:** A debugging protocol that generates multiple competing hypotheses and selects the one providing the *best explanation* for all observed symptoms — inference to best explanation rather than first-plausible-cause or pattern-matching.
 
 **Use it when:** Novel failures with no established pattern, symptoms that could have multiple causes, deductive tracing hits dead ends, or complex multi-system failures.
@@ -795,7 +795,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `systems-and-architecture/everything-as-code-conceptualizer-skill.md` · [framework]
+### `systems-and-architecture/everything-as-code-conceptualizer.md` · [framework]
 **What it is:** A conceptual lens that forces viewing any system, process, or problem through a "code lens" — writing pseudocode to represent team dynamics, unclear requirements, deployment issues, or knowledge gaps. The act of codification reveals hidden structure and assumptions.
 
 **Use it when:** Messy human/process problems resist structured analysis, you need to surface hidden assumptions, or "if only we had clear specs" is being said.
@@ -804,7 +804,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
-### `output-quality/compression-as-understanding-skill.md` · [protocol]
+### `output-quality/compression-as-understanding.md` · [protocol]
 **What it is:** A verification protocol that tests understanding by compressing knowledge into minimal essential form (≤10 sentences), then testing if that compressed representation can reconstruct key details. High compression ratio = deep understanding.
 
 **Use it when:** After exploring a large codebase to verify understanding, before explaining complex systems, or when you need to distinguish "familiar with" from "understands."
@@ -818,7 +818,7 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 Skills for creating skills, integrating external systems, and development workflows.
 
-### `software-development/verify-before-integrate-skill.md` · [framework]
+### `software-development/verify-before-integrate.md` · [framework]
 **What it is:** A verification skill for integrating research paper concepts, API documentation, or external system descriptions into implementations. Verifies actual system behavior rather than assuming terminology alignment — names that sound similar often refer to different implementations.
 
 **Use it when:** Writing a skill that connects to an existing system (Coppermind, Convex, Supabase, etc.), implementing a research paper's algorithm, or mapping abstract concepts to concrete APIs or database schemas.

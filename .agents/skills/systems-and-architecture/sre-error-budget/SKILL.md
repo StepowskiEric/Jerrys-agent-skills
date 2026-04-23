@@ -1,5 +1,5 @@
 ---
-name: "sre-error-budget-skill"
+name: "sre-error-budget"
 description: "Use this skill when the agent must reason about the tradeoff between reliability and the velocity of change — and make that tradeoff explicit, evidence-based, and governed."
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: "first-principles-skill"
+name: "first-principles"
 description: "Use this skill when the agent needs to reason from the ground up rather than from convention, analogy, or received wisdom."
 ---
 

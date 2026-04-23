@@ -1,5 +1,5 @@
 ---
-name: "refactoring-state-machine-skill"
+name: "refactoring-state-machine"
 description: "Use this skill when the agent must improve structure without drifting into endless cleanup."
 ---
 

@@ -281,5 +281,5 @@ compressed_summary_can_be_used_for:
 
 - Kolmogorov complexity theory
 - Minimum Description Length (MDL) principle
-- `feynman-technique-skill` — similar "explain simply" approach
-- `how-to-solve-it-state-machine-skill` — for structured problem-solving
+- `feynman-technique` — similar "explain simply" approach
+- `how-to-solve-it-state-machine` — for structured problem-solving

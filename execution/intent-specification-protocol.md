@@ -432,11 +432,11 @@ result:
 ## Integration
 
 Combine with:
-- `step-level-verification-protocol-skill`: Use step verification during EXECUTE for complex implementations
-- `thoroughness-check-etto-skill`: Use as preflight before INIT to assess whether the task warrants this protocol
-- `bounded-self-revision-skill`: Use during REPAIR for iterative improvement of failing code
-- `abductive-first-debugging-skill`: Use when VERIFY fails and the cause isn't obvious
-- `checklist-manifesto-skill`: Use for high-stakes changes where missing an invariant has serious consequences
+- `step-level-verification-protocol`: Use step verification during EXECUTE for complex implementations
+- `thoroughness-check-etto`: Use as preflight before INIT to assess whether the task warrants this protocol
+- `bounded-self-revision`: Use during REPAIR for iterative improvement of failing code
+- `abductive-first-debugging`: Use when VERIFY fails and the cause isn't obvious
+- `checklist-manifesto`: Use for high-stakes changes where missing an invariant has serious consequences
 
 ## Research Basis
 

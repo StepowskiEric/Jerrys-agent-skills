@@ -1,5 +1,5 @@
 ---
-name: "thoroughness-check-etto-skill"
+name: "thoroughness-check-etto"
 description: "Use this skill before the agent executes any meaningful task."
 ---
 

@@ -195,7 +195,7 @@ Claim D: Changing router to check !!user fixes the bug. [CERTAIN — test passes
 | Skill | What it catches | This skill adds |
 |-------|----------------|-----------------|
 | `faithfulness-aware-reasoning` | Reasoning doesn't follow from premises (type 3) | Types 1, 2, 4: missing knowledge, wrong facts, instruction drift |
-| `self-consistency-skill` | Multiple reasoning chains disagree | Single-chain claim verification |
+| `self-consistency` | Multiple reasoning chains disagree | Single-chain claim verification |
 | `cot-pruning-reasoning` | Redundant reasoning steps | Falsifiable claims before pruning |
 
 **Best used together:** Run `claim-verification` to ensure claims are solid, then `faithfulness-aware` to check entailment, then `cot-pruning` to compress.

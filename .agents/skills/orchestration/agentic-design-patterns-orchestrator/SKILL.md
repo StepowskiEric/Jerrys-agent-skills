@@ -1,5 +1,5 @@
 ---
-name: "agentic-design-patterns-orchestrator-skill"
+name: "agentic-design-patterns-orchestrator"
 description: "Use this skill when the agent must operate as a real workflow rather than a single-shot responder."
 ---
 

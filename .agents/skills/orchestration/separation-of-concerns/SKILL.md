@@ -1,5 +1,5 @@
 ---
-name: "separation-of-concerns-skill"
+name: "separation-of-concerns"
 description: "Use this skill when the agent is orchestrating a multi-step task and needs to prevent different concerns from contaminating each other's reasoning, side effects, or state."
 ---
 

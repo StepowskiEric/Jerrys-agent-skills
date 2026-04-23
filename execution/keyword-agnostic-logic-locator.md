@@ -9,7 +9,7 @@ The skill references two Python scripts (`extract_code_facts.py` and `query_code
 **Quick Setup:**
 ```bash
 # 1. Install the skill (gets the .md file)
-npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator
 
 # 2. Copy the required scripts (manual step)
 mkdir -p ~/.copilot/skills/scripts
@@ -502,7 +502,7 @@ The `npx jerry-skills install` command only copies `.md` skill files, not suppor
 
 **Step 1: Install the skill**
 ```bash
-npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator
 ```
 
 **Step 2: Get the scripts**
@@ -576,7 +576,7 @@ echo "Setting up Keyword-Agnostic Logic Locator..."
 
 # Install skill
 echo "Installing skill..."
-npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator
 
 # Download scripts
 echo "Downloading scripts..."

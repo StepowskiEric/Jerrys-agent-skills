@@ -1,5 +1,5 @@
 ---
-name: "problem-mode-router-cynefin-state-machine-skill"
+name: "problem-mode-router-cynefin-state-machine"
 description: "Use this skill when the agent must determine what kind of problem it is facing before deciding how to respond — and when you want that classification to be an enforced gate rather than an optional lens."
 ---
 

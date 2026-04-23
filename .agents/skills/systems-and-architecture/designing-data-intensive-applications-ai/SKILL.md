@@ -1,5 +1,5 @@
 ---
-name: "designing-data-intensive-applications-ai-skill"
+name: "designing-data-intensive-applications-ai"
 description: "Use this skill when the agent must reason about data systems, storage choices, distributed behavior, and tradeoffs in reliability, scalability, and maintainability."
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: "working-effectively-with-legacy-code-state-machine-skill"
+name: "working-effectively-with-legacy-code-state-machine"
 description: "Use this skill when the agent must change brittle code with weak tests, unclear behavior, or heavy coupling."
 ---
 

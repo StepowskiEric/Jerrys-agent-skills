@@ -1,5 +1,5 @@
 ---
-name: "ooda-loop-state-machine-skill"
+name: "ooda-loop-state-machine"
 description: "Use this skill when the agent must operate in an environment where conditions are changing rapidly, adversarial, or unpredictable between actions."
 ---
 

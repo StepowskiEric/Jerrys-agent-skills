@@ -423,8 +423,8 @@ Faithfulness Score: 75% (3/4 steps entailed)
 
 Combine with:
 - `step-level-verification-protocol`: Use faithfulness as verification criterion
-- `self-consistency-skill`: Cross-check entailment across multiple reasoning paths
-- `bounded-self-revision-skill`: Limit revision attempts on unfaithful steps
+- `self-consistency`: Cross-check entailment across multiple reasoning paths
+- `bounded-self-revision`: Limit revision attempts on unfaithful steps
 
 ## Research Basis
 

@@ -1,5 +1,5 @@
 ---
-name: "thoroughness-check-etto-state-machine-skill"
+name: "thoroughness-check-etto-state-machine"
 description: "Use this skill as a universal preflight protocol before the agent performs any meaningful task."
 ---
 

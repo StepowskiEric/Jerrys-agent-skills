@@ -1,5 +1,5 @@
 ---
-name: "problem-mode-router-cynefin-skill"
+name: "problem-mode-router-cynefin"
 description: "Use this skill when the agent must decide **what kind of problem this is** before deciding how to solve it."
 ---
 

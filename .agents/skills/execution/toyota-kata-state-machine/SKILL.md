@@ -1,5 +1,5 @@
 ---
-name: "toyota-kata-state-machine-skill"
+name: "toyota-kata-state-machine"
 description: "Use this skill when the agent must improve a system through disciplined iteration instead of one large speculative change."
 ---
 

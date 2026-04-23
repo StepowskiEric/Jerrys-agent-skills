@@ -1,5 +1,5 @@
 ---
-name: "steelmanning-skill"
+name: "steelmanning"
 description: "Use this skill when the agent is about to commit to a recommendation and needs to genuinely test whether the opposing or alternative position is stronger than it appears."
 ---
 

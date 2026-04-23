@@ -1,5 +1,5 @@
 ---
-name: "tree-of-thoughts-skill"
+name: "tree-of-thoughts"
 description: "Use this skill when the agent must solve a problem where the correct reasoning path is not immediately clear and committing to one line of thinking too early risks missing a better solution."
 ---
 

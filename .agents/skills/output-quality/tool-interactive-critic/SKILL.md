@@ -1,5 +1,5 @@
 ---
-name: "tool-interactive-critic-skill"
+name: "tool-interactive-critic"
 description: "Use this skill after an initial draft, answer, plan, code change, or recommendation already exists."
 ---
 

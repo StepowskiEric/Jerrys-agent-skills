@@ -309,4 +309,4 @@ test_execution:
 
 - Paper: "Wiring the 'Why': A Unified Taxonomy of Abductive Reasoning in LLMs" (arXiv:2604.08016)
 - Peirce's theory of abduction (inference to best explanation)
-- `how-to-solve-it-state-machine-skill` — for structured problem-solving
+- `how-to-solve-it-state-machine` — for structured problem-solving

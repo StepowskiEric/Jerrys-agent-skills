@@ -1,5 +1,5 @@
 ---
-name: "second-order-thinking-skill"
+name: "second-order-thinking"
 description: "Use this skill when the agent needs to reason past the immediate, obvious consequence of an action and consider what happens next."
 ---
 

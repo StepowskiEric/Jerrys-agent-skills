@@ -423,9 +423,9 @@ Agent C:
 ## Integration
 
 Combine with:
-- `agentic-design-patterns-orchestrator-skill`: For multi-agent workflow management
-- `self-consistency-skill`: Cross-check agent outputs for consistency
-- `separation-of-concerns-skill`: Assign different aspects to different agents
+- `agentic-design-patterns-orchestrator`: For multi-agent workflow management
+- `self-consistency`: Cross-check agent outputs for consistency
+- `separation-of-concerns`: Assign different aspects to different agents
 
 ## Research Basis
 

@@ -263,5 +263,5 @@ partial:
 ## See Also
 
 - Paper: "Thinking Fast, Thinking Wrong: Intuitiveness Modulates LLM Counterfactual Reasoning" (arXiv:2604.10511)
-- `pre-mortem-skill` — for risk analysis
-- `explore-vs-exploit-skill` — for decision timing
+- `pre-mortem` — for risk analysis
+- `explore-vs-exploit` — for decision timing

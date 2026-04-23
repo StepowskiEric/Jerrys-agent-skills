@@ -1,5 +1,5 @@
 ---
-name: "unsafe-control-actions-hazard-analysis-skill"
+name: "unsafe-control-actions-hazard-analysis"
 description: "Use this skill when the agent is about to recommend or perform an action that could create serious harm, instability, or irreversible damage."
 ---
 

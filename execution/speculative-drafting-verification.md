@@ -368,9 +368,9 @@ Candidate 3 (CDN):
 ## Integration
 
 Combine with:
-- `tree-of-thoughts-skill`: Use speculative drafting for each tree branch
+- `tree-of-thoughts`: Use speculative drafting for each tree branch
 - `step-level-verification-protocol`: Verify each candidate step-by-step
-- `cognitive-friction-governor-skill`: Budget exploration vs exploitation
+- `cognitive-friction-governor`: Budget exploration vs exploitation
 
 ## Research Basis
 

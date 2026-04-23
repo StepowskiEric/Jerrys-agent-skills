@@ -1,5 +1,5 @@
 ---
-name: "pragmatic-programmer-state-machine-skill"
+name: "pragmatic-programmer-state-machine"
 description: "Use this skill when the agent must work pragmatically in a real system: - bounded changes - reversible choices - automation instead of repeated toil - root-cause fixes instead of symptom patches - practical scope control"
 ---
 

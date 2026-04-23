@@ -1,5 +1,5 @@
 ---
-name: "monte-carlo-tree-search-skill"
+name: "monte-carlo-tree-search"
 description: "Use this skill when the agent faces a problem with multiple plausible strategies and must decide where to spend additional reasoning, testing, or tool-use budget."
 ---
 

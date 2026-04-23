@@ -415,4 +415,4 @@ INFO FOR DB;
 
 - Paper: "Thought-Retriever: Don't Just Retrieve Raw Data, Retrieve Thoughts" (arXiv:2604.12231)
 - Coppermind skill: `coppermind-three-layer-memory` — full architecture details
-- `rashomon-triad-hybrid-skill` — for when multiple conflicting perspectives exist
+- `rashomon-triad-hybrid` — for when multiple conflicting perspectives exist

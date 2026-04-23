@@ -1,5 +1,5 @@
 ---
-name: "agentic-design-patterns-orchestrator-state-machine-skill"
+name: "agentic-design-patterns-orchestrator-state-machine"
 description: "Use this skill when the agent must behave like a workflow system rather than a one-shot responder."
 ---
 

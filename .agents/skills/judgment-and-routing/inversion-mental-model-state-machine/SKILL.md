@@ -1,5 +1,5 @@
 ---
-name: "inversion-mental-model-state-machine-skill"
+name: "inversion-mental-model-state-machine"
 description: "Use this skill when the agent needs to reason more effectively about risk, failure, blind spots, and defensive design."
 ---
 

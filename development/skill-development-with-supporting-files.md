@@ -205,7 +205,7 @@ chmod +x ~/.copilot/skills/scripts/helper.py
 
 This skill demonstrates the full pattern:
 
-**Skill file:** `execution/keyword-agnostic-logic-locator-skill.md`
+**Skill file:** `execution/keyword-agnostic-logic-locator.md`
 - References `scripts/extract_code_facts.py`
 - References `scripts/query_code_facts.py`
 
@@ -217,7 +217,7 @@ This skill demonstrates the full pattern:
 **Installation:**
 ```bash
 # Step 1: Install skill (gets .md only)
-npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator-skill
+npx jerry-skills install --agent copilot --skill keyword-agnostic-logic-locator
 
 # Step 2: Manual script copy
 mkdir -p ~/.copilot/skills/scripts

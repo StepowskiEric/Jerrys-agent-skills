@@ -1,5 +1,5 @@
 ---
-name: "agent-memory-hygiene-skill"
+name: "agent-memory-hygiene"
 description: "Use this skill when the agent must decide what to remember, what to forget, how long to trust stored context, and when to treat cached knowledge as stale."
 ---
 

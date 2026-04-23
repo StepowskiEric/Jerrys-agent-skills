@@ -1,5 +1,5 @@
 ---
-name: "thinking-in-systems-state-machine-skill"
+name: "thinking-in-systems-state-machine"
 description: "Use this skill when the task involves interactions, feedback loops, delayed effects, or multi-step downstream consequences."
 ---
 

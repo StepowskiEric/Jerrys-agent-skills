@@ -1,5 +1,5 @@
 ---
-name: "domain-driven-design-skill"
+name: "domain-driven-design"
 description: "Use this skill when the agent must reason about software architecture, system design, or code organization in terms of the business domain — not just technical structure."
 ---
 

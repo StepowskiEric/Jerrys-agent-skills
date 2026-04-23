@@ -1,5 +1,5 @@
 ---
-name: "pre-mortem-skill"
+name: "pre-mortem"
 description: "Use this skill when the agent must surface the real risks in a plan before committing to it."
 ---
 

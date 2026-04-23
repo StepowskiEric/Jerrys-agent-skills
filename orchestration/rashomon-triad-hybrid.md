@@ -461,5 +461,5 @@ Revisit caching only if 5x improvement insufficient AND consistency window accep
 
 - Paper: "Rashomon Memory: Towards Argumentation-Driven Retrieval" (arXiv:2604.03588)
 - Paper: "Structured Abductive-Deductive-Inductive Reasoning" (arXiv:2604.15727)
-- `thought-retriever-coppermind-skill` — for storing reasoning traces
-- `pre-mortem-skill` — for risk analysis before decisions
+- `thought-retriever-coppermind` — for storing reasoning traces
+- `pre-mortem` — for risk analysis before decisions

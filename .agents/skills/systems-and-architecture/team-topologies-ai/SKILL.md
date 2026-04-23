@@ -1,5 +1,5 @@
 ---
-name: "team-topologies-ai-skill"
+name: "team-topologies-ai"
 description: "Use this skill when the agent must organize work across multiple agents, teams, or ownership boundaries without creating coordination chaos."
 ---
 

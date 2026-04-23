@@ -1,5 +1,5 @@
 ---
-name: "six-thinking-hats-skill"
+name: "six-thinking-hats"
 description: "Use this skill when the agent must examine a problem, decision, or proposal from multiple perspectives instead of collapsing all reasoning into a single, biased evaluation."
 ---
 

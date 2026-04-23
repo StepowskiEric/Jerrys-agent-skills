@@ -508,4 +508,4 @@ refinement:
 - LLMs for Explainable AI (arXiv:2504.00125)
 - Natural Language Outlines for Code (arXiv:2408.04820)
 - Context-Aware Code Documentation (arXiv:2509.14273)
-- `feynman-technique-skill` — for explaining simply
+- `feynman-technique` — for explaining simply

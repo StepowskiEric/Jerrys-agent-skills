@@ -1,5 +1,5 @@
 ---
-name: "philosophy-of-software-design-state-machine-skill"
+name: "philosophy-of-software-design-state-machine"
 description: "Use this skill when the agent must manage complexity, design deeper modules, and avoid shallow abstraction sprawl."
 ---
 

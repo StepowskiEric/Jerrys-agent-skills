@@ -1,5 +1,5 @@
 ---
-name: "the-goal-theory-of-constraints-ai-skill"
+name: "the-goal-theory-of-constraints-ai"
 description: "Use this skill when the agent must improve throughput, delivery, or system performance by finding the real bottleneck instead of optimizing everything."
 ---
 

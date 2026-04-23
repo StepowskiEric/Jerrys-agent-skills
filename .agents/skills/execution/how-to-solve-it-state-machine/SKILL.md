@@ -1,5 +1,5 @@
 ---
-name: "how-to-solve-it-state-machine-skill"
+name: "how-to-solve-it-state-machine"
 description: "Use this skill when the agent is solving a hard problem under uncertainty."
 ---
 

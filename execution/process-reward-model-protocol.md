@@ -483,8 +483,8 @@ Reward trajectory shows early recovery from JSON mistake
 
 Combine with:
 - `step-level-verification-protocol`: Use PRM as verification method
-- `tree-of-thoughts-skill`: Track rewards per branch, prune low-reward branches
-- `cognitive-friction-governor-skill`: Budget total reasoning effort
+- `tree-of-thoughts`: Track rewards per branch, prune low-reward branches
+- `cognitive-friction-governor`: Budget total reasoning effort
 
 ## Research Basis
 

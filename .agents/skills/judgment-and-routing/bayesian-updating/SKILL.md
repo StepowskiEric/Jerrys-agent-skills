@@ -1,5 +1,5 @@
 ---
-name: "bayesian-updating-skill"
+name: "bayesian-updating"
 description: "Use this skill when the agent must maintain and update beliefs in the face of new evidence — without swinging too far on a single data point, without ignoring evidence that conflicts with prior beliefs, and without losing track of what was known before."
 ---
 

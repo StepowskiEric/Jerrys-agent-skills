@@ -1,5 +1,5 @@
 ---
-name: "release-it-stability-skill"
+name: "release-it-stability"
 description: "Use this skill when the agent must reason about whether a distributed system design is stable under failure conditions, not just under normal operation."
 ---
 

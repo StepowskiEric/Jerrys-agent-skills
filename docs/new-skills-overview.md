@@ -180,7 +180,7 @@ response=$(curl -s http://localhost:11434/api/generate \
 
 ---
 
-## 3. intent-specification-protocol-skill (protocol)
+## 3. intent-specification-protocol (protocol)
 
 ### Purpose
 State machine protocol forcing crystallization of intent into executable specs before coding. Addresses the bottleneck: specification quality, not model capability.
