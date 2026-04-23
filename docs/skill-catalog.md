@@ -192,6 +192,15 @@ Skills for executing technical work in a bounded, disciplined way.
 
 **Best for:** Non-obvious bugs, avoiding symptom-only fixes, patch search and verification. Based on DebugRepair research (+19.9% from patch augmentation alone).
 
+---
+
+### `debugging/root-cause-analysis.md` · [protocol]
+**What it is:** A disciplined diagnostic protocol that forces distinction between symptoms and causes. Uses 5 Whys, Ishikawa diagrams, and falsifiable hypotheses to prevent symptom patching and workaround hacks.
+
+**Use it when:** A bug returns after being "fixed," a fix in one area breaks something else, or the agent is tempted to add guards without understanding why bad input arrived.
+
+**Best for:** Recurring bugs, complex failures with multiple symptoms, preventing regression, any situation where the visible error is not the actual defect.
+
 ## 🧭 Judgment & Routing — deciding what to do and how rigorously
 
 Skills for routing tasks, calibrating rigor, and reasoning about risks and tradeoffs.
@@ -452,6 +461,15 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `output-quality/stakeholder-communication.md` · [framework]
+**What it is:** A communication calibration skill that forces the agent to separate facts from inferences, state confidence levels explicitly, estimate with ranges rather than points, surface unknowns, and match technical depth to the audience. Prevents overpromising and hidden uncertainty.
+
+**Use it when:** Presenting conclusions, estimates, recommendations, or technical explanations to humans — especially when the recipient must act on the output.
+
+**Best for:** Incident reports, design docs, time estimates, tradeoff explanations, any situation where false confidence creates bad decisions.
+
+---
+
 ### `reasoning/faithfulness-aware-reasoning.md` · [framework]
 **What it is:** A reasoning-verification skill that detects faithfulness hallucinations — reasoning that sounds plausible but isn't logically entailed by the premises. Based on arXiv:2602.05897 research on measuring faithfulness in chain-of-thought reasoning.
 
@@ -594,6 +612,24 @@ Skills that refine, critique, and simplify the agent's own outputs.
 **Use it when:** The agent must reason about the tradeoff between reliability and deployment velocity — making that tradeoff explicit, measurable, and governed rather than implicit and conflict-driven.
 
 **Best for:** Deployment decisions, change-freeze recommendations, reliability target setting, on-call sustainability improvement, post-incident policy review.
+
+---
+
+### `systems-and-architecture/security-threat-modeling.md` · [framework]
+**What it is:** A security lens based on STRIDE analysis. Forces the agent to identify assets, map trust boundaries, check for spoofing/tampering/repudiation/info-disclosure/DoS/elevation, enforce secrets hygiene, validate input, and review from an attacker's perspective.
+
+**Use it when:** Writing, reviewing, or operating code that handles auth, authorization, user input, secrets, or sensitive data.
+
+**Best for:** API endpoint design, auth flow review, secrets handling, input validation, production deployment security review.
+
+---
+
+### `systems-and-architecture/vibe-coding-security-hardening.md` · [protocol]
+**What it is:** A 9-phase hardening checklist specifically for AI-generated ("vibe-coded") applications. Targets the vulnerabilities AI tools reliably introduce: exposed secrets, missing RLS, broken auth, injection flaws, and insecure defaults. Based on 2025-2026 research showing 45%+ of AI code contains OWASP vulnerabilities.
+
+**Use it when:** Before deploying any AI-generated app to production, or when onboarding an AI-built MVP to a real engineering team.
+
+**Best for:** Pre-production security review of vibe-coded apps, CI/CD security gates, MVP hardening before public launch.
 
 ---
 
@@ -824,6 +860,15 @@ Skills for creating skills, integrating external systems, and development workfl
 **Use it when:** Writing a skill that connects to an existing system (Coppermind, Convex, Supabase, etc.), implementing a research paper's algorithm, or mapping abstract concepts to concrete APIs or database schemas.
 
 **Best for:** Integration documentation, skill development, API mapping, system integration where terminology might not match the abstract description.
+
+---
+
+### `software-development/api-design-backward-compatibility.md` · [framework]
+**What it is:** A contract-first API design lens that forces explicit versioning strategy, consumer discovery before breaking changes, and deprecation timelines. Prevents implicit breakage by requiring the agent to enumerate who calls what, how they call it, and what the rollback path is.
+
+**Use it when:** Designing, modifying, or reviewing an API where consumers exist or will exist — especially when the temptation is to change the contract because the server-side implementation is simpler that way.
+
+**Best for:** REST/GraphQL API changes, database schema migrations with external consumers, library/SDK version bumps, any interface where the producer and consumer are not the same deploy unit.
 
 ---
 

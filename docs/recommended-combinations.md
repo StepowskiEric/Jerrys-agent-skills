@@ -71,9 +71,10 @@ Use these as default stacks when the task matches the scenario.
 4. `intent-specification-protocol.md` to clarify what correct behavior looks like before diving in
 5. `judgment-and-routing/explore-vs-exploit-state-machine.md`
 6. `execution/ooda-loop-state-machine.md` if the situation is changing while you investigate
-7. `output-quality/tool-interactive-critic.md` to verify the conclusion against code, logs, or tests
+7. `debugging/root-cause-analysis.md` if the bug is recurring or symptom-only fixes keep failing
+8. `output-quality/tool-interactive-critic.md` to verify the conclusion against code, logs, or tests
 
-Why this stack works: classify the problem first, set the rigor bar, force disciplined diagnosis, then keep evidence and action in a tight loop.
+Why this stack works: classify the problem first, set the rigor bar, force disciplined diagnosis, distinguish symptoms from real causes, then keep evidence and action in a tight loop.
 
 ### New architecture or major design decisions
 
@@ -83,10 +84,11 @@ Why this stack works: classify the problem first, set the rigor bar, force disci
 4. `systems-and-architecture/thinking-in-systems-state-machine.md`
 5. `systems-and-architecture/domain-driven-design.md`
 6. `systems-and-architecture/team-topologies-ai.md`
-7. `judgment-and-routing/pre-mortem.md`
-8. `judgment-and-routing/inversion-mental-model.md`
+7. `software-development/api-design-backward-compatibility.md` to enumerate consumers before changing contracts
+8. `judgment-and-routing/pre-mortem.md`
+9. `judgment-and-routing/inversion-mental-model.md`
 
-Why this stack works: it separates problem classification from design, then forces boundary, coupling, and failure-mode analysis before committing.
+Why this stack works: it separates problem classification from design, forces boundary, coupling, and failure-mode analysis, protects existing consumers, then validates the plan against failure before committing.
 
 ### Large refactor or cleanup of bad code
 
@@ -129,8 +131,9 @@ Why this stack works: classify the situation, take the first plausible strong mo
 4. `output-quality/tool-interactive-critic.md`
 5. `output-quality/mece-pyramid-principle.md`
 6. `output-quality/feynman-technique.md`
+7. `output-quality/stakeholder-communication.md` when presenting conclusions to humans
 
-Why this stack works: it broadens the search space, triangulates conclusions, then tightens the result into a clear and testable answer.
+Why this stack works: it broadens the search space, triangulates conclusions, then tightens the result into a clear, testable, and appropriately calibrated answer.
 
 ### Specification-driven coding (any non-trivial code change)
 
@@ -139,6 +142,15 @@ Why this stack works: it broadens the search space, triangulates conclusions, th
 3. `step-level-verification-protocol.md` — check each unit of work against the spec before moving on
 
 Why this stack works: spec-first eliminates rework, bounded self-revision catches spec gaps early, step-level verification keeps each change aligned with intent.
+
+### Security review or production hardening (especially AI-generated apps)
+
+1. `systems-and-architecture/security-threat-modeling.md` — STRIDE analysis for assets, trust boundaries, and attack vectors
+2. `systems-and-architecture/vibe-coding-security-hardening.md` — 9-phase checklist for secrets, auth, RLS, input validation, and secure defaults
+3. `judgment-and-routing/unsafe-control-actions-hazard-analysis.md` — check high-consequence actions for timing and sequencing risks
+4. `output-quality/tool-interactive-critic.md` — verify security claims against actual code and configuration
+
+Why this stack works: threat modeling finds the holes, the hardening checklist covers the vulnerabilities AI tools reliably miss, hazard analysis guards dangerous operations, and external verification prevents false confidence in security posture.
 
 ## If you are unsure where to begin
 

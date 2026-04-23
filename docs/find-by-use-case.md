@@ -19,6 +19,7 @@
 | Verbose test output drowning signal | [`purify-test-output`](../debugging/purify-test-output/SKILL.md) | Slice to failure-relevant lines only | Based on DebugRepair |
 | Need runtime state invisible in source | [`simulate-instrumentation`](../debugging/simulate-instrumentation/SKILL.md) | Inject prints, capture actual values | Based on DebugRepair |
 | First patch failed, need alternatives | [`iterative-patch-repair`](../debugging/iterative-patch-repair/SKILL.md) | Loop: patch → test → refine → augment | Based on DebugRepair |
+| Bug keeps coming back after "fix" | [`root-cause-analysis`](../debugging/root-cause-analysis.md) | 5 Whys + Ishikawa to find real cause, not symptom | Framework |
 | Need structured debug workflow | [`debug-issue`](../software-development/debug-issue.md) | Graph-powered code navigation to trace issues | Framework |
 | Tests fail, need reproducibility | [`debug-issue`](../software-development/debug-issue.md) | Reproduce → Isolate → Fix → Verify cycle | Framework |
 | Need to understand unfamiliar code before fixing | [`explore-codebase`](../software-development/explore-codebase.md) | Graph-powered navigation with token efficiency | Framework |
@@ -99,6 +100,7 @@
 | Separation of concerns | [`separation-of-concerns`](../orchestration/separation-of-concerns.md) | Component boundary design |
 | Router for problem types (state machine) | [`problem-mode-router-cynefin-state-machine`](../judgment-and-routing/problem-mode-router-cynefin-state-machine.md) | Enforced Cynefin routing |
 | System thinking protocol | [`thinking-in-systems-state-machine`](../systems-and-architecture/thinking-in-systems-state-machine.md) | System dynamics analysis |
+| API design with backward compatibility | [`api-design-backward-compatibility`](../software-development/api-design-backward-compatibility.md) | Consumer discovery before contract changes |
 
 ---
 
@@ -114,6 +116,7 @@
 | Navigate large documentation | [`large-documentation-navigation`](../output-quality/large-documentation-navigation.md) | Structured doc exploration |
 | MECE structuring | [`mece-pyramid-principle`](../output-quality/mece-pyramid-principle.md) | Mutually exclusive, collectively exhaustive |
 | Steelman opposing views | [`steelmanning`](../judgment-and-routing/steelmanning.md) | Strongest version of opponent's argument |
+| Communicating to stakeholders with calibrated confidence | [`stakeholder-communication`](../output-quality/stakeholder-communication.md) | Facts vs inferences, range estimates, unknowns |
 
 ---
 
@@ -183,6 +186,8 @@
 | Second-order effects | [`second-order-thinking`](../judgment-and-routing/second-order-thinking.md) | Consequences of consequences |
 | Release planning | [`release-it-stability`](../systems-and-architecture/release-it-stability.md) | Stability patterns |
 | Pre-mortem protocol | [`pre-mortem-state-machine`](../judgment-and-routing/pre-mortem-state-machine.md) | Enforced prospective analysis |
+| Security review for auth/secrets/input | [`security-threat-modeling`](../systems-and-architecture/security-threat-modeling.md) | STRIDE-based threat analysis |
+| Hardening AI-generated apps for production | [`vibe-coding-security-hardening`](../systems-and-architecture/vibe-coding-security-hardening.md) | 9-phase security checklist |
 
 ---
 

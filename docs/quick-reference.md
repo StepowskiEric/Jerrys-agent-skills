@@ -51,6 +51,8 @@
 | **token-budget-operator** | reasoning/ | Master token-efficiency orchestrator | Hybrid (all 4 above) |
 | **claim-verification-reasoning** | reasoning/ | Atomic claim verification | CURE + DCF + PRISM |
 | **reasoning-verification-hybrid** | reasoning/ | Master anti-hallucination orchestrator | Hybrid (6 papers) |
+| root-cause-analysis | debugging/ | Distinguish symptoms from real causes | 5 Whys + Ishikawa |
+| vibe-coding-security-hardening | systems-and-architecture/ | Harden AI-generated apps for production | 9-phase checklist |
 
 ## All Framework Skills (Conceptual)
 
@@ -82,6 +84,7 @@
 | mece-pyramid-principle | output-quality/ | Clear structure |
 | feynman-technique | output-quality/ | Simple explanation |
 | large-documentation-navigation | output-quality/ | Navigating large docs |
+| stakeholder-communication | output-quality/ | Calibrated confidence for human audiences |
 | faithfulness-aware-reasoning | reasoning/ | Reasoning hallucination detection |
 | cross-domain-analogy-generator | systems-and-architecture/ | Creative solutions |
 | everything-as-code-conceptualizer | systems-and-architecture/ | System modeling |
@@ -91,12 +94,14 @@
 | designing-data-intensive-applications-ai | systems-and-architecture/ | Data systems |
 | release-it-stability | systems-and-architecture/ | Stability patterns |
 | sre-error-budget | systems-and-architecture/ | Reliability trade-offs |
+| security-threat-modeling | systems-and-architecture/ | STRIDE-based security analysis |
 | the-goal-theory-of-constraints-ai | systems-and-architecture/ | Bottleneck focus |
 | verify-before-integrate | software-development/ | Pre-integration verification |
 | debug-issue | software-development/ | Structured debugging |
 | explore-codebase | software-development/ | Codebase exploration |
 | refactor-safely | software-development/ | Safe refactoring |
 | review-changes | software-development/ | Code review |
+| api-design-backward-compatibility | software-development/ | Consumer-aware API contract changes |
 | skill-development-with-supporting-files | development/ | Skills with scripts/templates |
 | add-new-skill-to-repository | development/ | Contributing new skills |
 | local-llm-tooling | mlops/ | Running local LLMs |
@@ -105,6 +110,11 @@
 
 | Skill | Date | Key Technique |
 |-------|------|---------------|
+| root-cause-analysis | 2026-04 | 5 Whys + Ishikawa diagnostic protocol |
+| security-threat-modeling | 2026-04 | STRIDE-based threat analysis |
+| api-design-backward-compatibility | 2026-04 | Consumer discovery before contract changes |
+| stakeholder-communication | 2026-04 | Calibrated confidence for human audiences |
+| vibe-coding-security-hardening | 2026-04 | 9-phase hardening checklist for AI-generated apps |
 | reasoning-verification-hybrid | 2026-04 | Master anti-hallucination orchestrator (6 papers) |
 | claim-verification-reasoning | 2026-04 | Atomic claim verification (CURE/DCF/PRISM) |
 | token-budget-operator | 2026-04 | Master token-efficiency orchestrator (hybrid) |
