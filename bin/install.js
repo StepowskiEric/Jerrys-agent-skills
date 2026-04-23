@@ -145,8 +145,54 @@ function buildSkillBundle(content, file, agent) {
   return `---\nname: ${JSON.stringify(name)}\ndescription: ${JSON.stringify(description)}\nsource: "jerry-skills"\n---\n\n${content}`;
 }
 
+/**
+ * Remove duplicate skills based on extracted name. Keeps the first occurrence.
+ */
+function deduplicateSkills(skills) {
+  const seen = new Set();
+  return skills.filter((file) => {
+    const name = extractSkillName(file);
+    if (seen.has(name)) {
+      return false;
+    }
+    seen.add(name);
+    return true;
+  });
+}
+
+/**
+ * Clean up old `-skill` suffixed versions of installed skills.
+ * When a skill was renamed from `foo-skill` to `foo`, the old directory
+ * `foo-skill/` may still exist in the destination. Remove it.
+ */
+function cleanOldSkillVersions(skills, dest, flat) {
+  for (const file of skills) {
+    const name = extractSkillName(file);
+    if (!name.endsWith('-skill')) {
+      const oldName = name + '-skill';
+      let oldPath;
+      if (flat) {
+        oldPath = path.join(dest, oldName);
+      } else {
+        const topicDir = path.dirname(file);
+        oldPath = path.join(dest, topicDir, oldName);
+      }
+      try {
+        if (fs.existsSync(oldPath)) {
+          fs.rmSync(oldPath, { recursive: true, force: true });
+          console.log(`  ✗ ${path.relative(dest, oldPath)}  [removed old -skill version]`);
+        }
+      } catch {
+        // ignore cleanup errors
+      }
+    }
+  }
+}
+
 function installSkills(skills, dest, flat, agent, withScripts) {
   fs.mkdirSync(dest, { recursive: true });
+  skills = deduplicateSkills(skills);
+  cleanOldSkillVersions(skills, dest, flat);
   let installed = 0;
   let scriptsInstalled = 0;
 
