@@ -84,7 +84,7 @@ The strongest setups use **both**: protocols for execution discipline, framework
 | 🏗️ Systems & Architecture | Design principles (data, teams, reliability) |
 | 🛠️ Development | Skill building and development workflows |
 | 🐛 Debugging | Root-cause analysis and log correlation |
-| 🧠 Reasoning | Faithfulness and reasoning verification |
+| 🧠 Reasoning | Faithfulness verification, **token-efficient reasoning**, and reasoning quality |
 | 🤖 MLOps | Local LLM tooling and model management |
 
 ## Philosophy

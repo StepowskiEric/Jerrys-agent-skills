@@ -461,6 +461,33 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `reasoning/context-density-operator-skill.md` · [protocol]
+**What it is:** A context-management protocol that maximizes decision-relevant information per token. Uses hierarchical memory (always-visible / summarized / reference-table tiers), redundancy elimination, and on-demand expansion to keep the context window dense. Based on GenericAgent (arXiv:2604.17091) and information bottleneck principles.
+
+**Use it when:** The context window is filling during long-horizon tasks, retrieved memories or tool outputs are drowning out decision-relevant info, or you need to preserve reasoning quality while reducing token burn.
+
+**Best for:** Long debugging sessions, multi-step implementation, agent tasks with heavy tool use or memory retrieval.
+
+---
+
+### `reasoning/cot-pruning-reasoning-skill.md` · [protocol]
+**What it is:** A chain-of-thought compression protocol that applies two-pass pruning: coarse step-level (does removing this step change the conclusion?) and fine token-level (keep only assertions, key evidence, and logical connectors). Based on CoT-Influx (arXiv:2312.08901) and sufficiency-conciseness trade-off research.
+
+**Use it when:** Chain-of-thought reasoning exceeds 10 steps, contains redundant justifications, or you need to fit more reasoning within a context budget.
+
+**Best for:** Multi-step debugging, complex reasoning tasks, any situation where verbose CoT consumes too much context.
+
+---
+
+### `reasoning/selective-halt-reasoning-skill.md` · [protocol]
+**What it is:** An early-stopping protocol that monitors reasoning output for semantic stabilization. Halts after 3 consecutive no-change steps or when halting criteria are met. Based on DASH delta-attention selective halting (arXiv:2604.18103) adapted for agent reasoning.
+
+**Use it when:** Reasoning is converging but continuing to elaborate, token budget is constrained, or you need to know when to stop iterating.
+
+**Best for:** Iterative debugging, convergent reasoning, satisficing problems where "good enough" is acceptable.
+
+---
+
 ### `output-quality/documentation-craft-skill.md` · [framework]
 **What it is:** A structured technical writing skill for generating high-quality documentation. Follows a 5-phase process: outline-first planning, context enrichment, drafting, verification, and refinement. Based on DocAgent multi-agent architecture and literate programming research.
 
@@ -590,6 +617,17 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 **Best for:** Long-running agent workflows with cross-session memory, recurring task agents that accumulate context, any workflow where over-trusting stale memory has caused errors.
 
+
+---
+
+### `orchestration/sop-evolution-memory-skill.md` · [protocol]
+**What it is:** A trajectory-distillation protocol that turns successful task executions into reusable Standard Operating Procedures (SOPs). Future similar tasks load the compact SOP (500 tokens) instead of the full trajectory (3000+ tokens). Includes indexing, retrieval, and quality gates. Based on GenericAgent self-evolution (arXiv:2604.17091).
+
+**Use it when:** You repeatedly solve similar tasks, previous trajectories contain reusable patterns, or context budget is too tight to load full historical traces.
+
+**Best for:** Recurring debugging patterns, repeated implementation workflows, any domain where experience should compound rather than reset each session.
+
+---
 
 ### `orchestration/monte-carlo-tree-search-skill.md` · [framework]
 **What it is:** A branch-allocation skill based on Monte Carlo Tree Search (MCTS). Generates distinct candidate branches, spends more effort on branches that earn it through evidence, preserves limited exploration to avoid early lock-in, and uses bounded probes instead of full commitment too early.

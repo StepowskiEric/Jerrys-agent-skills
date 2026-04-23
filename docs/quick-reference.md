@@ -40,10 +40,14 @@
 | thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
 | log-trace-correlation | debugging/ | Root-cause analysis | ✓ Proven |
 | bisect-debugging | debugging/ | Isolate regression commits | [tested] +9.9% speed |
-| debug-subagent | debugging/ | Interactive debug subagent | Based on Debug2Fix |
-| purify-test-output | debugging/ | Reduce test noise (~18.6% tokens) | Based on DebugRepair |
-| simulate-instrumentation | debugging/ | Capture runtime state | Based on DebugRepair |
-| iterative-patch-repair | debugging/ | Iterative patch generation | Based on DebugRepair |
+|| debug-subagent | debugging/ | Interactive debug subagent | Based on Debug2Fix |
+|| purify-test-output | debugging/ | Reduce test noise (~18.6% tokens) | Based on DebugRepair |
+|| simulate-instrumentation | debugging/ | Capture runtime state | Based on DebugRepair |
+|| iterative-patch-repair | debugging/ | Iterative patch generation | Based on DebugRepair |
+| **context-density-operator** | reasoning/ | Maximize info per token | GenericAgent (arXiv:2604.17091) |
+| **cot-pruning-reasoning** | reasoning/ | Compress CoT reasoning | CoT-Influx (arXiv:2312.08901) |
+| **selective-halt-reasoning** | reasoning/ | Halt when converged | DASH (arXiv:2604.18103) |
+| **sop-evolution-memory** | orchestration/ | Reusable SOPs from trajectories | GenericAgent (arXiv:2604.17091) |
 
 ## All Framework Skills (Conceptual)
 
@@ -98,6 +102,10 @@
 
 | Skill | Date | Key Technique |
 |-------|------|---------------|
+| context-density-operator | 2026-04 | Context info density maximization (arXiv:2604.17091) |
+| cot-pruning-reasoning | 2026-04 | Two-pass CoT compression (arXiv:2312.08901) |
+| selective-halt-reasoning | 2026-04 | Semantic stabilization halting (arXiv:2604.18103) |
+| sop-evolution-memory | 2026-04 | Trajectory-to-SOP distillation (arXiv:2604.17091) |
 | documentation-craft | 2025-04 | 5-phase structured writing (arXiv:2504.08725) |
 | counterfactual-policy-testing | 2025-04 | Null/opposite/partial alternatives (arXiv:2604.10511) |
 | cognitive-friction-governor | 2025-04 | Deliberation budgeting (arXiv:2603.30031) |
