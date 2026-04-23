@@ -549,8 +549,11 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 **Best for:** Large skill catalogs, extensive API documentation, multi-module project documentation, any reference library where users think in tasks, not categories.
 
-|---
+---
 
+## 🏗️ Systems & Architecture — design principles and structural thinking
+
+Skills for reasoning about systems, boundaries, constraints, and structural design.
 
 ### `systems-and-architecture/the-goal-theory-of-constraints-ai.md` · [framework]
 **What it is:** A throughput and bottleneck lens based on Theory of Constraints. Every system has a limiting constraint; identify, exploit, and elevate it before optimizing anything else.
@@ -802,6 +805,14 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
+### `development/bulk-rename-and-update-references.md` · [protocol]
+**What it is:** A bulk rename workflow that discovers all files matching an old pattern, renames them, and updates cross-references in markdown links, code imports, config files, and documentation.
+
+**Use it when:** Renaming modules, components, or skills in a docs repo; changing naming conventions; reorganizing directory structures.
+
+**Best for:** Preventing broken links, stale references, and silent partial replacements during large-scale renames.
+
+
 ### `judgment-and-routing/metacognitive-monitoring.md` · [protocol]
 **What it is:** A confidence calibration protocol forcing agents to explicitly decide KEEP or WITHDRAW their output, and BET or decline — based on the Nelson-Narens metacognitive monitoring framework. Tracks "withdraw delta" to distinguish blanket confidence from selective sensitivity.
 
@@ -831,12 +842,39 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
+### `execution/assumption-grounding/SKILL.md` · [protocol]
+**What it is:** A verify-before-act discipline that forces the agent to state every assumption explicitly, verify with the cheapest possible check, and only proceed on confirmation. Based on Chain-of-Verification research.
+
+**Use it when:** Before reading, editing, or creating any file; before calling any function whose signature you haven't confirmed; when confidence in a memory is < 90%.
+
+**Best for:** Preventing hallucinated facts from compounding into costly errors, agent safety, correctness verification.
+
+---
+
+### `execution/context-budget-operator/SKILL.md` · [protocol]
+**What it is:** A token-budget management protocol that tracks context usage before every LLM call, classifies information needs, compresses aggressively when crossing thresholds, and decides breadth vs depth based on remaining runway.
+
+**Use it when:** Working on codebases with >20 files, sessions exceeding 15 turns, or when the agent repeats questions or forgets constraints.
+
+**Best for:** Long-horizon tasks, large codebase work, preventing silent context overflow and instruction dropout.
+
+---
+
 ### `systems-and-architecture/everything-as-code-conceptualizer.md` · [framework]
 **What it is:** A conceptual lens that forces viewing any system, process, or problem through a "code lens" — writing pseudocode to represent team dynamics, unclear requirements, deployment issues, or knowledge gaps. The act of codification reveals hidden structure and assumptions.
 
 **Use it when:** Messy human/process problems resist structured analysis, you need to surface hidden assumptions, or "if only we had clear specs" is being said.
 
 **Key technique:** From "Understanding Everything as Code: A Taxonomy and Conceptual Model" (arXiv:2507.05100) — codifying forces precision that natural language obscures.
+
+---
+
+### `systems-and-architecture/thinking-in-systems-state-machine.md` · [protocol]
+**What it is:** A system-dynamics execution protocol. The agent must map system boundaries, stocks and flows, reinforcing/balancing loops, delays, leverage points, and early warning metrics before touching the target system.
+
+**Use it when:** The task involves interactions, feedback loops, delayed effects, or multi-step downstream consequences.
+
+**Best for:** Architecture changes, infrastructure work, organizational process changes, any task where local fixes create remote problems.
 
 ---
 
@@ -887,6 +925,15 @@ Skills for creating skills, integrating external systems, and development workfl
 **Use it when:** You need to understand a new repo, module, or system before making changes.
 
 **Best for:** Onboarding to new codebases, understanding architecture, mapping dependencies.
+
+---
+
+### `software-development/codebase-divide-conquer-search.md` · [protocol]
+**What it is:** A hierarchical multi-agent search protocol for large codebases. Compresses the codebase via summarization (~80%), partitions into candidate zones via semantic similarity, spawns parallel sub-agents for deep investigation, and synthesizes ranked results with confidence scores. Based on Meta-RAG, GenLoc, AgentGroupChat-V2, RepoAudit, and Code-Craft research.
+
+**Use it when:** The codebase is too large to fit in context, grep returns too many candidates, or you need to find code by behavior rather than name.
+
+**Best for:** Bug localization in large repos, finding feature implementation targets, API consumption tracing, any search where simple text search fails.
 
 ---
 

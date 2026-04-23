@@ -102,6 +102,16 @@ Why this stack works: it separates problem classification from design, forces bo
 
 Why this stack works: stabilize first, refactor in bounded slices, keep the blast radius explicit, and verify before closure.
 
+### Large codebase search or bug localization
+
+1. `software-development/codebase-divide-conquer-search.md` — hierarchical summarization, semantic ranking, and parallel sub-agent deep dives
+2. `execution/how-to-solve-it-state-machine.md` — frame the query precisely before searching
+3. `keyword-agnostic-logic-locator.md` — structural queries when semantic similarity is ambiguous
+4. `debugging/debug-subagent/SKILL.md` — if the search is for a bug, use as the Phase 2 conquer agent
+5. `output-quality/tool-interactive-critic.md` — verify findings against actual source code
+
+Why this stack works: the divide-and-conquer protocol compresses the codebase by ~80%, routes queries to the right zones with 84.67% file-level accuracy (Meta-RAG), and uses parallel agents to avoid the path-explosion problem that kills single-agent searches in large repos.
+
 ### Following strong principles while deciding
 
 1. `judgment-and-routing/first-principles.md`

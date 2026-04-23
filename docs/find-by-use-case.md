@@ -23,6 +23,7 @@
 | Need structured debug workflow | [`debug-issue`](../software-development/debug-issue.md) | Graph-powered code navigation to trace issues | Framework |
 | Tests fail, need reproducibility | [`debug-issue`](../software-development/debug-issue.md) | Reproduce → Isolate → Fix → Verify cycle | Framework |
 | Need to understand unfamiliar code before fixing | [`explore-codebase`](../software-development/explore-codebase.md) | Graph-powered navigation with token efficiency | Framework |
+| Large codebase, bug location unknown | [`codebase-divide-conquer-search`](../software-development/codebase-divide-conquer-search.md) | Hierarchical summarization + parallel agent deep dives | Based on Meta-RAG / GenLoc |
 
 **Not recommended for typical code bugs** (empirically ineffective in our tests):
 - `abductive-first-debugging` — Designed for novel failures with multiple competing hypotheses. Tested on a real repo bug: **-0.4% vs baseline**.
@@ -46,6 +47,7 @@
 | Backtrack when reasoning goes wrong | [`process-reward-model-protocol`](../execution/process-reward-model-protocol.md) | Self-correcting reasoning path |
 | Use analogy to solve problems | [`how-to-solve-it-analogy`](../execution/how-to-solve-it-analogy.md) | Structured analogy-based problem solving |
 | Verify each step before proceeding | [`step-level-verification-protocol`](../execution/step-level-verification-protocol.md) | Prevents error propagation in multi-step reasoning |
+| Prevent hallucinated facts from compounding | [`assumption-grounding`](../execution/assumption-grounding/SKILL.md) | State, verify, and log assumptions before acting |
 
 ---
 
@@ -152,6 +154,21 @@
 
 ---
 
+### Reasoning / Anti-Hallucination
+
+*Skills for verifying reasoning, preventing hallucinations, and managing token burn in long-horizon tasks.*
+
+| Situation | Best Skill | Why |
+|-----------|------------|-----|
+| Multi-step reasoning where errors compound | [`claim-verification-reasoning`](../reasoning/claim-verification-reasoning.md) | Break into atomic claims, assign confidence, verify with tools |
+| Context window filling during long tasks | [`context-density-operator`](../reasoning/context-density-operator.md) | Maximize decision-relevant info per token |
+| Chain-of-thought reasoning exceeds 10 steps | [`cot-pruning-reasoning`](../reasoning/cot-pruning-reasoning.md) | Compress CoT to retain only conclusion-changing steps |
+| Need master anti-hallucination protocol | [`reasoning-verification-hybrid`](../reasoning/reasoning-verification-hybrid.md) | Claim verification + contradiction checks + confidence calibration |
+| Reasoning is converging but keeps elaborating | [`selective-halt-reasoning`](../reasoning/selective-halt-reasoning.md) | Halt when consecutive steps stabilize |
+| Token burn is the bottleneck | [`token-budget-operator`](../reasoning/token-budget-operator.md) | Orchestrates compression, pruning, halting, and SOP capture |
+
+---
+
 ### Software Development
 
 | Situation | Best Skill | Why |
@@ -159,6 +176,11 @@
 | Writing features or fixing bugs, requirements unclear | [`intent-specification-protocol`](../execution/intent-specification-protocol.md) | Clarify intent before coding, prevent over-engineering |
 | Need a structured debugging workflow | [`debug-issue`](../software-development/debug-issue.md) | Forces reproduce-isolate-fix-verify cycle |
 | Need to understand an unfamiliar codebase | [`explore-codebase`](../software-development/explore-codebase.md) | Structured exploration with progressive deepening |
+| Search large codebase for bug/feature/API usage | [`codebase-divide-conquer-search`](../software-development/codebase-divide-conquer-search.md) | Hierarchical summarization + semantic ranking + parallel sub-agents |
+| Adding a new skill to this repository | [`add-new-skill-to-repository`](../development/add-new-skill-to-repository/SKILL.md) | Standardized contribution process with documentation and verification |
+| Renaming files that have cross-references | [`bulk-rename-and-update-references`](../development/bulk-rename-and-update-references.md) | Discover, rename, and update all references safely |
+| Skill has supporting scripts/templates | [`skill-development-with-supporting-files`](../development/skill-development-with-supporting-files.md) | Workflow for skills with external files beyond `.md` |
+| Running LLMs locally (Ollama, llama.cpp) | [`local-llm-tooling`](../mlops/local-llm-tooling/SKILL.md) | Local model setup, prompting, structured output extraction |
 | Need to refactor code safely | [`refactor-safely`](../software-development/refactor-safely.md) | Characterization testing + bounded changes |
 | Need to review code changes | [`review-changes`](../software-development/review-changes.md) | Structured review checklist |
 
@@ -174,6 +196,7 @@
 | Managing agent memory | [`agent-memory-hygiene`](../orchestration/agent-memory-hygiene.md) | Memory categorization |
 | Debating which branch to pursue | [`monte-carlo-tree-search`](../orchestration/monte-carlo-tree-search.md) | Branch allocation |
 | Identify weak agent reasoning | [`weak-link-detection-multi-agent`](../orchestration/weak-link-detection-multi-agent.md) | Prevents error amplification |
+| Distill successful trajectories into reusable SOPs | [`sop-evolution-memory`](../orchestration/sop-evolution-memory.md) | Turn past task patterns into compact reusable procedures |
 
 ---
 
@@ -196,6 +219,7 @@
 | Situation | Best Skill | Why |
 |-----------|------------|-----|
 | Reduce cognitive load | [`cognitive-load-operator-state-machine`](../output-quality/cognitive-load-operator-state-machine.md) | Load management protocol |
+| Manage finite context windows explicitly | [`context-budget-operator`](../execution/context-budget-operator/SKILL.md) | Track token budget, compress, decide breadth vs depth |
 
 ---
 
