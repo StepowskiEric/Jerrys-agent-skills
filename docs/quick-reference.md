@@ -49,6 +49,8 @@
 | **selective-halt-reasoning** | reasoning/ | Halt when converged | DASH (arXiv:2604.18103) |
 | **sop-evolution-memory** | orchestration/ | Reusable SOPs from trajectories | GenericAgent (arXiv:2604.17091) |
 | **token-budget-operator** | reasoning/ | Master token-efficiency orchestrator | Hybrid (all 4 above) |
+| **claim-verification-reasoning** | reasoning/ | Atomic claim verification | CURE + DCF + PRISM |
+| **reasoning-verification-hybrid** | reasoning/ | Master anti-hallucination orchestrator | Hybrid (6 papers) |
 
 ## All Framework Skills (Conceptual)
 
@@ -103,6 +105,8 @@
 
 | Skill | Date | Key Technique |
 |-------|------|---------------|
+| reasoning-verification-hybrid | 2026-04 | Master anti-hallucination orchestrator (6 papers) |
+| claim-verification-reasoning | 2026-04 | Atomic claim verification (CURE/DCF/PRISM) |
 | token-budget-operator | 2026-04 | Master token-efficiency orchestrator (hybrid) |
 | context-density-operator | 2026-04 | Context info density maximization (arXiv:2604.17091) |
 | cot-pruning-reasoning | 2026-04 | Two-pass CoT compression (arXiv:2312.08901) |

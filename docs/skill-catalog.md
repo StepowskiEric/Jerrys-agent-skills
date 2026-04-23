@@ -461,6 +461,24 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `reasoning/claim-verification-reasoning-skill.md` · [protocol]
+**What it is:** A claim-level verification protocol that breaks reasoning into atomic claims, assigns confidence labels (CERTAIN/LIKELY/UNCERTAIN/SPECULATIVE), verifies uncertain claims with tools, and builds dependency graphs. Based on CURE (arXiv:2604.12046), DCF (arXiv:2604.20098), and PRISM (arXiv:2604.16909).
+
+**Use it when:** Multi-step reasoning where errors compound, high-stakes conclusions requiring traceable evidence, or previous outputs contained confabulated justifications.
+
+**Best for:** Code debugging, data analysis, fact-checking, any task where claims can be verified against source code, tests, or documentation.
+
+---
+
+### `reasoning/reasoning-verification-hybrid-skill.md` · [protocol]
+**What it is:** A master anti-hallucination protocol combining 4 techniques: claim decomposition + verification (Phase 1), backward contradiction checks (Phase 2), confidence calibration with abstention (Phase 3), and logical entailment validation (Phase 4). Catches all 4 hallucination types from PRISM.
+
+**Use it when:** Hallucinations have caused bad outputs before, high-confidence conclusions are required, or you need to explain *why* you're confident.
+
+**Best for:** Critical code changes, architectural decisions, complex debugging, any task where the cost of being wrong exceeds the cost of verification.
+
+---
+
 ### `reasoning/context-density-operator-skill.md` · [protocol]
 **What it is:** A context-management protocol that maximizes decision-relevant information per token. Uses hierarchical memory (always-visible / summarized / reference-table tiers), redundancy elimination, and on-demand expansion to keep the context window dense. Based on GenericAgent (arXiv:2604.17091) and information bottleneck principles.
 
