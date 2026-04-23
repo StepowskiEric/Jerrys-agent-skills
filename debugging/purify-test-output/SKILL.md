@@ -18,6 +18,8 @@ Raw test output is noisy. A failing test may produce hundreds of lines of logs, 
 
 Research shows this reduces token count by **18.6%** on average and improves repair correctness.
 
+**Companion script available.** If you installed this skill with `--with-scripts`, a `purify_test_output.py` script is bundled in the skill directory. Run it to skip manual regex work. See [Companion Script](#companion-script) below.
+
 ## When to use
 
 - Failing test produces verbose output with **framework/library stack frames** (`site-packages`, `lib/python`) that drown out user code
@@ -129,6 +131,27 @@ AssertionError: Expected 85.0 but got 100
   File "orders.py", line 14, in process_order
   File "payments.py", line 7, in charge_customer
 ```
+
+## Companion Script
+
+If `purify_test_output.py` is present alongside this skill, use it instead of manual filtering. It handles pytest, jest, vitest, and mocha automatically.
+
+```bash
+# From stdin
+pytest test_foo.py 2>&1 | python purify_test_output.py
+
+# From file
+python purify_test_output.py --file /tmp/raw_output.txt
+
+# JSON output for programmatic use
+python purify_test_output.py --file /tmp/raw_output.txt --json
+```
+
+The script detects the framework, strips framework frames (`site-packages`, `node_modules`, stdlib), preserves user code and assertions, and reports token reduction stats.
+
+**If you always want the scripted workflow**, install the `purify-test-output-scripted` variant instead. It replaces the manual protocol with script-driven instructions.
+
+---
 
 ## Pitfalls
 
