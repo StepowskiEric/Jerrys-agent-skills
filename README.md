@@ -43,6 +43,7 @@ The installer automatically adapts the format for each agent:
 | [Skill Catalog](docs/skill-catalog.md) | Detailed per-skill entries: what it is, when to use it, best for |
 | [Recommended Combinations](docs/recommended-combinations.md) | Skill stacks for common scenarios (debugging, architecture, refactoring...) |
 | [Quick Reference](docs/quick-reference.md) | Compact tables of all protocol and framework skills |
+| [Benchmarks](docs/benchmarks.md) | A/B evaluation results — empirical proof which skills work |
 | [Installation Guide](docs/installation.md) | Detailed install instructions for each agent |
 
 ## Two Kinds of Skills

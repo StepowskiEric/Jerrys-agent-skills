@@ -48,6 +48,7 @@
 | **cot-pruning-reasoning** | reasoning/ | Compress CoT reasoning | CoT-Influx (arXiv:2312.08901) |
 | **selective-halt-reasoning** | reasoning/ | Halt when converged | DASH (arXiv:2604.18103) |
 | **sop-evolution-memory** | orchestration/ | Reusable SOPs from trajectories | GenericAgent (arXiv:2604.17091) |
+| **token-budget-operator** | reasoning/ | Master token-efficiency orchestrator | Hybrid (all 4 above) |
 
 ## All Framework Skills (Conceptual)
 
@@ -102,6 +103,7 @@
 
 | Skill | Date | Key Technique |
 |-------|------|---------------|
+| token-budget-operator | 2026-04 | Master token-efficiency orchestrator (hybrid) |
 | context-density-operator | 2026-04 | Context info density maximization (arXiv:2604.17091) |
 | cot-pruning-reasoning | 2026-04 | Two-pass CoT compression (arXiv:2312.08901) |
 | selective-halt-reasoning | 2026-04 | Semantic stabilization halting (arXiv:2604.18103) |

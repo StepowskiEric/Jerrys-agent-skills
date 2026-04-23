@@ -488,6 +488,15 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `reasoning/token-budget-operator-skill.md` · [protocol]
+**What it is:** A master token-efficiency protocol that orchestrates four techniques in sequence: context density maximization (Phase 1), CoT pruning (Phase 2), selective halting (Phase 3), and SOP capture (Phase 4). Designed for long-horizon tasks where token burn is the bottleneck.
+
+**Use it when:** Context window is filling during multi-step tasks, you expect >10 reasoning steps, or you want experience to compound via reusable SOPs.
+
+**Best for:** Complex debugging, multi-step implementation, recurring tasks where similar problems appear repeatedly. The compounding effect means each subsequent similar task gets cheaper as SOPs accumulate.
+
+---
+
 ### `output-quality/documentation-craft-skill.md` · [framework]
 **What it is:** A structured technical writing skill for generating high-quality documentation. Follows a 5-phase process: outline-first planning, context enrichment, drafting, verification, and refinement. Based on DocAgent multi-agent architecture and literate programming research.
 

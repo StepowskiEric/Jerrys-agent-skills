@@ -20,14 +20,16 @@ Research shows this reduces token count by **18.6%** on average and improves rep
 
 ## When to use
 
-- Failing test produces verbose output (>20 lines)
-- Stack trace includes framework/library frames that drown out user code
+- Failing test produces verbose output with **framework/library stack frames** (`site-packages`, `lib/python`) that drown out user code
 - Multiple tests fail and you need to isolate the most relevant failure first
+- Output contains >50% framework noise (measured by lines containing `site-packages` or `lib/python`)
 
 ## When NOT to use
 
-- Test output is already minimal (single assertion failure)
+- Test output is already minimal (single assertion failure with no framework frames)
+- The failing test body contains setup/configuration that is part of the diagnostic signal
 - The bug is in the test itself (you need full test context)
+- Output is <20 lines OR contains zero `site-packages`/`lib/python` frames
 
 ## Core protocol
 
