@@ -1,4 +1,5 @@
 ---
+source: "jerry-skills"
 name: skill-ab-evaluation
 description: A/B evaluate any jerrysagentskill against a baseline using isolated subagents, 5 trials each, and an objective rubric. Measures real % improvement without touching current projects.
 category: testing
@@ -160,3 +161,72 @@ A task that both agents solve trivially teaches you nothing. Match complexity to
 - **Contamination.** If the baseline subagent stumbles across the skill file and reads it, the trial is invalid. Isolate by directory or explicitly instruct baseline subagent not to load skills.
 - **Regression skills.** Skills like `bisect-debugging` only help when preconditions hold (tests pass on old commit). Craft test cases that satisfy preconditions or the skill will score unfairly low.
 - **False confidence from shallow tasks.** A simple bug may show the skill agent is "faster" (fewer tool calls) but that measures prompt discipline, not skill value. Design tasks where the skill's unique tools or protocol are required to succeed.
+
+## Empirically validated benchmark tasks
+
+These are tasks that have actually discriminated between skilled and unskilled agents in real runs:
+
+| Repo | Commit | Bug type | What it tests |
+|------|--------|----------|---------------|
+| FastAPI | `ed2512a~1` | APIRouter startup handler overwritten by Starlette `super().__init__()` | Debugging multi-file framework interaction |
+
+**Why FastAPI `ed2512a~1` works:**
+- No tell-tale comments pointing to the fix
+- Root cause spans FastAPI → Starlette boundary
+- Requires understanding `super().__init__()` ordering
+- Simple synthetic versions of this bug are trivial; the real commit has real complexity
+- Test provides ground-truth verification
+
+**Setup:**
+```bash
+git clone https://github.com/fastapi/fastapi.git /tmp/fastapi-bench
+cd /tmp/fastapi-bench
+git checkout ed2512a~1
+git cherry-pick -n ed2512a  # grab only the test file
+git checkout HEAD -- tests/test_router_events.py
+# Bug: on_startup handlers set before super().__init__(), overwritten
+```
+
+## Fast validation alternatives (when 5 trials is too expensive)
+
+Full 5-trial A/B can take 1-2 hours and cost significant tokens. If you need faster signal:
+
+### Option A: Token-count micro-benchmark (5 minutes)
+- Give identical reasoning tasks to the main agent with/without skill
+- Count output tokens and reasoning steps
+- No subagents, no isolation overhead
+- Good for: `cot-pruning-reasoning`, `context-density-operator`
+
+### Option B: Smoke test (15 minutes)
+- 1 skill trial + 1 baseline trial
+- If both score 100 trivially → task is too shallow, redesign
+- If one fails dramatically → strong signal even at N=1
+- Good for: catching obviously broken or obviously amazing skills
+
+### Option C: Parallel batches with early stopping
+- Run batches of 3 trials in parallel (e.g., baseline-1/2/3 simultaneously)
+- If all 3 baseline pass trivially and skill shows no difference, stop
+- If skill shows dramatic divergence, continue to full 5
+- Good for: screening many skills quickly
+
+## Failure modes observed in practice
+
+### Output token exhaustion
+A subagent burned 41,728 output tokens on verbose reasoning and had none left for the actual response. This is a timeout variant — the agent "thinks" itself to death.
+
+**Mitigation:** Set tighter `max_iterations` (20 instead of 30) for tasks where reasoning verbosity is the risk. Skills that reduce output verbosity (`cot-pruning-reasoning`) directly prevent this.
+
+### Skill-read overhead
+Reading the skill file costs 1-2 tool calls and ~1,000 input tokens before any work begins. For a 10-call baseline task, that's 10-20% overhead.
+
+**Mitigation:** Pre-inject the skill into the subagent prompt instead of having it `read_file`. Or measure only the post-skill-read phase for fair comparison.
+
+### Testing the wrong skill on the wrong task
+We tested `cot-pruning-reasoning` on a single-shot debugging task. The skill showed -55% token reduction, but its *true* value is on multi-step reasoning chains where pruning compounds. Single-shot tasks understate the benefit.
+
+**Rule:** Match the task complexity to the skill's unique value proposition. If the skill's protocol is never invoked during the trial (e.g., no reasoning chain to prune), the benchmark is invalid.
+
+### Subagent timeout on batch runs
+Three baseline trials took 42 minutes. This is mostly subagent startup and model latency, not the actual task.
+
+**Mitigation:** Use `delegate_task` with parallel `tasks` array (up to 3 concurrent). Pre-install all dependencies in snapshots to avoid per-trial setup.
