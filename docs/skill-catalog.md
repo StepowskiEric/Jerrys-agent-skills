@@ -140,6 +140,33 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
+### `execution/requirement-crystallization-protocol.md` · [protocol]
+**What it is:** Fuses Socratic Clarification with Intent Specification. Three-phase pipeline: SURFACE assumptions and find the critical one, CAPTURE intent as a structured spec with states/transitions/constraints, LOCK the spec as the coding contract.
+
+**Use it when:** Before any non-trivial feature implementation, when the request is ambiguous, or as a pre-coding step.
+
+**Best for:** Requirement clarification, preventing wrong-thing-built-correctly, spec-first development.
+
+---
+
+### `execution/legacy-rescue-protocol.md` · [protocol]
+**What it is:** Fuses Working Effectively with Legacy Code with Refactoring State Machine. Four-phase pipeline: CHARACTERIZE current behavior with tests, SEAM find or create safe change points, TRANSFORM in bounded slices with anti-loop breaker, CLEANUP scaffolding.
+
+**Use it when:** Any change to code without adequate test coverage, refactoring unfamiliar code, or fixing bugs in legacy systems.
+
+**Best for:** Legacy modernization, safe refactoring, characterization testing, change safety.
+
+---
+
+### `execution/long-task-survival-kit.md` · [protocol]
+**What it is:** Fuses Assumption Grounding + Trajectory Guard + Context Budget Operator into a recurring checkpoint protocol. Every 5 tool calls: check context health, trajectory health, and assumption health. Includes emergency protocols for each failure mode.
+
+**Use it when:** Any task that will take 10+ tool calls, multi-file refactors, migration work, complex debugging.
+
+**Best for:** Preventing agent decay, context overflow detection, failure spiral recovery, long-horizon tasks.
+
+---
+
 ### `debugging/log-trace-correlation/SKILL.md` · [protocol]
 **What it is:** A protocol for correlating error logs and stack traces to source code to identify root cause and suggest fixes.
 
@@ -394,6 +421,24 @@ Skills for routing tasks, calibrating rigor, and reasoning about risks and trade
 
 ---
 
+### `judgment-and-routing/task-intake-protocol.md` · [protocol]
+**What it is:** Universal preflight gate fusing Cynefin problem classification, ETTO rigor calibration, and Recognition-Primed Triage into a single 3-phase pipeline: Classify → Calibrate → Commit.
+
+**Use it when:** Before any non-trivial task — coding, debugging, architecture decisions, ambiguous requests.
+
+**Best for:** Task intake, preflight decisions, eliminating 3-skill loading overhead.
+
+---
+
+### `judgment-and-routing/failure-analysis-protocol.md` · [protocol]
+**What it is:** Three failure-analysis lenses merged into a tightening funnel: Inversion (define failure), Pre-Mortem (narrate failure stories), Second-Order Thinking (trace cascading consequences). Produces a guardrail table with prevention, detection, and recovery for each risk.
+
+**Use it when:** Before committing to plans, architecture decisions, data migrations, or any high-cost-of-being-wrong situation.
+
+**Best for:** Pre-commitment analysis, failure prevention, risk guardrails, architecture review.
+
+---
+
 ## ✨ Output Quality — improving what the agent produces
 
 Skills that refine, critique, and simplify the agent's own outputs.
@@ -551,6 +596,15 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `output-quality/self-verify-pipeline.md` · [protocol]
+**What it is:** Fuses Bounded Self-Revision + Tool Interactive Critic + Claim Verification Reasoning into an escalating 5-phase verification pipeline: Draft → Self-Critique (2 passes max) → Claim Decompose (flag uncertain/high-impact) → Tool-Verify (cheapest tool first) → Final Revision (only where evidence demands).
+
+**Use it when:** Before committing code, presenting analysis to humans, or any high-stakes output.
+
+**Best for:** Output verification, anti-hallucination, self-check before commit, quality gate.
+
+---
+
 ## 🏗️ Systems & Architecture — design principles and structural thinking
 
 Skills for reasoning about systems, boundaries, constraints, and structural design.
@@ -633,6 +687,15 @@ Skills for reasoning about systems, boundaries, constraints, and structural desi
 **Use it when:** Before deploying any AI-generated app to production, or when onboarding an AI-built MVP to a real engineering team.
 
 **Best for:** Pre-production security review of vibe-coded apps, CI/CD security gates, MVP hardening before public launch.
+
+---
+
+### `systems-and-architecture/security-review-protocol.md` · [protocol]
+**What it is:** Fuses STRIDE threat modeling + Unsafe Control Actions + Vibe Coding Security Hardening into a 4-phase security review: MODEL attack surface, AUDIT hazardous operations, HARDCODE LLM-specific vulnerabilities, VERIFY with tool-grounded evidence.
+
+**Use it when:** Before deploying new endpoints, changing auth/permission logic, or security-focused code reviews.
+
+**Best for:** Security review, threat modeling, vulnerability audit, pre-deployment security check.
 
 ---
 
@@ -860,6 +923,15 @@ Skills for structuring how agents plan, route, delegate, and control complex wor
 
 ---
 
+### `execution/trajectory-guard/SKILL.md` · [protocol]
+**What it is:** Runtime meta-monitoring protocol that watches the agent's execution arc (not individual steps) and detects failure spirals — repetitive loops, specification drift, and stuck trajectories. Forces strategy changes instead of allowing retries of the same approach. Based on Wink misbehavior taxonomy (arXiv:2602.17037, 90% resolution on 10K+ trajectories) and PALADIN recovery patterns (arXiv:2509.25238, recovery from 23.75% to 89.86%).
+
+**Use it when:** Tasks expected to take more than 5 tool calls, debugging sessions, migrations, multi-file changes. Especially when the agent notices it has tried the same approach more than twice.
+
+**Best for:** Preventing wasted turns on stuck trajectories, catching specification drift before it compounds, breaking repetition loops that consume context budget with no progress.
+
+---
+
 ### `systems-and-architecture/everything-as-code-conceptualizer.md` · [framework]
 **What it is:** A conceptual lens that forces viewing any system, process, or problem through a "code lens" — writing pseudocode to represent team dynamics, unclear requirements, deployment issues, or knowledge gaps. The act of codification reveals hidden structure and assumptions.
 
@@ -952,6 +1024,24 @@ Skills for creating skills, integrating external systems, and development workfl
 **Use it when:** You need to review a PR, diff, or set of changes with consistent coverage.
 
 **Best for:** Pull request reviews, change verification, catching missed issues.
+
+---
+
+### `software-development/llm-pre-push-review.md` · [protocol]
+**What it is:** A pre-push code review checklist grounded in arXiv research on systematic LLM coding failures. Five structured passes: Execution Grounding, Security Surface, Contextual Correctness, Structural Quality, and Integration Points. Based on 11 papers identifying failure modes unique to LLM-generated code — hallucinated execution traces, the Format-Reliability Gap (models know vulnerabilities but still generate them), systematic overcorrection of correct code, and functionally-correct-but-silently-vulnerable output.
+
+**Use it when:** Reviewing code before a push/PR, especially when LLMs wrote or modified the code. Also useful as a self-review protocol for agents before committing changes.
+
+**Best for:** Pre-push review, LLM-generated code QA, catching silent vulnerabilities, preventing scope creep, anti-pattern detection.
+
+---
+
+### `software-development/pre-deployment-gate.md` · [protocol]
+**What it is:** Fuses LLM Pre-Push Review with Vibe Coding Security Hardening into a complete 7-pass pre-deployment checklist. Covers execution grounding, security surface, contextual correctness, structural quality, integration points, production hardening (RLS, rate limiting, CORS, CSP), and secrets/config audit.
+
+**Use it when:** Reviewing code before a push/PR/deployment, especially LLM-generated code.
+
+**Best for:** Pre-push review, pre-deploy security gate, LLM code QA, production hardening.
 
 ---
 

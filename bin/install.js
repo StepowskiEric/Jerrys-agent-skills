@@ -21,7 +21,7 @@ const AGENT_DIRS = {
 const SUPPORTED_AGENTS = Object.keys(AGENT_DIRS);
 
 // Directories that should never be scanned for skills
-const SKIP_DIRS = new Set(['docs', 'node_modules', 'scripts', '.git', '.agents', '.worktrees']);
+const SKIP_DIRS = new Set(['docs', 'node_modules', 'scripts', '.git', '.agents', '.worktrees', '.code-review-graph', 'benchmarks']);
 
 function getSkillFiles(dir, base) {
   base = base || dir;
@@ -189,9 +189,72 @@ function cleanOldSkillVersions(skills, dest, flat) {
   }
 }
 
+/**
+ * Remove old jerry-skills installations from the destination before installing.
+ * Scans for SKILL.md files with `source: "jerry-skills"` in their frontmatter
+ * and removes those directories. This prevents stale skills from accumulating
+ * when re-running the installer after skills are renamed or removed.
+ */
+function cleanStaleSkills(dest) {
+  let cleaned = 0;
+  try {
+    const entries = fs.readdirSync(dest, { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const dir = path.join(dest, entry.name);
+
+      // Check if this directory contains a SKILL.md
+      const skillFile = path.join(dir, 'SKILL.md');
+      if (fs.existsSync(skillFile)) {
+        try {
+          const content = fs.readFileSync(skillFile, 'utf8');
+          if (content.includes('source: "jerry-skills"') || content.includes("source: 'jerry-skills'")) {
+            fs.rmSync(dir, { recursive: true, force: true });
+            cleaned++;
+          }
+        } catch {
+          // Can't read — skip
+        }
+      }
+
+      // Also check one level deeper (topic/skill-name/SKILL.md)
+      if (entry.isDirectory()) {
+        try {
+          const subs = fs.readdirSync(dir, { withFileTypes: true });
+          for (const sub of subs) {
+            if (!sub.isDirectory()) continue;
+            const subDir = path.join(dir, sub.name);
+            const subSkill = path.join(subDir, 'SKILL.md');
+            if (fs.existsSync(subSkill)) {
+              try {
+                const content = fs.readFileSync(subSkill, 'utf8');
+                if (content.includes('source: "jerry-skills"') || content.includes("source: 'jerry-skills'")) {
+                  fs.rmSync(subDir, { recursive: true, force: true });
+                  cleaned++;
+                }
+              } catch {
+                // Can't read — skip
+              }
+            }
+          }
+        } catch {
+          // Can't scan — skip
+        }
+      }
+    }
+  } catch {
+    // dest doesn't exist yet — nothing to clean
+  }
+  return cleaned;
+}
+
 function installSkills(skills, dest, flat, agent, withScripts) {
   fs.mkdirSync(dest, { recursive: true });
   skills = deduplicateSkills(skills);
+  const staleRemoved = cleanStaleSkills(dest);
+  if (staleRemoved > 0) {
+    console.log(`  Cleaned ${staleRemoved} stale skill(s) from previous install`);
+  }
   cleanOldSkillVersions(skills, dest, flat);
   let installed = 0;
   let scriptsInstalled = 0;
@@ -287,6 +350,7 @@ const TOPIC_DIRS = [
   'reasoning',
   'software-development',
   'development',
+  'testing',
 ];
 
 const TOPIC_LABELS = {
@@ -300,6 +364,7 @@ const TOPIC_LABELS = {
   'reasoning': 'Reasoning — faithfulness and reasoning verification',
   'software-development': 'Software Development — practical development workflows',
   'development': 'Development — skill building and repository management',
+  'testing': 'Testing — test patterns, mocking, and evaluation',
 };
 
 function skillHasCompanion(file) {

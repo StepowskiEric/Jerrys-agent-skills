@@ -74,7 +74,7 @@ Use these as default stacks when the task matches the scenario.
 7. `debugging/root-cause-analysis.md` if the bug is recurring or symptom-only fixes keep failing
 8. `output-quality/tool-interactive-critic.md` to verify the conclusion against code, logs, or tests
 
-Why this stack works: classify the problem first, set the rigor bar, force disciplined diagnosis, distinguish symptoms from real causes, then keep evidence and action in a tight loop.
+Why this stack works: classify the problem first, set the rigor bar, force disciplined diagnosis, distinguish symptoms from real causes, then keep evidence and action in a tight loop. Add `execution/trajectory-guard/SKILL.md` to this stack if the debugging session exceeds 10 tool calls — it catches the failure spiral where the agent keeps trying variants of the same fix.
 
 ### New architecture or major design decisions
 
@@ -161,6 +161,30 @@ Why this stack works: spec-first eliminates rework, bounded self-revision catche
 4. `output-quality/tool-interactive-critic.md` — verify security claims against actual code and configuration
 
 Why this stack works: threat modeling finds the holes, the hardening checklist covers the vulnerabilities AI tools reliably miss, hazard analysis guards dangerous operations, and external verification prevents false confidence in security posture.
+
+### Long-horizon tasks (migrations, multi-file changes, complex bugs)
+
+1. `execution/context-budget-operator/SKILL.md` — track token budget before it silently overflows
+2. `execution/trajectory-guard/SKILL.md` — detect failure spirals and force strategy changes
+3. `execution/assumption-grounding/SKILL.md` — verify assumptions before each major decision
+4. `execution/pragmatic-programmer-state-machine.md` — keep changes bounded and reversible
+
+Why this stack works: long tasks are where agents fail most — context overflow, failure spirals, and specification drift compound over many turns. Budget tracking prevents silent instruction loss, trajectory guard catches stuck execution, assumption grounding prevents hallucinated facts from compounding, and the pragmatist protocol keeps scope bounded.
+
+## Hybrid Skill Protocols
+
+These skills fuse 2-3 existing skills into single protocols, eliminating loading overhead and enforcing phase sequencing. Use them instead of loading the component skills separately.
+
+| Hybrid | Fuses | When to Use |
+|--------|-------|-------------|
+| [`task-intake-protocol`](judgment-and-routing/task-intake-protocol.md) | Cynefin + ETTO + RPT | Before ANY non-trivial task |
+| [`pre-deployment-gate`](software-development/pre-deployment-gate.md) | Pre-Push Review + Vibe Coding Security | Before pushing/deploying code |
+| [`requirement-crystallization-protocol`](execution/requirement-crystallization-protocol.md) | Socratic + Intent Spec | Before coding when requirements are vague |
+| [`legacy-rescue-protocol`](execution/legacy-rescue-protocol.md) | WELC + Refactoring State Machine | Changing untested/legacy code |
+| [`self-verify-pipeline`](output-quality/self-verify-pipeline.md) | BSR + TIC + Claim Verification | Verifying output before committing |
+| [`failure-analysis-protocol`](judgment-and-routing/failure-analysis-protocol.md) | Pre-Mortem + Inversion + 2nd-Order | Before high-stakes decisions |
+| [`long-task-survival-kit`](execution/long-task-survival-kit.md) | Assumption + Trajectory + Context Budget | Tasks with 10+ tool calls |
+| [`security-review-protocol`](systems-and-architecture/security-review-protocol.md) | STRIDE + UCA + Vibe Coding Security | Security review before deployment |
 
 ## If you are unsure where to begin
 

@@ -18,7 +18,8 @@
 | **keyword-agnostic-logic-locator** | execution/ | Code navigation | Requires manual script setup |
 | step-level-verification-protocol | execution/ | Preventing error propagation | |
 | speculative-drafting-verification | execution/ | Parallel candidate evaluation | |
-| process-reward-model-protocol | execution/ | Self-correcting reasoning | |
+|| process-reward-model-protocol | execution/ | Self-correcting reasoning | |
+|| trajectory-guard | execution/ | Failure spiral detection & recovery | Checkpoint every 5 tool calls |
 | thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level | |
 | pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight | |
 | recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage | |
@@ -53,6 +54,15 @@
 | **reasoning-verification-hybrid** | reasoning/ | Master anti-hallucination orchestrator | Hybrid (6 papers) |
 | root-cause-analysis | debugging/ | Distinguish symptoms from real causes | 5 Whys + Ishikawa |
 | vibe-coding-security-hardening | systems-and-architecture/ | Harden AI-generated apps for production | 9-phase checklist |
+| **llm-pre-push-review** | software-development/ | Pre-push review for LLM-generated code | 5-pass protocol, 11 arXiv papers |
+| **task-intake-protocol** | judgment-and-routing/ | Universal preflight gate (Cynefin+ETTO+RPT) | 3-phase classify→calibrate→commit |
+| **pre-deployment-gate** | software-development/ | Pre-push + production hardening | 7-pass gate, Pre-Push + Vibe Coding Security |
+| **requirement-crystallization-protocol** | execution/ | Vague request → locked spec | Socratic + Intent Spec fused |
+| **legacy-rescue-protocol** | execution/ | Safe legacy code changes | WELC + Refactoring State Machine |
+| **self-verify-pipeline** | output-quality/ | Escalating output verification | BSR + TIC + Claim Verification |
+| **failure-analysis-protocol** | judgment-and-routing/ | Pre-commitment failure analysis | Pre-Mortem + Inversion + 2nd-Order |
+| **long-task-survival-kit** | execution/ | Prevent agent decay on long tasks | Assumption + Trajectory + Context Budget |
+| **security-review-protocol** | systems-and-architecture/ | Comprehensive security review | STRIDE + UCA + Vibe Coding Security |
 
 ## All Framework Skills (Conceptual)
 
