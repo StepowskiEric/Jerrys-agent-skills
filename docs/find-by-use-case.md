@@ -22,9 +22,10 @@
 | Bug keeps coming back after "fix" | [`root-cause-analysis`](../debugging/root-cause-analysis.md) | 5 Whys + Ishikawa to find real cause, not symptom | Framework |
 | Need structured debug workflow | [`debug-issue`](../software-development/debug-issue.md) | Graph-powered code navigation to trace issues | Framework |
 | Tests fail, need reproducibility | [`debug-issue`](../software-development/debug-issue.md) | Reproduce → Isolate → Fix → Verify cycle | Framework |
+| End-to-end debugging pipeline needed | [`debug-to-fix-pipeline`](../debugging/debug-to-fix-pipeline.md) | Fuses 5 debugging skills: abductive + subagent + instrumentation + purify + patch repair | Hybrid |
 | Need to understand unfamiliar code before fixing | [`explore-codebase`](../software-development/explore-codebase.md) | Graph-powered navigation with token efficiency | Framework |
-|| Large codebase, bug location unknown | [`codebase-divide-conquer-search`](../software-development/codebase-divide-conquer-search.md) | Hierarchical summarization + parallel agent deep dives | Based on Meta-RAG / GenLoc |
-|| Debugging session getting long, agent stuck | [`long-task-survival-kit`](../execution/long-task-survival-kit.md) | Checkpoint every 5 calls: context, trajectory, assumptions | |
+| Large codebase, bug location unknown | [`codebase-divide-conquer-search`](../software-development/codebase-divide-conquer-search.md) | Hierarchical summarization + parallel agent deep dives | Based on Meta-RAG / GenLoc |
+| Debugging session getting long, agent stuck | [`long-task-survival-kit`](../execution/long-task-survival-kit.md) | Checkpoint every 5 calls: context, trajectory, assumptions | |
 
 **Not recommended for typical code bugs** (empirically ineffective in our tests):
 - `abductive-first-debugging` — Designed for novel failures with multiple competing hypotheses. Tested on a real repo bug: **-0.4% vs baseline**.
@@ -48,10 +49,10 @@
 | Backtrack when reasoning goes wrong | [`process-reward-model-protocol`](../execution/process-reward-model-protocol.md) | Self-correcting reasoning path |
 | Use analogy to solve problems | [`how-to-solve-it-analogy`](../execution/how-to-solve-it-analogy.md) | Structured analogy-based problem solving |
 | Verify each step before proceeding | [`step-level-verification-protocol`](../execution/step-level-verification-protocol.md) | Prevents error propagation in multi-step reasoning |
-|| Prevent hallucinated facts from compounding | [`assumption-grounding`](../execution/assumption-grounding/SKILL.md) | State, verify, and log assumptions before acting |
-|| Agent keeps retrying the same failed approach | [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Detects repetition loops, specification drift, and stuck trajectories — forces strategy change |
-|| Agent drifted from what was actually asked | [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Catches specification drift by re-checking alignment with user's original request |
-|| Running out of context on a long task | [`context-budget-operator`](../execution/context-budget-operator/SKILL.md) + [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Budget tracking + failure-spiral detection prevents wasted tokens |
+| Prevent hallucinated facts from compounding | [`assumption-grounding`](../execution/assumption-grounding/SKILL.md) | State, verify, and log assumptions before acting |
+| Agent keeps retrying the same failed approach | [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Detects repetition loops, specification drift, and stuck trajectories — forces strategy change |
+| Agent drifted from what was actually asked | [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Catches specification drift by re-checking alignment with user's original request |
+| Running out of context on a long task | [`context-budget-operator`](../execution/context-budget-operator/SKILL.md) + [`trajectory-guard`](../execution/trajectory-guard/SKILL.md) | Budget tracking + failure-spiral detection prevents wasted tokens |
 
 ---
 
@@ -63,8 +64,9 @@
 |-----------|------------|-----|
 | Continuous improvement cycle | [`pdca-deming`](../execution/pdca-deming.md) | Plan-Do-Check-Act iterative improvement |
 | Toyota-style continuous improvement | [`toyota-kata-state-machine`](../execution/toyota-kata-state-machine.md) | Scientific thinking pattern |
-|| Complex multi-step procedure | [`checklist-manifesto`](../execution/checklist-manifesto.md) | Checklist discipline |
-|| Vague request, need to crystallize before coding | [`requirement-crystallization-protocol`](../execution/requirement-crystallization-protocol.md) | Socratic + Intent Spec: surface → capture → lock |
+| Complex multi-step procedure | [`checklist-manifesto`](../execution/checklist-manifesto.md) | Checklist discipline |
+| Vague request, need to crystallize before coding | [`requirement-crystallization-protocol`](../execution/requirement-crystallization-protocol.md) | Socratic + Intent Spec: surface → capture → lock |
+| Improve system with measurement + design quality | [`iterative-improvement-cycle`](../execution/iterative-improvement-cycle.md) | Toyota Kata + PDCA + Philosophy of Software Design |
 
 ---
 
@@ -78,12 +80,12 @@
 | Refactoring legacy code | [`working-effectively-with-legacy-code-state-machine`](../execution/working-effectively-with-legacy-code-state-machine.md) | Safe change protocol |
 | Code smells but not sure what | [`philosophy-of-software-design-state-machine`](../execution/philosophy-of-software-design-state-machine.md) | Complexity management |
 | Before committing changes | [`verify-before-integrate`](../software-development/verify-before-integrate.md) | Pre-commit verification |
-|| Reviewing LLM-generated code before push | [`llm-pre-push-review`](../software-development/llm-pre-push-review.md) | 5-pass protocol catching LLM-specific failures (hallucinated logic, silent vulns, overcorrection, scope creep) |
-|| Pre-deployment security + quality gate | [`pre-deployment-gate`](../software-development/pre-deployment-gate.md) | 7-pass pre-push + production hardening checklist |
-|| Verify output before presenting | [`self-verify-pipeline`](../output-quality/self-verify-pipeline.md) | 5-phase escalating verification: self-critique → claims → tools |
-|| Universal task preflight | [`task-intake-protocol`](../judgment-and-routing/task-intake-protocol.md) | Cynefin + ETTO + RPT fused into one gate |
-|| Pre-commitment failure analysis | [`failure-analysis-protocol`](../judgment-and-routing/failure-analysis-protocol.md) | Pre-Mortem + Inversion + Second-Order Thinking |
-|| Security review | [`security-review-protocol`](../systems-and-architecture/security-review-protocol.md) | STRIDE + UCA + Vibe Coding Security fused |
+| Reviewing LLM-generated code before push | [`llm-pre-push-review`](../software-development/llm-pre-push-review.md) | 5-pass protocol catching LLM-specific failures (hallucinated logic, silent vulns, overcorrection, scope creep) |
+| Pre-deployment security + quality gate | [`pre-deployment-gate`](../software-development/pre-deployment-gate.md) | 7-pass pre-push + production hardening checklist |
+| Verify output before presenting | [`self-verify-pipeline`](../output-quality/self-verify-pipeline.md) | 5-phase escalating verification: self-critique → claims → tools |
+| Universal task preflight | [`task-intake-protocol`](../judgment-and-routing/task-intake-protocol.md) | Cynefin + ETTO + RPT fused into one gate |
+| Pre-commitment failure analysis | [`failure-analysis-protocol`](../judgment-and-routing/failure-analysis-protocol.md) | Pre-Mortem + Inversion + Second-Order Thinking |
+| Security review | [`security-review-protocol`](../systems-and-architecture/security-review-protocol.md) | STRIDE + UCA + Vibe Coding Security fused |
 | Refactoring safely | [`refactoring-state-machine`](../execution/refactoring-state-machine.md) | Structured refactoring protocol |
 | Follow pragmatic programmer principles | [`pragmatic-programmer-state-machine`](../execution/pragmatic-programmer-state-machine.md) | Core programming wisdom |
 | Self-check for thoroughness | [`thoroughness-check-etto`](../judgment-and-routing/thoroughness-check-etto.md) | Systematic completeness check |
@@ -91,6 +93,7 @@
 | Validate decisions with counterfactuals | [`counterfactual-policy-testing`](../judgment-and-routing/counterfactual-policy-testing.md) | Test against alternatives |
 | Improve my own output | [`bounded-self-revision`](../output-quality/bounded-self-revision.md) | Structured self-improvement |
 | Generate and verify multiple solutions | [`speculative-drafting-verification`](../execution/speculative-drafting-verification.md) | Parallel candidate evaluation |
+| Explore multiple solutions with process rewards | [`speculative-exploration-protocol`](../execution/speculative-exploration-protocol.md) | Speculative drafting + tree of thoughts + PRM fused |
 | Check for cognitive biases | [`cognitive-bias-checklist`](../judgment-and-routing/cognitive-bias-checklist.md) | Bias detection and mitigation |
 | Verify self-consistency | [`self-consistency`](../output-quality/self-consistency.md) | Cross-check reasoning |
 | Interactive criticism of work | [`tool-interactive-critic`](../output-quality/tool-interactive-critic.md) | Structured critique process |
@@ -114,6 +117,7 @@
 | Router for problem types (state machine) | [`problem-mode-router-cynefin-state-machine`](../judgment-and-routing/problem-mode-router-cynefin-state-machine.md) | Enforced Cynefin routing |
 | System thinking protocol | [`thinking-in-systems-state-machine`](../systems-and-architecture/thinking-in-systems-state-machine.md) | System dynamics analysis |
 | API design with backward compatibility | [`api-design-backward-compatibility`](../software-development/api-design-backward-compatibility.md) | Consumer discovery before contract changes |
+| Comprehensive architecture review | [`system-architecture-audit`](../systems-and-architecture/system-architecture-audit.md) | DDIA + DDD + Thinking in Systems + Release It fused |
 
 ---
 
@@ -177,6 +181,7 @@
 | Need master anti-hallucination protocol | [`reasoning-verification-hybrid`](../reasoning/reasoning-verification-hybrid.md) | Claim verification + contradiction checks + confidence calibration |
 | Reasoning is converging but keeps elaborating | [`selective-halt-reasoning`](../reasoning/selective-halt-reasoning.md) | Halt when consecutive steps stabilize |
 | Token burn is the bottleneck | [`token-budget-operator`](../reasoning/token-budget-operator.md) | Orchestrates compression, pruning, halting, and SOP capture |
+| Reasoning integrity across faithfulness + convergence | [`reasoning-integrity-chain`](../reasoning/reasoning-integrity-chain.md) | Faithfulness + claims + verification + selective halt fused |
 
 ---
 

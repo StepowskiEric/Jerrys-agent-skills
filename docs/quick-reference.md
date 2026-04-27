@@ -18,8 +18,8 @@
 | **keyword-agnostic-logic-locator** | execution/ | Code navigation | Requires manual script setup |
 | step-level-verification-protocol | execution/ | Preventing error propagation | |
 | speculative-drafting-verification | execution/ | Parallel candidate evaluation | |
-|| process-reward-model-protocol | execution/ | Self-correcting reasoning | |
-|| trajectory-guard | execution/ | Failure spiral detection & recovery | Checkpoint every 5 tool calls |
+| process-reward-model-protocol | execution/ | Self-correcting reasoning | |
+| trajectory-guard | execution/ | Failure spiral detection & recovery | Checkpoint every 5 tool calls |
 | thoroughness-check-etto-state-machine | judgment-and-routing/ | Setting rigor level | |
 | pre-mortem-state-machine | judgment-and-routing/ | Prospective hindsight | |
 | recognition-primed-triage-state-machine | judgment-and-routing/ | Fast triage | |
@@ -41,10 +41,10 @@
 | thinking-in-systems-state-machine | systems-and-architecture/ | System analysis | |
 | log-trace-correlation | debugging/ | Root-cause analysis | ✓ Proven |
 | bisect-debugging | debugging/ | Isolate regression commits | [tested] +9.9% speed |
-|| debug-subagent | debugging/ | Interactive debug subagent | Based on Debug2Fix |
-|| purify-test-output | debugging/ | Reduce test noise (~18.6% tokens) | Based on DebugRepair |
-|| simulate-instrumentation | debugging/ | Capture runtime state | Based on DebugRepair |
-|| iterative-patch-repair | debugging/ | Iterative patch generation | Based on DebugRepair |
+| debug-subagent | debugging/ | Interactive debug subagent | Based on Debug2Fix |
+| purify-test-output | debugging/ | Reduce test noise (~18.6% tokens) | Based on DebugRepair |
+| simulate-instrumentation | debugging/ | Capture runtime state | Based on DebugRepair |
+| iterative-patch-repair | debugging/ | Iterative patch generation | Based on DebugRepair |
 | **context-density-operator** | reasoning/ | Maximize info per token | GenericAgent (arXiv:2604.17091) |
 | **cot-pruning-reasoning** | reasoning/ | Compress CoT reasoning | CoT-Influx (arXiv:2312.08901) |
 | **selective-halt-reasoning** | reasoning/ | Halt when converged | DASH (arXiv:2604.18103) |
@@ -63,6 +63,11 @@
 | **failure-analysis-protocol** | judgment-and-routing/ | Pre-commitment failure analysis | Pre-Mortem + Inversion + 2nd-Order |
 | **long-task-survival-kit** | execution/ | Prevent agent decay on long tasks | Assumption + Trajectory + Context Budget |
 | **security-review-protocol** | systems-and-architecture/ | Comprehensive security review | STRIDE + UCA + Vibe Coding Security |
+| **debug-to-fix-pipeline** | debugging/ | End-to-end debugging pipeline | Abductive + Subagent + Instrumentation + Purify + Patch Repair |
+| **reasoning-integrity-chain** | reasoning/ | Reasoning integrity chain | Faithfulness + Claims + Verification + Halt |
+| **system-architecture-audit** | systems-and-architecture/ | Comprehensive architecture audit | DDIA + DDD + Thinking in Systems + Release It |
+| **speculative-exploration-protocol** | execution/ | Explore with process rewards | Speculative Drafting + ToT + PRM |
+| **iterative-improvement-cycle** | execution/ | Iterative improvement cycle | Toyota Kata + PDCA + Philosophy of Software Design |
 
 ## All Framework Skills (Conceptual)
 
@@ -132,6 +137,11 @@
 | cot-pruning-reasoning | 2026-04 | Two-pass CoT compression (arXiv:2312.08901) |
 | selective-halt-reasoning | 2026-04 | Semantic stabilization halting (arXiv:2604.18103) |
 | sop-evolution-memory | 2026-04 | Trajectory-to-SOP distillation (arXiv:2604.17091) |
+| debug-to-fix-pipeline | 2026-04 | End-to-end debugging pipeline (5 debugging skills fused) |
+| reasoning-integrity-chain | 2026-04 | Reasoning integrity chain (faithfulness + claims + verification + halt) |
+| system-architecture-audit | 2026-04 | Architecture audit (DDIA + DDD + Thinking in Systems + Release It) |
+| speculative-exploration-protocol | 2026-04 | Exploration with process rewards (Speculative Drafting + ToT + PRM) |
+| iterative-improvement-cycle | 2026-04 | Iterative improvement (Toyota Kata + PDCA + Philosophy of Software Design) |
 | documentation-craft | 2025-04 | 5-phase structured writing (arXiv:2504.08725) |
 | counterfactual-policy-testing | 2025-04 | Null/opposite/partial alternatives (arXiv:2604.10511) |
 | cognitive-friction-governor | 2025-04 | Deliberation budgeting (arXiv:2603.30031) |

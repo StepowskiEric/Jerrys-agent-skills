@@ -177,14 +177,19 @@ These skills fuse 2-3 existing skills into single protocols, eliminating loading
 
 | Hybrid | Fuses | When to Use |
 |--------|-------|-------------|
-| [`task-intake-protocol`](judgment-and-routing/task-intake-protocol.md) | Cynefin + ETTO + RPT | Before ANY non-trivial task |
-| [`pre-deployment-gate`](software-development/pre-deployment-gate.md) | Pre-Push Review + Vibe Coding Security | Before pushing/deploying code |
-| [`requirement-crystallization-protocol`](execution/requirement-crystallization-protocol.md) | Socratic + Intent Spec | Before coding when requirements are vague |
-| [`legacy-rescue-protocol`](execution/legacy-rescue-protocol.md) | WELC + Refactoring State Machine | Changing untested/legacy code |
-| [`self-verify-pipeline`](output-quality/self-verify-pipeline.md) | BSR + TIC + Claim Verification | Verifying output before committing |
-| [`failure-analysis-protocol`](judgment-and-routing/failure-analysis-protocol.md) | Pre-Mortem + Inversion + 2nd-Order | Before high-stakes decisions |
-| [`long-task-survival-kit`](execution/long-task-survival-kit.md) | Assumption + Trajectory + Context Budget | Tasks with 10+ tool calls |
-| [`security-review-protocol`](systems-and-architecture/security-review-protocol.md) | STRIDE + UCA + Vibe Coding Security | Security review before deployment |
+| [`task-intake-protocol`](../judgment-and-routing/task-intake-protocol.md) | Cynefin + ETTO + RPT | Before ANY non-trivial task |
+| [`pre-deployment-gate`](../software-development/pre-deployment-gate.md) | Pre-Push Review + Vibe Coding Security | Before pushing/deploying code |
+| [`requirement-crystallization-protocol`](../execution/requirement-crystallization-protocol.md) | Socratic + Intent Spec | Before coding when requirements are vague |
+| [`legacy-rescue-protocol`](../execution/legacy-rescue-protocol.md) | WELC + Refactoring State Machine | Changing untested/legacy code |
+| [`self-verify-pipeline`](../output-quality/self-verify-pipeline.md) | BSR + TIC + Claim Verification | Verifying output before committing |
+| [`failure-analysis-protocol`](../judgment-and-routing/failure-analysis-protocol.md) | Pre-Mortem + Inversion + 2nd-Order | Before high-stakes decisions |
+| [`long-task-survival-kit`](../execution/long-task-survival-kit.md) | Assumption + Trajectory + Context Budget | Tasks with 10+ tool calls |
+| [`security-review-protocol`](../systems-and-architecture/security-review-protocol.md) | STRIDE + UCA + Vibe Coding Security | Security review before deployment |
+| [`debug-to-fix-pipeline`](../debugging/debug-to-fix-pipeline.md) | Abductive Debug + Debug Subagent + Instrumentation + Purify + Patch Repair | End-to-end non-trivial debugging |
+| [`reasoning-integrity-chain`](../reasoning/reasoning-integrity-chain.md) | Faithfulness + Claims + Verification + Selective Halt | High-stakes reasoning integrity |
+| [`system-architecture-audit`](../systems-and-architecture/system-architecture-audit.md) | DDIA + DDD + Thinking in Systems + Release It | Comprehensive architecture review |
+| [`speculative-exploration-protocol`](../execution/speculative-exploration-protocol.md) | Speculative Drafting + Tree of Thoughts + PRM | Explore alternatives with process rewards |
+| [`iterative-improvement-cycle`](../execution/iterative-improvement-cycle.md) | Toyota Kata + PDCA + Philosophy of Software Design | Iterative improvement with measurement + design quality |
 
 ## If you are unsure where to begin
 

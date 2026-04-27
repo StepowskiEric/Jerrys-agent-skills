@@ -167,6 +167,24 @@ Skills for executing technical work in a bounded, disciplined way.
 
 ---
 
+### `execution/speculative-exploration-protocol.md` · [protocol]
+**What it is:** Fuses speculative drafting + tree of thoughts + process reward model into a disciplined exploration protocol. Generates multiple candidate branches, evaluates each with process rewards, prunes weak paths, and selects the best-verified solution.
+
+**Use it when:** Complex problems with multiple plausible approaches where committing to one path early risks suboptimal outcomes.
+
+**Best for:** Design decisions, architecture choices, complex debugging with competing hypotheses, any task where exploring and verifying alternatives improves outcomes.
+
+---
+
+### `execution/iterative-improvement-cycle.md` · [protocol]
+**What it is:** Fuses Toyota Kata + PDCA + Philosophy of Software Design into a continuous improvement cycle. Defines target conditions, runs measured experiments, manages complexity, and standardizes only on verified results.
+
+**Use it when:** Improving a system or process where iterative experimentation, measurement discipline, and design quality all matter.
+
+**Best for:** Process improvement, code quality enhancement, workflow refinement, any task that needs both Toyota Kata's obstacle-focused iteration and PDCA's measurement discipline.
+
+---
+
 ### `debugging/log-trace-correlation/SKILL.md` · [protocol]
 **What it is:** A protocol for correlating error logs and stack traces to source code to identify root cause and suggest fixes.
 
@@ -218,6 +236,15 @@ Skills for executing technical work in a bounded, disciplined way.
 **Use it when:** The first patch attempt failed, or multiple plausible fixes exist and you need to find the correct one.
 
 **Best for:** Non-obvious bugs, avoiding symptom-only fixes, patch search and verification. Based on DebugRepair research (+19.9% from patch augmentation alone).
+
+---
+
+### `debugging/debug-to-fix-pipeline.md` · [protocol]
+**What it is:** Fuses abductive debugging + debug subagent + simulate instrumentation + purify test output + iterative patch repair into a single end-to-end debugging pipeline. Classifies the failure, generates hypotheses, instruments runtime state, iterates on patches, and verifies the fix.
+
+**Use it when:** Non-trivial bugs that require systematic investigation, runtime state capture, and iterative patch refinement.
+
+**Best for:** Complex debugging, multi-hypothesis bugs, production issue investigation, any debugging task that would normally require loading 5+ debugging skills.
 
 ---
 
@@ -542,6 +569,15 @@ Skills that refine, critique, and simplify the agent's own outputs.
 
 ---
 
+### `reasoning/reasoning-integrity-chain.md` · [protocol]
+**What it is:** Fuses faithfulness-aware reasoning + claim verification + reasoning verification hybrid + selective halt into a continuous integrity chain. Monitors for faithfulness hallucinations, decomposes claims, verifies entailment, and halts when reasoning stabilizes.
+
+**Use it when:** High-stakes reasoning where hallucinated facts or logically invalid conclusions would cause harm.
+
+**Best for:** Critical analysis, code change justifications, complex reasoning chains where both faithfulness and convergence matter.
+
+---
+
 ### `reasoning/context-density-operator.md` · [protocol]
 **What it is:** A context-management protocol that maximizes decision-relevant information per token. Uses hierarchical memory (always-visible / summarized / reference-table tiers), redundancy elimination, and on-demand expansion to keep the context window dense. Based on GenericAgent (arXiv:2604.17091) and information bottleneck principles.
 
@@ -696,6 +732,15 @@ Skills for reasoning about systems, boundaries, constraints, and structural desi
 **Use it when:** Before deploying new endpoints, changing auth/permission logic, or security-focused code reviews.
 
 **Best for:** Security review, threat modeling, vulnerability audit, pre-deployment security check.
+
+---
+
+### `systems-and-architecture/system-architecture-audit.md` · [protocol]
+**What it is:** Fuses DDIA + DDD + Thinking in Systems + Release It into a comprehensive architecture audit. Evaluates data system choices, domain boundaries, system dynamics, and production resilience in a single pass.
+
+**Use it when:** Reviewing or designing a distributed system where data flow, domain boundaries, feedback loops, and failure resilience all matter.
+
+**Best for:** Architecture review, system design validation, production readiness assessment, any task that would normally require loading 4 systems-and-architecture skills.
 
 ---
 
